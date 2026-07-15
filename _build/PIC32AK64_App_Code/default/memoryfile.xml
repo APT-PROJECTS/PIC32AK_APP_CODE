@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="C:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\out\PIC32AK64_App_Code\default.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>16384</length>
+      <used>9492</used>
+      <free>6892</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>65532</length>
+      <used>22808</used>
+      <free>42724</free>
+    </memory>
+  </executable>
+</project>

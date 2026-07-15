@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name=".ca/dist/Config_2/production/PIC32AK64_App_Code.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>16384</length>
+      <used>9512</used>
+      <free>6872</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>36860</length>
+      <used>23004</used>
+      <free>13856</free>
+    </memory>
+  </executable>
+</project>

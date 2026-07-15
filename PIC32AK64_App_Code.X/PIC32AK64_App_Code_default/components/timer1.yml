@@ -1,0 +1,228 @@
+configVersion: 1.0.0
+componentName: timer1
+coreVersion: 5.9.0
+device: PIC32AK6416GC41064
+library: []
+dependency:
+- dependencyPackage: class com.microchip.mcc.harmony.HarmonyModule
+  name: timer1
+  type: module
+  version: ''
+- dependencyPackage: ''
+  name: csp
+  type: package
+  version: v3.22.6
+customDataClassName: com.microchip.utils_mh3.utils.persistence.CustomModuleData
+data:
+  attachments: {}
+  elementPosition:
+    attributes:
+      id: __ROOTVIEW
+    children:
+    - children:
+      - attributes:
+          id: timer1
+          x: '232'
+          y: '65'
+        type: ElementPosition
+      type: ElementPositions
+    type: ComponentGraph
+  symbols:
+    CALLBACK_API_NAME:
+      attributes:
+        id: CALLBACK_API_NAME
+        label: CALLBACK_API_NAME
+      type: String
+    COUNTER_GET_API_NAME:
+      attributes:
+        id: COUNTER_GET_API_NAME
+        label: COUNTER_GET_API_NAME
+      type: String
+    EXT_CLK_FREQ:
+      attributes:
+        id: EXT_CLK_FREQ
+        label: External Clock Frequency(In Hz)
+      type: Integer
+    FREQUENCY_GET_API_NAME:
+      attributes:
+        id: FREQUENCY_GET_API_NAME
+        label: FREQUENCY_GET_API_NAME
+      type: String
+    IRQ_ENUM_NAME:
+      attributes:
+        id: IRQ_ENUM_NAME
+        label: IRQ_ENUM_NAME
+      type: String
+    PERIOD_REG_COMMENT:
+      attributes:
+        id: PERIOD_REG_COMMENT
+        label: PERIOD_REG_COMMENT
+      children:
+      - children:
+        - attributes:
+            id: timer1
+            value: '18299'
+          type: Dynamic
+        type: Values
+      type: Long
+    PERIOD_SET_API_NAME:
+      attributes:
+        id: PERIOD_SET_API_NAME
+        label: PERIOD_SET_API_NAME
+      type: String
+    PR_REG_POR:
+      attributes:
+        id: PR_REG_POR
+        label: PR_REG_POR
+      type: String
+    SYS_TIME_COMPONENT_ID:
+      attributes:
+        id: SYS_TIME_COMPONENT_ID
+        label: Component id
+      type: String
+    TCON_PRE_SCALER:
+      attributes:
+        id: TCON_PRE_SCALER
+        label: Prescaler
+      type: KeyValueSet
+    TCON_REG_POR:
+      attributes:
+        id: TCON_REG_POR
+        label: TCON_REG_POR
+      type: String
+    TCON_SIDL:
+      attributes:
+        id: TCON_SIDL
+        label: Stop in IDLE Mode Bit
+      type: KeyValueSet
+    TCON_SRC_SEL:
+      attributes:
+        id: TCON_SRC_SEL
+        label: Timer Clock Source
+      type: KeyValueSet
+    TCON_TGATE:
+      attributes:
+        id: TCON_TGATE
+        label: Timer Gated Time Accumulation
+      type: KeyValueSet
+    TCON_TSYNC:
+      attributes:
+        id: TCON_TSYNC
+        label: Timer External Clock Input Synchronization
+      type: KeyValueSet
+    TCON_TWDIS:
+      attributes:
+        id: TCON_TWDIS
+        label: Asynchronous Timer Write Disable
+      type: KeyValueSet
+    TIMER_CLOCK_FREQ:
+      attributes:
+        id: TIMER_CLOCK_FREQ
+        label: Timer Clock Frequency(In Hz)
+      type: Integer
+    TIMER_PERIOD:
+      attributes:
+        id: TIMER_PERIOD
+        label: Period Register
+      children:
+      - children:
+        - attributes:
+            id: timer1
+            value: '18299'
+          type: Dynamic
+        type: Values
+      type: Hex
+    TIMER_PERIOD_MAX:
+      attributes:
+        id: TIMER_PERIOD_MAX
+        label: TIMER_PERIOD_MAX
+      type: String
+    TIMER_PERIOD_NS:
+      attributes:
+        id: TIMER_PERIOD_NS
+        label: TIMER_PERIOD_NS
+      children:
+      - children:
+        - attributes:
+            id: timer1
+            value: '183000'
+          type: Dynamic
+        type: Values
+      type: Long
+    TIMER_START_API_NAME:
+      attributes:
+        id: TIMER_START_API_NAME
+        label: TIMER_START_API_NAME
+      type: String
+    TIMER_STOP_API_NAME:
+      attributes:
+        id: TIMER_STOP_API_NAME
+        label: TIMER_STOP_API_NAME
+      type: String
+    TIMER_UNIT:
+      attributes:
+        id: TIMER_UNIT
+        label: Timer Period Unit
+      children:
+      - children:
+        - attributes:
+            value: microsecond
+          type: User
+        type: Values
+      type: Combo
+    TIMER_WIDTH:
+      attributes:
+        id: TIMER_WIDTH
+        label: TIMER_WIDTH
+      type: Integer
+    TIME_PERIOD_MS:
+      attributes:
+        id: TIME_PERIOD_MS
+        label: Time in microsecond
+      children:
+      - children:
+        - attributes:
+            id: label
+          children:
+          - type: Value
+            value: Time in microsecond
+          type: String
+        - attributes:
+            id: max
+          children:
+          - type: Value
+            value: '4.2949672E7'
+          type: Float
+        type: Attributes
+      - children:
+        - attributes:
+            value: '183.0'
+          type: User
+        type: Values
+      type: Float
+    TMR_AUTOSTART:
+      attributes:
+        id: TMR_AUTOSTART
+        label: Auto start timer after initialization
+      type: Boolean
+    TMR_INSTANCE_NUMBER:
+      attributes:
+        id: TMR_INSTANCE_NUMBER
+        label: TMR_INSTANCE_NUMBER
+      type: String
+    TMR_INTERRUPT_HANDLER:
+      attributes:
+        id: TMR_INTERRUPT_HANDLER
+        label: TMR_INTERRUPT_HANDLER
+      type: String
+    TMR_INTERRUPT_MODE:
+      attributes:
+        id: TMR_INTERRUPT_MODE
+        label: Enable Interrrupts
+      type: Boolean
+    TMR_REG_POR:
+      attributes:
+        id: TMR_REG_POR
+        label: TMR_REG_POR
+      type: String
+  userData: {}

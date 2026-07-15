@@ -1,0 +1,288 @@
+configVersion: 1.0.0
+componentName: uart1
+coreVersion: 5.9.0
+device: PIC32AK6416GC41064
+library: []
+dependency:
+- dependencyPackage: class com.microchip.mcc.harmony.HarmonyModule
+  name: uart1
+  type: module
+  version: ''
+- dependencyPackage: ''
+  name: csp
+  type: package
+  version: v3.22.6
+customDataClassName: com.microchip.utils_mh3.utils.persistence.CustomModuleData
+data:
+  attachments: {}
+  elementPosition:
+    attributes:
+      id: __ROOTVIEW
+    children:
+    - children:
+      - attributes:
+          id: uart1
+          x: '90'
+          y: '144'
+        type: ElementPosition
+      type: ElementPositions
+    type: ComponentGraph
+  symbols:
+    RECEIVE_DATA_REGISTER:
+      attributes:
+        id: RECEIVE_DATA_REGISTER
+        label: RECEIVE_DATA_REGISTER
+      type: String
+    TRANSMIT_DATA_REGISTER:
+      attributes:
+        id: TRANSMIT_DATA_REGISTER
+        label: TRANSMIT_DATA_REGISTER
+      type: String
+    USART_DATA_8_BIT_MASK:
+      attributes:
+        id: USART_DATA_8_BIT_MASK
+        label: USART_DATA_8_BIT_MASK
+      type: String
+    USART_DATA_BITS:
+      attributes:
+        id: USART_DATA_BITS
+        label: USART_DATA_BITS
+      type: String
+    USART_FRAMING_ERROR_VALUE:
+      attributes:
+        id: USART_FRAMING_ERROR_VALUE
+        label: USART_FRAMING_ERROR_VALUE
+      type: String
+    USART_OVERRUN_ERROR_VALUE:
+      attributes:
+        id: USART_OVERRUN_ERROR_VALUE
+        label: USART_OVERRUN_ERROR_VALUE
+      type: String
+    USART_PARITY_ERROR_VALUE:
+      attributes:
+        id: USART_PARITY_ERROR_VALUE
+        label: USART_PARITY_ERROR_VALUE
+      type: String
+    USART_PARITY_EVEN_MASK:
+      attributes:
+        id: USART_PARITY_EVEN_MASK
+        label: USART_PARITY_EVEN_MASK
+      type: String
+    USART_PARITY_NONE_MASK:
+      attributes:
+        id: USART_PARITY_NONE_MASK
+        label: USART_PARITY_NONE_MASK
+      type: String
+    USART_PARITY_ODD_MASK:
+      attributes:
+        id: USART_PARITY_ODD_MASK
+        label: USART_PARITY_ODD_MASK
+      type: String
+    USART_PLIB_API_PREFIX:
+      attributes:
+        id: USART_PLIB_API_PREFIX
+        label: USART_PLIB_API_PREFIX
+      type: String
+    USART_STOP_1_BIT_MASK:
+      attributes:
+        id: USART_STOP_1_BIT_MASK
+        label: USART_STOP_1_BIT_MASK
+      type: String
+    USART_STOP_2_BIT_MASK:
+      attributes:
+        id: USART_STOP_2_BIT_MASK
+        label: USART_STOP_2_BIT_MASK
+      type: String
+    U_CON__BRGS:
+      attributes:
+        id: U_CON__BRGS
+        label: U_CON__BRGS
+      children:
+      - children:
+        - attributes:
+            id: uart1
+            value: '0'
+          type: Dynamic
+        type: Values
+      type: String
+    U_CON__CLKMOD:
+      attributes:
+        id: U_CON__CLKMOD
+        label: U_CON__CLKMOD
+      children:
+      - children:
+        - attributes:
+            id: uart1
+            value: '1'
+          type: Dynamic
+        type: Values
+      type: String
+    U_CON__CLKSEL:
+      attributes:
+        id: U_CON__CLKSEL
+        label: Clock Selection
+      type: KeyValueSet
+    U_CON__MODE:
+      attributes:
+        id: U_CON__MODE
+        label: Parity and Data Selection Bits
+      type: KeyValueSet
+    U_CON__STP:
+      attributes:
+        id: U_CON__STP
+        label: Stop Selection Bit
+      type: KeyValueSet
+    baudRateVal:
+      attributes:
+        id: baudRateVal
+        label: Baud Rate
+      children:
+      - children:
+        - attributes:
+            value: '9600'
+          type: User
+        type: Values
+      type: Integer
+    brgRegValue:
+      attributes:
+        id: brgRegValue
+        label: brgRegValue
+      children:
+      - children:
+        - attributes:
+            id: uart1
+            value: '0x28b1'
+          type: Dynamic
+        type: Values
+      type: String
+    calcBaudRateVal:
+      attributes:
+        id: calcBaudRateVal
+        label: calcBaudRateVal
+      children:
+      - children:
+        - attributes:
+            id: uart1
+            value: '9599.693'
+          type: Dynamic
+        type: Values
+      type: String
+    clkSrcGenNumber:
+      attributes:
+        id: clkSrcGenNumber
+        label: clkSrcGenNumber
+      type: String
+    errorInterruptEnableBit:
+      attributes:
+        id: errorInterruptEnableBit
+        label: errorInterruptEnableBit
+      type: String
+    errorInterruptFlagBit:
+      attributes:
+        id: errorInterruptFlagBit
+        label: errorInterruptFlagBit
+      type: String
+    errorIsrHandlerName:
+      attributes:
+        id: errorIsrHandlerName
+        label: errorIsrHandlerName
+      type: String
+    instanceNumber:
+      attributes:
+        id: instanceNumber
+        label: instanceNumber
+      type: String
+    intEnable:
+      attributes:
+        id: intEnable
+        label: Interrupt Enable
+      children:
+      - children:
+        - attributes:
+            id: visible
+          children:
+          - type: Value
+            value: 'true'
+          type: Boolean
+        type: Attributes
+      - children:
+        - attributes:
+            id: uart1
+            value: 'false'
+          type: Dynamic
+        type: Values
+      type: Boolean
+    moduleName:
+      attributes:
+        id: moduleName
+        label: moduleName
+      type: String
+    operatingMode:
+      attributes:
+        id: operatingMode
+        label: Operating Mode
+      children:
+      - children:
+        - attributes:
+            value: '0'
+          type: User
+        type: Values
+      type: KeyValueSet
+    ringBufferModeEnable:
+      attributes:
+        id: ringBufferModeEnable
+        label: Enable Ring Buffer ?
+      children:
+      - children:
+        - attributes:
+            id: uart1
+            value: 'false'
+          type: Dynamic
+        type: Values
+      type: Boolean
+    rxBufferSize:
+      attributes:
+        id: rxBufferSize
+        label: RX Ring Buffer Size
+      type: Integer
+    rxInterruptEnableBit:
+      attributes:
+        id: rxInterruptEnableBit
+        label: rxInterruptEnableBit
+      type: String
+    rxInterruptFlagBit:
+      attributes:
+        id: rxInterruptFlagBit
+        label: rxInterruptFlagBit
+      type: String
+    rxIsrHandlerName:
+      attributes:
+        id: rxIsrHandlerName
+        label: rxIsrHandlerName
+      type: String
+    txBufferSize:
+      attributes:
+        id: txBufferSize
+        label: TX Ring Buffer Size
+      type: Integer
+    txInterruptEnableBit:
+      attributes:
+        id: txInterruptEnableBit
+        label: txInterruptEnableBit
+      type: String
+    txInterruptFlagBit:
+      attributes:
+        id: txInterruptFlagBit
+        label: txInterruptFlagBit
+      type: String
+    txIsrHandlerName:
+      attributes:
+        id: txIsrHandlerName
+        label: txIsrHandlerName
+      type: String
+    uartClkFreq:
+      attributes:
+        id: uartClkFreq
+        label: Clock Frequency(Hz)
+      type: Integer
+  userData: {}

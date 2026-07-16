@@ -1,6 +1,7 @@
-#include "flash_eeprom.h"
-#include "definitions.h"
 #include <string.h>
+#include "definitions.h"
+#include "flash_eeprom.h"
+
 
 typedef struct {
     uint32_t marker;
@@ -14,11 +15,6 @@ typedef struct {
 static const uint32_t pages[EEPROM_NUM_PAGES] = {
     EEPROM_PAGE1_ADDR
 };
-
-uint8_t eepromBuffer[EEPROM_DATA_SIZE];
-
-float readMatrix[ROWS][COLS];
-float writeMatrix[ROWS][COLS];
 
 static uint32_t activePage = 0;
 

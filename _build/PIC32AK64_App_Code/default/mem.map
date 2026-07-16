@@ -171,7 +171,7 @@ __ivt_0                   0x800004               0x47c           0x47c  (1148)
 .text.NVM_IsBusy          0x80593c                0x10            0x10  (16)
 .text.SPI1_CallbackRegister  0x80594c                0x10            0x10  (16)
 .text.send_diag_data      0x80595c                0x10            0x10  (16)
-C:\Users\HP\AppData\Local\Temp\cc8W9nTr.s.scn1  0x80596c                0x10            0x10  (16)
+C:\Users\HP\AppData\Local\Temp\ccE6UQHn.s.scn1  0x80596c                0x10            0x10  (16)
 .text.UART_Tuner_Send_PIC_ID  0x80597c                0x10            0x10  (16)
 .text.SPI1_Write          0x80598c                 0xc             0xc  (12)
 .text.TRAPS_halt_on_error  0x805998                 0xc             0xc  (12)
@@ -193,8 +193,8 @@ section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss.nvmCallbackObj        0x4000                   0             0x8  (8)
 .nbss.BOOT_FLAG             0x4008                   0             0x4  (4)
-.nbss.Utime.13781           0x400c                   0             0x4  (4)
-.nbss.command_byte_num.13780    0x4010                   0             0x4  (4)
+.nbss.Utime.13806           0x400c                   0             0x4  (4)
+.nbss.command_byte_num.13805    0x4010                   0             0x4  (4)
 .nbss.byte_adr              0x4014                   0             0x4  (4)
 .nbss.num_of_bytes          0x4018                   0             0x4  (4)
 .nbss.activeRxId            0x401c                   0             0x4  (4)
@@ -265,7 +265,7 @@ section                    address      alignment gaps    total length  (dec)
 .ndata.rpm_to_speed         0x4120                   0             0x4  (4)
 .ndata.poles                0x4124                   0             0x4  (4)
 .nbss.currentState          0x4128                   0             0x4  (4)
-.nbss.recieved_byte.13779    0x412c                   0             0x2  (2)
+.nbss.recieved_byte.13804    0x412c                   0             0x2  (2)
 .nbss.rxFifoCount           0x412e                   0             0x2  (2)
 .nbss.rxFifoTail            0x4130                   0             0x2  (2)
 .nbss.rxFifoHead            0x4132                   0             0x2  (2)
@@ -280,9 +280,9 @@ section                    address      alignment gaps    total length  (dec)
 .nbss.activeTxExtended      0x4144                   0             0x2  (2)
 .nbss.spiActive             0x4146                   0             0x2  (2)
 .ndata.spiDone              0x4148                   0             0x2  (2)
-.nbss.attempt.13423         0x414a                   0             0x2  (2)
-.bss.tempBuffer.13323       0x414c                   0           0xfe0  (4064)
-.bss.eepromBuffer           0x512c                   0           0xfe0  (4064)
+.nbss.attempt.13448         0x414a                   0             0x2  (2)
+.bss.eepromBuffer           0x414c                   0           0xfe0  (4064)
+.bss.tempBuffer.13317       0x512c                   0           0xfe0  (4064)
 .bss.writeMatrix            0x610c                   0           0x100  (256)
 .bss.readMatrix             0x620c                   0           0x100  (256)
 .bss.rxFifo                 0x630c                   0            0x80  (128)
@@ -290,7 +290,7 @@ section                    address      alignment gaps    total length  (dec)
 .bss.spi1Obj                0x640c                   0            0x28  (40)
 .bss.failsafe_stack.12810    0x6434                   0            0x20  (32)
 .data.diag_data             0x6454                   0            0x1a  (26)
-.bss.uart_command.13782     0x646e                   0            0x14  (20)
+.bss.uart_command.13807     0x646e                   0            0x14  (20)
 .bss.send_tuning_data       0x6482                   0            0x14  (20)
 .bss.read_tuning_data       0x6496                   0            0x14  (20)
 .data.udid_string           0x64aa                   0            0x12  (18)
@@ -392,7 +392,7 @@ External Symbols in Data Memory (by address):
                     0x4110                  _CONFIG_POLES
                     0x4114                  _CONFIG_H_RPM
                     0x4118                  _CONFIG_H_IPH
-                    0x512c                  _eepromBuffer
+                    0x414c                  _eepromBuffer
                     0x610c                  _writeMatrix
                     0x620c                  _readMatrix
                     0x64bc                  _udid
@@ -458,7 +458,7 @@ External Symbols in Data Memory (by name):
                     0x4100                  _CONFIG_V_CONSTANT
                     0x40fc                  _CONFIG_ZERO_ANGLE
                     0x40f4                  _CONFIG_ZERO_ANGLE_ESTIMATE
-                    0x512c                  _eepromBuffer
+                    0x414c                  _eepromBuffer
                     0x620c                  _readMatrix
                     0x64bc                  _udid
                     0x610c                  _writeMatrix
@@ -827,9 +827,9 @@ Discarded input sections
                     0x0000         0x44 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
  .text.FLASH_EEPROM_EraseAll
                     0x0000         0x30 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
- .bss.buffer.13377
+ .bss.buffer.13371
                     0x0000        0xfe0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
- .bss.buffer.13370
+ .bss.buffer.13364
                     0x0000        0xfe0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
  .text              0x0000          0x0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
  .data              0x0000          0x0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
@@ -1139,7 +1139,7 @@ __FWPUCB
  .comment           0x07a8         0x62 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
  .comment           0x080a         0x5c c:/progra~1/microc~1/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
 
-.debug_info         0x0000       0xfc4e
+.debug_info         0x0000       0xfc0b
  *(.debug_info)
  .debug_info        0x0000        0x366 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/initialization.c.o
  .debug_info        0x0366        0x398 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/interrupts.c.o
@@ -1151,20 +1151,20 @@ __FWPUCB
  .debug_info        0x4dc8        0xd0e CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/peripheral/tmr/plib_tmr1.c.o
  .debug_info        0x5ad6        0xc1e CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/peripheral/uart/plib_uart1.c.o
  .debug_info        0x66f4        0x843 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/traps.c.o
- .debug_info        0x6f37        0xb40 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
- .debug_info        0x7a77        0x645 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
- .debug_info        0x80bc        0x54a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_CANbus.c.o
- .debug_info        0x8606        0x493 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
- .debug_info        0x8a99       0x18e6 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_mcp2515.c.o
- .debug_info        0xa37f        0xcaa CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
- .debug_info        0xb029        0xb05 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
- .debug_info        0xbb2e       0x2656 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/tuning.c.o
- .debug_info        0xe184        0x450 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
- .debug_info        0xe5d4        0x993 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/middleware/boot_handler.c.o
- .debug_info        0xef67        0xce7 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
+ .debug_info        0x6f37        0xb76 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
+ .debug_info        0x7aad        0x645 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
+ .debug_info        0x80f2        0x54a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_CANbus.c.o
+ .debug_info        0x863c        0x49c CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
+ .debug_info        0x8ad8       0x18e6 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_mcp2515.c.o
+ .debug_info        0xa3be        0xc1f CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
+ .debug_info        0xafdd        0xb05 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
+ .debug_info        0xbae2       0x2656 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/tuning.c.o
+ .debug_info        0xe138        0x459 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
+ .debug_info        0xe591        0x993 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/middleware/boot_handler.c.o
+ .debug_info        0xef24        0xce7 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev       0x0000       0x1e97
+.debug_abbrev       0x0000       0x1e6c
  *(.debug_abbrev)
  .debug_abbrev      0x0000         0xa2 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/initialization.c.o
  .debug_abbrev      0x00a2         0x5c CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/interrupts.c.o
@@ -1176,19 +1176,19 @@ __FWPUCB
  .debug_abbrev      0x08c0        0x1f1 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/peripheral/tmr/plib_tmr1.c.o
  .debug_abbrev      0x0ab1        0x1cf CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/peripheral/uart/plib_uart1.c.o
  .debug_abbrev      0x0c80        0x182 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/traps.c.o
- .debug_abbrev      0x0e02        0x152 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
- .debug_abbrev      0x0f54         0xf0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
- .debug_abbrev      0x1044        0x13a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_CANbus.c.o
- .debug_abbrev      0x117e         0xd7 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
- .debug_abbrev      0x1255        0x2fd CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_mcp2515.c.o
- .debug_abbrev      0x1552        0x2c8 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
- .debug_abbrev      0x181a         0x3d CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
- .debug_abbrev      0x1857        0x268 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/tuning.c.o
- .debug_abbrev      0x1abf         0xf3 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
- .debug_abbrev      0x1bb2        0x165 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/middleware/boot_handler.c.o
- .debug_abbrev      0x1d17        0x180 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
+ .debug_abbrev      0x0e02        0x149 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
+ .debug_abbrev      0x0f4b         0xf0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
+ .debug_abbrev      0x103b        0x13a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_CANbus.c.o
+ .debug_abbrev      0x1175         0xd7 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
+ .debug_abbrev      0x124c        0x2fd CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_mcp2515.c.o
+ .debug_abbrev      0x1549        0x2a6 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
+ .debug_abbrev      0x17ef         0x3d CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/mcu_config.c.o
+ .debug_abbrev      0x182c        0x268 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/tuning.c.o
+ .debug_abbrev      0x1a94         0xf3 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
+ .debug_abbrev      0x1b87        0x165 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/middleware/boot_handler.c.o
+ .debug_abbrev      0x1cec        0x180 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
 
-.debug_line         0x0000       0x5692
+.debug_line         0x0000       0x5680
  *(.debug_line)
  .debug_line        0x0000        0x35e CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/initialization.c.o
  .debug_line        0x035e        0x100 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/config/default/interrupts.c.o
@@ -1210,7 +1210,7 @@ __FWPUCB
  .debug_line        0x3fec        0xd5a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/tuning.c.o
  .debug_line        0x4d46        0x265 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
  .debug_line        0x4fab        0x4ab CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/middleware/boot_handler.c.o
- .debug_line        0x5456        0x23c CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
+ .debug_line        0x5456        0x22a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
 
 .debug_frame        0x0000        0xf18
  *(.debug_frame)
@@ -4269,14 +4269,14 @@ __c30_signature
  .nbss.BOOT_FLAG
                     0x4008          0x4 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
 
-.nbss.Utime.13781
+.nbss.Utime.13806
                     0x400c          0x4
- .nbss.Utime.13781
+ .nbss.Utime.13806
                     0x400c          0x4 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
 
-.nbss.command_byte_num.13780
+.nbss.command_byte_num.13805
                     0x4010          0x4
- .nbss.command_byte_num.13780
+ .nbss.command_byte_num.13805
                     0x4010          0x4 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
 
 .nbss.byte_adr      0x4014          0x4
@@ -4685,9 +4685,9 @@ __c30_signature
  .nbss.currentState
                     0x4128          0x4 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/software/state_engine.c.o
 
-.nbss.recieved_byte.13779
+.nbss.recieved_byte.13804
                     0x412c          0x2
- .nbss.recieved_byte.13779
+ .nbss.recieved_byte.13804
                     0x412c          0x2 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
 
 .nbss.rxFifoCount
@@ -4759,32 +4759,32 @@ __c30_signature
  .ndata.spiDone
                     0x4148          0x2 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_mcp2515.c.o
 
-.nbss.attempt.13423
+.nbss.attempt.13448
                     0x414a          0x2
- .nbss.attempt.13423
+ .nbss.attempt.13448
                     0x414a          0x2 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/main.c.o
 
-.bss.tempBuffer.13323
-                    0x414c        0xfe0
- .bss.tempBuffer.13323
-                    0x414c        0xfe0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
-
 .bss.eepromBuffer
-                    0x512c        0xfe0
+                    0x414c        0xfe0
  .bss.eepromBuffer
+                    0x414c        0xfe0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
+                    0x414c                  _eepromBuffer
+
+.bss.tempBuffer.13317
+                    0x512c        0xfe0
+ .bss.tempBuffer.13317
                     0x512c        0xfe0 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
-                    0x512c                  _eepromBuffer
 
 .bss.writeMatrix
                     0x610c        0x100
  .bss.writeMatrix
-                    0x610c        0x100 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
+                    0x610c        0x100 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
                     0x610c                  _writeMatrix
 
 .bss.readMatrix
                     0x620c        0x100
  .bss.readMatrix
-                    0x620c        0x100 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
+                    0x620c        0x100 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/device_stat.c.o
                     0x620c                  _readMatrix
 
 .bss.rxFifo         0x630c         0x80
@@ -4806,9 +4806,9 @@ __c30_signature
  .data.diag_data
                     0x6454         0x1a CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
 
-.bss.uart_command.13782
+.bss.uart_command.13807
                     0x646e         0x14
- .bss.uart_command.13782
+ .bss.uart_command.13807
                     0x646e         0x14 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/driver_UART.c.o
 
 .bss.send_tuning_data
@@ -5521,9 +5521,9 @@ __ivt_0           0x800004        0x47c
                   0x80595c         0x10 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/diagnostics.c.o
                   0x80595c                  _send_diag_data
 
-C:\Users\HP\AppData\Local\Temp\cc8W9nTr.s.scn1
+C:\Users\HP\AppData\Local\Temp\ccE6UQHn.s.scn1
                   0x80596c         0x10
- C:\Users\HP\AppData\Local\Temp\cc8W9nTr.s.scn1
+ C:\Users\HP\AppData\Local\Temp\ccE6UQHn.s.scn1
                   0x80596c         0x10 CMakeFiles/PIC32AK64_App_Code_default_default_XC32_pic32a_compile.dir/C_/Users/HP/MPLABXProjects/PIC32AK64_App_Code/src/driver/flash_eeprom.c.o
 
 .text.UART_Tuner_Send_PIC_ID

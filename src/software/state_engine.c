@@ -7,7 +7,6 @@
 #include "../driver/mcu_config.h"
 #include "../driver/driver_mcp2515.h"
 #include "../driver/device_stat.h"
-#include "../driver/flash_eeprom.h"
 
 #define SLOW_ROUTINE_COUNT 5
 

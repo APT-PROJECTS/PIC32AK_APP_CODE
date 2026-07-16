@@ -1,4 +1,3 @@
-#include "device.h"
 #include "device_stat.h"
 #include "mcu_config.h"
 #include "flash_eeprom.h"
@@ -6,6 +5,11 @@
 //#include "VCU_CANdata.h"
 
 uint32_t udid[4];
+
+uint8_t eepromBuffer[EEPROM_DATA_SIZE];
+
+float readMatrix[ROWS][COLS];
+float writeMatrix[ROWS][COLS];
 
 static int MCU_ID = 0;
 static int BOOT_FLAG = 0;

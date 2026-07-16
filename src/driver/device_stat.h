@@ -17,6 +17,7 @@ extern "C" {
 extern uint32_t udid[4];
     
 void Get_MAC_ID(void);
+void EEPROM_Initialize(void);
 void Load_Read_Matrix(void);
 void Get_Config(void);
 void Update_Config(void);

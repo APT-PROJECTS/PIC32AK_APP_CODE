@@ -161,7 +161,6 @@ void STATE_ENGINE_Tasks(void) {
             //--------------------------------------------------
         {
             Get_MAC_ID();
-            Load_Read_Matrix();
             Tuner_Init();
             state_init();
             currentState = STATE_RUN;

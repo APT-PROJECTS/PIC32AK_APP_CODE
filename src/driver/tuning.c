@@ -86,7 +86,7 @@ void UART_Tuner_Read(uint8_t adr_HB)
         case 0x00:
             COPY_FLOAT_TO_TX(2,  R_PROJECT_ID);
             COPY_FLOAT_TO_TX(6,  R_FIRMWARE_ID);
-            COPY_FLOAT_TO_TX(10, R_FF00_03);
+            COPY_FLOAT_TO_TX(10, R_BOOT_FLAG);
             COPY_FLOAT_TO_TX(14, R_FF00_04);
             break;
 

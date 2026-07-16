@@ -2,8 +2,8 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
-#include "driver/flash_eeprom.h"
 #include "driver/driver_mcp2515.h"
+#include "driver/device_stat.h"
 #include "middleware/boot_handler.h"
 
 #define MCP2515_STARTUP_ATTEMPTS  5U
@@ -15,7 +15,7 @@ int main ( void )
     
     SYS_Initialize ( NULL );
     
-    FLASH_EEPROM_Init();
+    EEPROM_Initialize();
     
     for(attempt = 0U; attempt < MCP2515_STARTUP_ATTEMPTS; attempt++)
     {

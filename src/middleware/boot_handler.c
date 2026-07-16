@@ -146,6 +146,21 @@ void Jump_To_Bootloader(void) {
     }
 }
 
+void Set_Bootloader_Flag(void) {
+    W_BOOT_FLAG = 1.0f;
+
+    //--------------------------------------------------
+    // Prepare EEPROM write buffer with the complete matrix.
+    //--------------------------------------------------
+    __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
+    __builtin_memcpy(eepromBuffer, writeMatrix, sizeof (writeMatrix));
+
+    if (FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (writeMatrix)) ==
+            FLASH_EEPROM_OK) {
+        asm("reset");
+    }
+}
+
 void Run_Boot_Handler(uint32_t ID, uint8_t CMD) {
     switch (ID) {
         case CANID_REQ_PICID_1:
@@ -163,7 +178,7 @@ void Run_Boot_Handler(uint32_t ID, uint8_t CMD) {
         case CANID_SCU_REQ:
             switch (CMD) {
                 case CMD_REQ_BOOTLOADER:
-                    Jump_To_Bootloader();
+                    Set_Bootloader_Flag();
                     break;
 
                 case CMD_REQ_STATUS:

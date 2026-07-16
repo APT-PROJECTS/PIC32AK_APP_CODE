@@ -1,7 +1,6 @@
 #include "device_stat.h"
 #include "mcu_config.h"
 #include "flash_eeprom.h"
-#include "middleware/boot_handler.h"
 //#include "VCU_CANdata.h"
 
 uint32_t udid[4];
@@ -12,7 +11,6 @@ float readMatrix[ROWS][COLS];
 float writeMatrix[ROWS][COLS];
 
 static int MCU_ID = 0;
-static int BOOT_FLAG = 0;
 
 void Get_MAC_ID(void){
     udid[0] = *UDID0_ADDR;
@@ -54,7 +52,6 @@ void Load_Read_Matrix(void) {
     }
 
     MCU_ID = R_FF01_01;
-    BOOT_FLAG = R_BOOT_FLAG;
 
     //--------------------------------------------------
     // Check ESC ID
@@ -70,24 +67,6 @@ void Load_Read_Matrix(void) {
     // Copy read matrix to write matrix     
     //--------------------------------------------------
     __builtin_memcpy(writeMatrix, readMatrix, sizeof(writeMatrix));
-
-    //--------------------------------------------------
-    // Check BOOT FLAG for bootloader mode
-    //--------------------------------------------------
-    if (BOOT_FLAG == 1) {
-        W_BOOT_FLAG = 0.0;
-
-        //--------------------------------------------------
-        // Prepare EEPROM write buffer with the complete matrix.
-        //--------------------------------------------------
-        __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-        __builtin_memcpy(eepromBuffer, writeMatrix, sizeof (writeMatrix));
-
-        if (FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (writeMatrix)) ==
-            FLASH_EEPROM_OK) {
-            Jump_To_Bootloader();   
-        }
-    }
 }
 
 void Get_Config(void){

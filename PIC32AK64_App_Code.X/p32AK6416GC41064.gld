@@ -89,8 +89,8 @@ MEMORY
   FPED           : ORIGIN = 0x7F40A0,      LENGTH = 0x2
   FEPUCB         : ORIGIN = 0x7F40B0,      LENGTH = 0x2
   FWPUCB         : ORIGIN = 0x7F40C0,      LENGTH = 0x2
-  reset          : ORIGIN = 0x800000,      LENGTH = 0x4
-  program (xr)   : ORIGIN = 0x800004,      LENGTH = 0x6FFC
+  reset          : ORIGIN = 0x808000,      LENGTH = 0x4
+  program (xr)   : ORIGIN = 0x808004,      LENGTH = 0x6FFC
 }
 
 __FCP = 0x7F3000;

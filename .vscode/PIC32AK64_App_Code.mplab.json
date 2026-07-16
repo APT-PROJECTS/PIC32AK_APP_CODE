@@ -4,7 +4,7 @@
     "configurations": [
         {
             "name": "default",
-            "id": "conf1",
+            "id": "",
             "device": "PIC32AK6416GC41064",
             "imageType": "application",
             "imagePath": "./out/PIC32AK64_App_Code/default.elf",
@@ -153,7 +153,7 @@
             "properties": {
                 "ADC1": true,
                 "ADC2": true,
-                "AutoSelectMemRanges": "auto",
+                "AutoSelectMemRanges": "manual",
                 "BISS1": true,
                 "CCP 1": true,
                 "CCP 2": true,
@@ -223,7 +223,7 @@
                 "memories.id": true,
                 "memories.instruction.ram.ranges": "${memories.instruction.ram.ranges}",
                 "memories.programmemory": true,
-                "memories.programmemory.ranges": "800000-80ffff",
+                "memories.programmemory.ranges": "808000-80ffff",
                 "programmerToGoFilePath": "C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/debug/default/PIC32AK64_App_Code_ptg",
                 "programoptions.donoteraseauxmem": false,
                 "programoptions.eraseb4program": true,
@@ -232,8 +232,7 @@
                 "programoptions.preservedataflash": false,
                 "programoptions.preservedataflash.ranges": "${memories.dataflash.default}",
                 "programoptions.preserveeeprom": false,
-                "programoptions.preserveprogram.ranges": "807000-80ffff",
-                "programoptions.preserveprogramrange": true,
+                "programoptions.preserveprogramrange": false,
                 "programoptions.preserveuserid": false,
                 "programoptions.programcalmem": false,
                 "programoptions.programuserotp": false,
@@ -248,23 +247,69 @@
         {
             "name": "Project files",
             "files": [
-                "PIC32AK64_App_Code.X/Makefile",
-                "src/config/default/peripheral/clk/*",
-                "src/config/default/peripheral/gpio/*",
-                "src/config/default/peripheral/intc/*",
-                "src/config/default/peripheral/nvm/*",
-                "src/config/default/peripheral/spi/spi_host/*",
-                "src/config/default/peripheral/tmr/*",
-                "src/config/default/peripheral/uart/*",
-                "src/driver/*",
-                "src/middleware/*",
-                "src/software/*",
-                "src/config/default/stdio/*",
-                "src/*",
-                "PIC32AK64_App_Code.X/PIC32AK64_App_Code_default/**/*",
-                "src/config/default/*{.c,.h}"
-            ],
-            "encoding": "ISO-8859-1"
+                {
+                    "include": "PIC32AK64_App_Code.X/Makefile",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/clk/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/gpio/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/intc/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/nvm/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/spi/spi_host/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/tmr/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/peripheral/uart/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/driver/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/middleware/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/software/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/stdio/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "PIC32AK64_App_Code.X/PIC32AK64_App_Code_default/**/*",
+                    "encoding": "ISO-8859-1"
+                },
+                {
+                    "include": "src/config/default/*{.c,.h}",
+                    "encoding": "ISO-8859-1"
+                },
+                "PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.elf",
+                "PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.hex"
+            ]
         }
     ]
 }

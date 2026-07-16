@@ -73,4 +73,10 @@ add_custom_target(PIC32AK64_App_Code_default_Bin2Hex ALL
 add_dependencies(PIC32AK64_App_Code_default_Bin2Hex PIC32AK64_App_Code_default_image_LlwWGMlp)
 
 
+add_custom_target(
+    merge_loadable_files ALL
+    COMMAND hexmate  c:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.hex ${CMAKE_CURRENT_SOURCE_DIR}/../../../out/PIC32AK64_App_Code/default.hex  -O${CMAKE_CURRENT_SOURCE_DIR}/../../../out/PIC32AK64_App_Code/default-unified.hex
+    BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/../../../out/PIC32AK64_App_Code/default-unified.hex
+    COMMENT "Merging loadable hex files into unified image")
+add_dependencies(merge_loadable_files PIC32AK64_App_Code_default_Bin2Hex)
 

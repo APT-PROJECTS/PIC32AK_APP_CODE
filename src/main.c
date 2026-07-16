@@ -4,14 +4,12 @@
 #include "definitions.h"                // SYS function prototypes
 #include "driver/driver_mcp2515.h"
 #include "driver/device_stat.h"
-#include "middleware/boot_handler.h"
 
 #define MCP2515_STARTUP_ATTEMPTS  5U
 
 int main ( void )
 {
     static uint8_t attempt;
-//    static int ctr = 0;
     
     SYS_Initialize ( NULL );
     
@@ -30,15 +28,7 @@ int main ( void )
     
     while ( true )
     {
-//        if(ctr <= 2000000){
-//            ctr++;
-            GREEN_LED_Set();
-//        }
-//        else{
-//            GREEN_LED_Clear();
-//            ctr = 0;
-//            Jump_To_Bootloader();
-//        }
+        GREEN_LED_Set();
     }
     
     return ( EXIT_FAILURE );

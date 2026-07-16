@@ -197,7 +197,6 @@
       <C32>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
-        <property key="appendMe" value=""/>
         <property key="cast-align" value="false"/>
         <property key="code-model" value="default"/>
         <property key="const-model" value="default"/>
@@ -316,6 +315,7 @@
         <property key="symbol-stripping" value=""/>
         <property key="trace-symbols" value=""/>
         <property key="warn-section-align" value="false"/>
+        <appendMe value="--ivt=0x808040"/>
       </C32-LD>
       <C32CPP>
         <property key="additional-warnings" value="false"/>
@@ -370,7 +370,7 @@
       <Tool>
         <property key="ADC1" value="true"/>
         <property key="ADC2" value="true"/>
-        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="AutoSelectMemRanges" value="manual"/>
         <property key="BISS1" value="true"/>
         <property key="CCP 1" value="true"/>
         <property key="CCP 2" value="true"/>
@@ -447,7 +447,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="800000-80ffff"/>
+        <property key="memories.programmemory.ranges" value="808000-80ffff"/>
         <property key="programmerToGoFilePath"
                   value="C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/debug/default/PIC32AK64_App_Code_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
@@ -459,8 +459,8 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value="807000-80ffff"/>
-        <property key="programoptions.preserveprogramrange" value="true"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
@@ -490,7 +490,7 @@
       <pickitbasic>
         <property key="ADC1" value="true"/>
         <property key="ADC2" value="true"/>
-        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="AutoSelectMemRanges" value="manual"/>
         <property key="BISS1" value="true"/>
         <property key="CCP 1" value="true"/>
         <property key="CCP 2" value="true"/>
@@ -567,9 +567,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="800000-80ffff"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/debug/default/PIC32AK64_App_Code_ptg"/>
+        <property key="memories.programmemory.ranges" value="808000-80ffff"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -579,8 +577,8 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value="807000-80ffff"/>
-        <property key="programoptions.preserveprogramrange" value="true"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>

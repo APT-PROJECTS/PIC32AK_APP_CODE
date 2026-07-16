@@ -2,9 +2,6 @@
 #include "boot_handler.h"
 #include "../driver/driver_CANbus.h"
 #include "../driver/device_stat.h"
-#include "../driver/flash_eeprom.h"
-
-typedef void (*BOOT_ENTRY_FUNC)(void);
 
 void Send_PICID_1(void) {
     uint8_t txBuf[8];
@@ -78,75 +75,13 @@ void Send_Software_ID(void) {
     CANbus_write(CANID_RESP_SOFTWARE_ID, TxBuf, sizeof (TxBuf));
 }
 
-void Application_Status(void) {
+void App_Status(void) {
     uint8_t resp = (uint8_t) CMD_RESP_APPLICATION_MODE;
 
     CANbus_write(CANID_MCU_RESP, &resp, sizeof (resp));
 }
 
-void Jump_To_Bootloader(void) {
-    uint32_t bootEntryAddress;
-    BOOT_ENTRY_FUNC bootEntry;
-
-    /* Read Bootloader Reset Vector */
-    bootEntryAddress =
-            *(volatile const uint32_t *) BOOTLOADER_START_ADDRESS;
-
-    /* Validate Bootloader */
-    if ((bootEntryAddress == 0xFFFFFFFFUL) ||
-            (bootEntryAddress == 0x00000000UL)) {
-        return;
-    }
-
-    if ((bootEntryAddress < BOOTLOADER_START_ADDRESS) ||
-            (bootEntryAddress > BOOTLOADER_END_ADDRESS)) {
-        return;
-    }
-
-    /* Disable Global Interrupts */
-    (void) __builtin_disable_interrupts();
-
-    /* Disable all Interrupt Sources */
-    IEC0 = 0;
-    IEC1 = 0;
-    IEC2 = 0;
-    IEC3 = 0;
-    IEC4 = 0;
-    IEC5 = 0;
-    IEC6 = 0;
-
-    /* Clear Pending Interrupts */
-    IFS0 = 0;
-    IFS1 = 0;
-    IFS2 = 0;
-    IFS3 = 0;
-    IFS4 = 0;
-    IFS5 = 0;
-    IFS6 = 0;
-
-    /*
-     * Stop peripherals if required.
-     *
-     * Example:
-     *
-     * */
-//    TMR1_Stop();
-    SPI1_Deinitialize();
-
-    /*
-     * Bootloader IVT
-     */
-    __builtin_setIVTBASE((void *) 0x807040);
-
-    bootEntry = (BOOT_ENTRY_FUNC) bootEntryAddress;
-
-    bootEntry();
-
-    while (1) {
-    }
-}
-
-void Set_Bootloader_Flag(void) {
+void Boot_Jump(void) {
     W_BOOT_FLAG = 1.0f;
 
     //--------------------------------------------------
@@ -178,11 +113,11 @@ void Run_Boot_Handler(uint32_t ID, uint8_t CMD) {
         case CANID_SCU_REQ:
             switch (CMD) {
                 case CMD_REQ_BOOTLOADER:
-                    Set_Bootloader_Flag();
+                    Boot_Jump();
                     break;
 
                 case CMD_REQ_STATUS:
-                    Application_Status();
+                    App_Status();
                     break;
 
                 default:

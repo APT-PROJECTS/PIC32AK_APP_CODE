@@ -339,6 +339,12 @@ build PIC32AK64_App_Code_default_Bin2Hex: phony CMakeFiles/PIC32AK64_App_Code_de
 
 
 #############################################
+# Utility command for merge_loadable_files
+
+build merge_loadable_files: phony CMakeFiles/merge_loadable_files C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC32AK64_App_Code/default-unified.hex PIC32AK64_App_Code_default_Bin2Hex
+
+
+#############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
@@ -370,6 +376,15 @@ build CMakeFiles/PIC32AK64_App_Code_default_Bin2Hex C$:/Users/HP/MPLABXProjects/
   DESC = Convert built file to .hex
   restat = 1
 
+
+#############################################
+# Custom command for CMakeFiles\merge_loadable_files
+
+build CMakeFiles/merge_loadable_files C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC32AK64_App_Code/default-unified.hex | ${cmake_ninja_workdir}CMakeFiles/merge_loadable_files: CUSTOM_COMMAND || C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC32AK64_App_Code/default.elf PIC32AK64_App_Code_default_Bin2Hex PIC32AK64_App_Code_default_default_XC32_pic32a_compile
+  COMMAND = cmd.exe /C "cd /D C:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\_build\PIC32AK64_App_Code\default && hexmate c:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.hex C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/cmake/PIC32AK64_App_Code/default/../../../out/PIC32AK64_App_Code/default.hex -OC:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/cmake/PIC32AK64_App_Code/default/../../../out/PIC32AK64_App_Code/default-unified.hex"
+  DESC = Merging loadable hex files into unified image
+  restat = 1
+
 # =============================================================================
 # Target aliases.
 
@@ -385,7 +400,7 @@ build default.elf: phony C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC3
 #############################################
 # Folder: C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/_build/PIC32AK64_App_Code/default
 
-build all: phony PIC32AK64_App_Code_default_default_XC32_pic32a_compile C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC32AK64_App_Code/default.elf PIC32AK64_App_Code_default_Bin2Hex
+build all: phony PIC32AK64_App_Code_default_default_XC32_pic32a_compile C$:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/out/PIC32AK64_App_Code/default.elf PIC32AK64_App_Code_default_Bin2Hex merge_loadable_files
 
 # =============================================================================
 # Built-in targets

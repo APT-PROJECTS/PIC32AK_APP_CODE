@@ -14,7 +14,8 @@ build/default/debug/_ext/362756510/driver_UART.o: \
  ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h \
  ../src/config/default/peripheral/nvm/plib_nvm.h \
  ../src/driver/driver_UART.h ../src/driver/device_stat.h \
- ../src/driver/tuning.h ../src/driver/diagnostics.h
+ ../src/driver/flash_eeprom.h ../src/driver/tuning.h \
+ ../src/driver/diagnostics.h
 
 ../src/config/default/device.h:
 
@@ -47,6 +48,8 @@ build/default/debug/_ext/362756510/driver_UART.o: \
 ../src/driver/driver_UART.h:
 
 ../src/driver/device_stat.h:
+
+../src/driver/flash_eeprom.h:
 
 ../src/driver/tuning.h:
 

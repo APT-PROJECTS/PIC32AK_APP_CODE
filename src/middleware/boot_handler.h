@@ -11,11 +11,11 @@ extern "C" {
 /* =====================================================
  * FLASH MEMORY MAP
  * =====================================================*/
-#define APPLICATION_START_ADDRESS       (0x800000UL)
-#define APPLICATION_END_ADDRESS         (0x806FFFUL)
-
-#define BOOTLOADER_START_ADDRESS        (0x807000UL)
-#define BOOTLOADER_END_ADDRESS          (0x80EFFFUL)
+#define BOOTLOADER_START_ADDRESS        (0x800000UL)
+#define BOOTLOADER_END_ADDRESS          (0x807FFFUL)
+    
+#define APPLICATION_START_ADDRESS       (0x808000UL)
+#define APPLICATION_END_ADDRESS         (0x80EFFFUL)
 
 #define EEPROM_START_ADDRESS            (0x80F000UL)
 #define EEPROM_END_ADDRESS              (0x80FFFFUL)
@@ -71,8 +71,8 @@ typedef enum {
 void Send_PICID_1(void);
 void Send_PICID_2(void);
 void Send_Software_ID(void);
-void Application_Status(void);
-void Jump_To_Bootloader(void);
+void App_Status(void);
+void Boot_Jump(void);
 void Run_Boot_Handler(uint32_t ID, uint8_t rxBuffer);
 
 

@@ -14,7 +14,7 @@ build/default/debug/_ext/1360937237/main.o: ../src/main.c \
  ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h \
  ../src/config/default/peripheral/nvm/plib_nvm.h \
  ../src/driver/driver_mcp2515.h ../src/driver/device_stat.h \
- ../src/driver/flash_eeprom.h ../src/middleware/boot_handler.h
+ ../src/driver/flash_eeprom.h
 
 ../src/config/default/definitions.h:
 
@@ -49,5 +49,3 @@ build/default/debug/_ext/1360937237/main.o: ../src/main.c \
 ../src/driver/device_stat.h:
 
 ../src/driver/flash_eeprom.h:
-
-../src/middleware/boot_handler.h:

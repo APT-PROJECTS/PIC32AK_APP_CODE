@@ -96,7 +96,7 @@ void Boot_Jump(void) {
     }
 }
 
-void Run_Boot_Handler(uint32_t ID, uint8_t CMD) {
+void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer) {
     switch (ID) {
         case CANID_REQ_PICID_1:
             Send_PICID_1();
@@ -111,7 +111,7 @@ void Run_Boot_Handler(uint32_t ID, uint8_t CMD) {
             break;
 
         case CANID_SCU_REQ:
-            switch (CMD) {
+            switch (rxBuffer[0]) {
                 case CMD_REQ_BOOTLOADER:
                     Boot_Jump();
                     break;

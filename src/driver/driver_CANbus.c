@@ -42,7 +42,7 @@ void CANbus_read(void) {
                 msg_id == CANID_REQ_PICID_2 ||
                 msg_id == CANID_REQ_SOFTWARE_ID || 
                 msg_id == CANID_SCU_REQ) {
-            Run_Boot_Handler(msg_id, Rdata[0]);
+            Run_Boot_Handler(msg_id, Rdata);
         }
 
         switch (msg_id) {

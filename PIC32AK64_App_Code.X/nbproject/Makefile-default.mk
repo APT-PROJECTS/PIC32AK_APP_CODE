@@ -78,11 +78,33 @@ LDLIBSOPTIONS=
 # fixDeps replaces a bunch of sed/cat/printf statements that slow down the build
 FIXDEPS=fixDeps
 
+# The following macros may be used in the pre and post step lines
+_/_=\\
+ShExtension=.bat
+Device=PIC32AK6416GC41064
+ProjectDir="C:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\PIC32AK64_App_Code.X"
+ProjectName=PIC32AK64_App_Code
+ConfName=default
+ImagePath="dist\default\${IMAGE_TYPE}\PIC32AK64_App_Code.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ImageDir="dist\default\${IMAGE_TYPE}"
+ImageName="PIC32AK64_App_Code.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+IsDebug="true"
+else
+IsDebug="false"
+endif
+MDFUHostPath="C:\Program Files\Microchip\MPLABX\v6.30\mplab_platform\mplab-pymdfu\bin\windows\pymdfu-bin.exe"
+PYFWImageBuilderPath="C:\Program Files\Microchip\MPLABX\v6.30\mplab_platform\mplab-pymdfu\bin\windows\pyfwimagebuilder-bin.exe"
+
 .build-conf:  ${BUILD_SUBPROJECTS}
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
 	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/PIC32AK64_App_Code.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	@echo "--------------------------------------"
+	@echo "User defined post-build step: [xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK64_App_Code.X.debug.elf" "dist\default\debug\hub_scu_12.bin"]"
+	@xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK64_App_Code.X.debug.elf" "dist\default\debug\hub_scu_12.bin"
+	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=32AK6416GC41064
 MP_LINKER_FILE_OPTION=,--script=p32AK6416GC41064.gld

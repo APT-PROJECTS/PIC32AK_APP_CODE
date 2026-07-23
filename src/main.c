@@ -30,17 +30,18 @@ int main ( void )
     {
         GREEN_LED_Set();
     }
-    
+
     return ( EXIT_FAILURE );
 }
 
 
-// 80c000-80ffff
+// 808000-80efff
 
-// xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK64_App_Code.X.debug.elf" "dist\default\debug\application_0x804000.bin"
+// xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK64_App_Code.X.debug.elf" "dist\default\debug\hub_scu_12.bin"
+// ${MP_CC_DIR}/xc32-objcopy -I ihex -O binary dist\default\production\PIC32AK64_App_Code.X.production.hex dist\default\production\hub_scu_12.bin
 
-//  reset          : ORIGIN = 0x800000,      LENGTH = 0x4
-//  program (xr)   : ORIGIN = 0x800004,      LENGTH = 0xBFFC
+//  reset          : ORIGIN = 0x808000,      LENGTH = 0x4
+//  program (xr)   : ORIGIN = 0x808004,      LENGTH = 0x6FFC
 
 // 33 RC8 MCC_CS
 // 34 RC9 MCC_SCK

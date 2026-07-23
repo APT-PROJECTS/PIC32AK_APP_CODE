@@ -152,7 +152,8 @@ void drive_init(int * p_adr, float * CONFIG_THROTTLE_ZERO_adr, float * CONFIG_TH
 //--------------------------------------------------
 
 void STATE_ENGINE_Tasks(void) {
-    // static int ctr = 0, v1 = 20.25, v2 = 30;
+    static int ctr = 0, v2 = 0;
+    static float v1 = 0.0;
 
     switch (currentState) {
             //--------------------------------------------------
@@ -176,14 +177,14 @@ void STATE_ENGINE_Tasks(void) {
             CANbus_read();
             CAN_Send_Status();
 
-            // ctr++;
-            // if (ctr >= 5000) {
-            //     UART_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
-            //     CAN_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
-            //     ctr = 0;
-            //     v1 = v1 + 18.46;
-            //     v2 = v2 + 12;
-            // }
+             ctr++;
+             if (ctr >= 10000) {
+                 UART_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
+                 CAN_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
+                 ctr = 0;
+                 v1 = (v1 < 360.0) ? (v1 + 12.0) : 0.0;
+                 v2 = (v2 == 0) ? 1 : 0;
+             }
             break;
         }
 

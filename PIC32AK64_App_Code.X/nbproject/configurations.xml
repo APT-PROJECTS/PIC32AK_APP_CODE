@@ -188,8 +188,8 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep>xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK64_App_Code.X.debug.elf" "dist\default\debug\hub_scu_12.bin"</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -370,7 +370,7 @@
       <Tool>
         <property key="ADC1" value="true"/>
         <property key="ADC2" value="true"/>
-        <property key="AutoSelectMemRanges" value="manual"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
         <property key="BISS1" value="true"/>
         <property key="CCP 1" value="true"/>
         <property key="CCP 2" value="true"/>
@@ -447,7 +447,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="808000-80ffff"/>
+        <property key="memories.programmemory.ranges" value="808000-80efff"/>
         <property key="programmerToGoFilePath"
                   value="C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/debug/default/PIC32AK64_App_Code_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
@@ -459,8 +459,9 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogram.ranges"
+                  value="800000-807fff, 80f000-80ffff"/>
+        <property key="programoptions.preserveprogramrange" value="true"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
@@ -490,7 +491,7 @@
       <pickitbasic>
         <property key="ADC1" value="true"/>
         <property key="ADC2" value="true"/>
-        <property key="AutoSelectMemRanges" value="manual"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
         <property key="BISS1" value="true"/>
         <property key="CCP 1" value="true"/>
         <property key="CCP 2" value="true"/>
@@ -567,7 +568,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="808000-80ffff"/>
+        <property key="memories.programmemory.ranges" value="808000-80efff"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -577,8 +578,9 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogram.ranges"
+                  value="800000-807fff, 80f000-80ffff"/>
+        <property key="programoptions.preserveprogramrange" value="true"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>

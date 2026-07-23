@@ -307,8 +307,7 @@
                     "include": "src/config/default/*{.c,.h}",
                     "encoding": "ISO-8859-1"
                 },
-                "PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.elf",
-                "PIC32AK64_App_Code.X/dist/default/production/PIC32AK64_App_Code.X.production.hex"
+                "PIC32AK64_App_Code.X/dist/default/debug/PIC32AK64_App_Code.X.debug.elf"
             ]
         }
     ]

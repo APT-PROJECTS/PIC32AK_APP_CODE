@@ -19,6 +19,8 @@ extern "C" {
 
 #define EEPROM_START_ADDRESS            (0x80F000UL)
 #define EEPROM_END_ADDRESS              (0x80FFFFUL)
+    
+#define APPLICATION_IVT_ADDRESS         (APPLICATION_START_ADDRESS + 0x40U)
 
  /* =====================================================
  * CAN_ID
@@ -129,7 +131,9 @@ void Send_PICID_2(void);
 void Boot_Software_ID_Handler(void);
 void Boot_Status_Handler(void);
 void Boot_App_Size_Handler(void);
-void Boot_Jump(void);
+bool Boot_Is_App_Present(void);
+void Boot_App_Jump(void);
+void Boot_Jump_Handler(void);
 void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer);
 
 

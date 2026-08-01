@@ -128,6 +128,7 @@ void Send_PICID_1(void);
 void Send_PICID_2(void);
 void Boot_Software_ID_Handler(void);
 void Boot_Status_Handler(void);
+void Boot_App_Size_Handler(void);
 void Boot_Jump(void);
 void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer);
 

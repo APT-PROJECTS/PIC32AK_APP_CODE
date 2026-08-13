@@ -1,7 +1,7 @@
 {
     "hashFileVersion": "1.1.0",
     "projectFileHash": "2f4dcd686132c86aee3f538f1467d55bba1f22da5af755e3ddd8063d31c9ea20",
-    "cmakeFilesHash": "cee87b029b4442e902d75e1fc166df1289eb49830936cea63db56fdd27581cfc",
+    "cmakeFilesHash": "a2584873b75aaaf5bf810d71e09d2abd273189029129386e0c40e0287bbcf640",
     "cmakerVersion": "4.3.0",
-    "workspacePath": "c:/users/hp/mplabxprojects/pic32ak64_app_code"
+    "workspacePath": "c:/users/hp/mplabxprojects/pic32ak_bootloader/pic32ak_app_code"
 }

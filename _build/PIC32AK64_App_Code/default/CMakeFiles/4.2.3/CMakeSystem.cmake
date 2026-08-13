@@ -3,7 +3,7 @@ set(CMAKE_HOST_SYSTEM_NAME "Windows")
 set(CMAKE_HOST_SYSTEM_VERSION "10.0.26200")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "")
 
-include("C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/cmake/PIC32AK64_App_Code/default/.generated/toolchain.cmake")
+include("C:/Users/HP/MPLABXProjects/PIC32AK_BOOTLOADER/PIC32AK_APP_CODE/cmake/PIC32AK64_App_Code/default/.generated/toolchain.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")

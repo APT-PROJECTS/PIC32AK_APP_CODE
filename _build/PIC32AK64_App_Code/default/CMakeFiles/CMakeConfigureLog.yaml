@@ -176,7 +176,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
       The C compiler identification is GNU, found in:
-        C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/_build/PIC32AK64_App_Code/default/CMakeFiles/4.2.3/CompilerIdC/a.out
+        C:/Users/HP/MPLABXProjects/PIC32AK_BOOTLOADER/PIC32AK_APP_CODE/_build/PIC32AK64_App_Code/default/CMakeFiles/4.2.3/CompilerIdC/a.out
       
   -
     kind: "find-v1"
@@ -2416,7 +2416,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is GNU, found in:
-        C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/_build/PIC32AK64_App_Code/default/CMakeFiles/4.2.3/CompilerIdCXX/a.out
+        C:/Users/HP/MPLABXProjects/PIC32AK_BOOTLOADER/PIC32AK_APP_CODE/_build/PIC32AK64_App_Code/default/CMakeFiles/4.2.3/CompilerIdCXX/a.out
       
   -
     kind: "find-v1"

@@ -854,7 +854,7 @@ void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer)
 
                 case BOOT_CAN_CMD_0_STAY_IN_BOOT:
                 {
-                    Boot_Stay_In_Boot_Handler();
+//                    Boot_Stay_In_Boot_Handler();
                     break;
                 }
 

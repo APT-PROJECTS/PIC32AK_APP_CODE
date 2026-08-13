@@ -6,5 +6,5 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=PIC32AK64_App_Code.X.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/PIC32AK64_App_Code.X.production.hex
+CND_ARTIFACT_NAME_default=PIC32AK_APP_CODE.X.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/PIC32AK_APP_CODE.X.production.hex

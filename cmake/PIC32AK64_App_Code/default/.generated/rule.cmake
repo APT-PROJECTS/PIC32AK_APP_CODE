@@ -6,14 +6,14 @@ function(PIC32AK64_App_Code_default_default_XC32_pic32a_assemble_rule target)
     set(options
         "-g"
         "-mcpu=32AK6416GC41064"
-        "-Wa,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-g,--gdwarf-2,-I${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X,--no-relax"
+        "-Wa,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-g,--gdwarf-2,-IPIC32AK64_App_Code.X,--no-relax"
         "-mdfp=${PACK_REPO_PATH}/Microchip/PIC32AK-GC_DFP/1.1.53/xc32")
     list(REMOVE_ITEM options "")
     target_compile_options(${target} PRIVATE "${options}")
     target_compile_definitions(${target}
         PRIVATE "__DEBUG=1"
         PRIVATE "XPRJ_default=default")
-    target_include_directories(${target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X")
+    target_include_directories(${target} PRIVATE "PIC32AK64_App_Code.X")
 endfunction()
 function(PIC32AK64_App_Code_default_default_XC32_pic32a_assemblePreproc_rule target)
     set(options
@@ -21,14 +21,14 @@ function(PIC32AK64_App_Code_default_default_XC32_pic32a_assemblePreproc_rule tar
         "assembler-with-cpp"
         "-g"
         "-mcpu=32AK6416GC41064"
-        "-Wa,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-g,-I${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X,--no-relax"
+        "-Wa,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-g,-IPIC32AK64_App_Code.X,--no-relax"
         "-mdfp=${PACK_REPO_PATH}/Microchip/PIC32AK-GC_DFP/1.1.53/xc32")
     list(REMOVE_ITEM options "")
     target_compile_options(${target} PRIVATE "${options}")
     target_compile_definitions(${target}
         PRIVATE "__DEBUG=1"
         PRIVATE "XPRJ_default=default")
-    target_include_directories(${target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X")
+    target_include_directories(${target} PRIVATE "PIC32AK64_App_Code.X")
 endfunction()
 function(PIC32AK64_App_Code_default_default_XC32_pic32a_compile_rule target)
     set(options
@@ -48,7 +48,7 @@ function(PIC32AK64_App_Code_default_default_XC32_pic32a_compile_rule target)
     target_include_directories(${target}
         PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../src"
         PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../src/config/default"
-        PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X")
+        PRIVATE "PIC32AK64_App_Code.X")
 endfunction()
 function(PIC32AK64_App_Code_default_default_XC32_pic32a_compile_cpp_rule target)
     set(options
@@ -70,7 +70,7 @@ function(PIC32AK64_App_Code_default_default_XC32_pic32a_compile_cpp_rule target)
     target_compile_definitions(${target}
         PRIVATE "__DEBUG"
         PRIVATE "XPRJ_default=default")
-    target_include_directories(${target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X")
+    target_include_directories(${target} PRIVATE "PIC32AK64_App_Code.X")
 endfunction()
 function(PIC32AK64_App_Code_default_dependentObject_rule target)
     set(options
@@ -83,7 +83,7 @@ function(PIC32AK64_App_Code_default_pic32a_link_rule target)
     set(options
         "-g"
         "-mcpu=32AK6416GC41064"
-        "-Wl,--script=p32AK6416GC41064.gld,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,--heap=0,--data-init,--gc-sections,--isr,--stackguard=16,--library-path=${CMAKE_CURRENT_SOURCE_DIR}/../../../PIC32AK64_App_Code.X,--no-force-link,--smart-io,-Map=mem.map,--memorysummary,memoryfile.xml"
+        "-Wl,--script=p32AK6416GC41064.gld,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,--heap=0,--data-init,--gc-sections,--isr,--stackguard=16,--library-path=PIC32AK64_App_Code.X,--no-force-link,--smart-io,-Map=mem.map,--memorysummary,memoryfile.xml"
         "-mdfp=${PACK_REPO_PATH}/Microchip/PIC32AK-GC_DFP/1.1.53/xc32")
     list(REMOVE_ITEM options "")
     target_link_options(${target} PRIVATE "${options}")

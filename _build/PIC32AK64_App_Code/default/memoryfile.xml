@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="C:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\out\PIC32AK64_App_Code\default.elf">
+  <executable name="C:\Users\HP\MPLABXProjects\PIC32AK_BOOTLOADER\PIC32AK_APP_CODE\out\PIC32AK64_App_Code\default.elf">
     <memory name="data">
       <units>bytes</units>
       <length>16384</length>
-      <used>9516</used>
-      <free>6868</free>
+      <used>11082</used>
+      <free>5302</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>65532</length>
-      <used>23224</used>
-      <free>42308</free>
+      <used>26420</used>
+      <free>39112</free>
     </memory>
   </executable>
 </project>

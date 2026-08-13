@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>PIC32AK64_App_Code</name>
+            <name>PIC32AK_APP_CODE</name>
             <creation-uuid>8f57a7df-0d46-4e8b-938d-fcf4fa6addec</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>

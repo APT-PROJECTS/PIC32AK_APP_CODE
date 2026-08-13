@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/debug/PIC32AK64_App_Code.X.debug.elf">
+  <executable name="dist/default/debug/PIC32AK_APP_CODE.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>16384</length>
-      <used>9516</used>
-      <free>6868</free>
+      <used>11082</used>
+      <free>5302</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
-      <length>28668</length>
-      <used>23228</used>
-      <free>5440</free>
+      <length>94204</length>
+      <used>26424</used>
+      <free>67780</free>
     </memory>
   </executable>
 </project>

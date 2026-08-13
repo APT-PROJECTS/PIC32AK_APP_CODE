@@ -53,16 +53,16 @@ endif()
 
 
 # Main target for this project
-add_executable(PIC32AK64_App_Code_default_image_LlwWGMlp ${PIC32AK64_App_Code_default_library_list})
+add_executable(PIC32AK64_App_Code_default_image_bZvpRPt6 ${PIC32AK64_App_Code_default_library_list})
 
-set_target_properties(PIC32AK64_App_Code_default_image_LlwWGMlp PROPERTIES
+set_target_properties(PIC32AK64_App_Code_default_image_bZvpRPt6 PROPERTIES
     OUTPUT_NAME "default"
     SUFFIX ".elf"
     RUNTIME_OUTPUT_DIRECTORY "${PIC32AK64_App_Code_default_output_dir}")
-target_link_libraries(PIC32AK64_App_Code_default_image_LlwWGMlp PRIVATE ${PIC32AK64_App_Code_default_default_XC32_FILE_TYPE_pic32a_link})
+target_link_libraries(PIC32AK64_App_Code_default_image_bZvpRPt6 PRIVATE ${PIC32AK64_App_Code_default_default_XC32_FILE_TYPE_pic32a_link})
 
 # Add the link options from the rule file.
-PIC32AK64_App_Code_default_pic32a_link_rule( PIC32AK64_App_Code_default_image_LlwWGMlp)
+PIC32AK64_App_Code_default_pic32a_link_rule( PIC32AK64_App_Code_default_image_bZvpRPt6)
 
 # Add bin2hex target for converting built file to a .hex file.
 string(REGEX REPLACE [.]elf$ .hex PIC32AK64_App_Code_default_image_name_hex ${PIC32AK64_App_Code_default_image_name})
@@ -70,7 +70,7 @@ add_custom_target(PIC32AK64_App_Code_default_Bin2Hex ALL
     COMMAND ${MP_BIN2HEX} \"${PIC32AK64_App_Code_default_output_dir}/${PIC32AK64_App_Code_default_image_name}\"
     BYPRODUCTS ${PIC32AK64_App_Code_default_output_dir}/${PIC32AK64_App_Code_default_image_name_hex}
     COMMENT "Convert built file to .hex")
-add_dependencies(PIC32AK64_App_Code_default_Bin2Hex PIC32AK64_App_Code_default_image_LlwWGMlp)
+add_dependencies(PIC32AK64_App_Code_default_Bin2Hex PIC32AK64_App_Code_default_image_bZvpRPt6)
 
 
 

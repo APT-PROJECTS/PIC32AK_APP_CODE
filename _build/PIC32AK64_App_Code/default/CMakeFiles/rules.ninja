@@ -24,7 +24,7 @@ rule C_COMPILER__PIC32AK64_App_Code_default_default_XC32_pic32a_compile_unscanne
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__PIC32AK64_App_Code_default_image_LlwWGMlp_
+rule C_EXECUTABLE_LINKER__PIC32AK64_App_Code_default_image_bZvpRPt6_
   command = cmd.exe /C "$PRE_LINK && c:\PROGRA~1\MICROC~1\xc32\v5.00\bin\xc32-gcc.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
   description = Linking C executable $TARGET_FILE
   restat = $RESTAT
@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\HP\.mplab\app-finder\apps\cmake\v4.2.3\cmake-4.2.3-windows-x86_64\bin\cmake.exe --regenerate-during-build -SC:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\cmake\PIC32AK64_App_Code\default -BC:\Users\HP\MPLABXProjects\PIC32AK64_App_Code\_build\PIC32AK64_App_Code\default
+  command = C:\Users\HP\.mplab\app-finder\apps\cmake\v4.2.3\cmake-4.2.3-windows-x86_64\bin\cmake.exe --regenerate-during-build -SC:\Users\HP\MPLABXProjects\PIC32AK_BOOTLOADER\PIC32AK_APP_CODE\cmake\PIC32AK64_App_Code\default -BC:\Users\HP\MPLABXProjects\PIC32AK_BOOTLOADER\PIC32AK_APP_CODE\_build\PIC32AK64_App_Code\default
   description = Re-running CMake...
   generator = 1
 

@@ -32,13 +32,12 @@ Command:
   build/default/debug/_ext/1375476428/tuning.o \
   build/default/debug/_ext/1375476428/device_startup.o \
   build/default/debug/_ext/1200941409/state_engine.o \
-  build/default/debug/_ext/1360937237/main.o \
   build/default/debug/_ext/1200941409/mcu_config.o \
+  build/default/debug/_ext/1360937237/main.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
-  --defsym=__MPLAB_DEBUGGER_PICKITBASIC=1 \
-  -Tp32AK1216GC41064.gld.00 \
+  -TAPP_p32AK1216GC41064.gld.00 \
   --heap=0 \
   --data-init \
   --gc-sections \
@@ -184,7 +183,7 @@ __ivt_0                   0x808040               0x480           0x480  (1152)
 .text.NVM_ErrorGet        0x80e5d0                0x10            0x10  (16)
 .text.NVM_IsBusy          0x80e5e0                0x10            0x10  (16)
 .text.SPI1_CallbackRegister  0x80e5f0                0x10            0x10  (16)
-C:\Users\HP\AppData\Local\Temp\ccGCp6bF.s.scn1  0x80e600                0x10            0x10  (16)
+C:\Users\HP\AppData\Local\Temp\ccRlZ4Ib.s.scn1  0x80e600                0x10            0x10  (16)
 .text.send_diag_data      0x80e610                0x10            0x10  (16)
 .text.SPI1_Write          0x80e620                 0xc             0xc  (12)
 .text.TRAPS_halt_on_error  0x80e62c                 0xc             0xc  (12)
@@ -883,12 +882,12 @@ Discarded input sections
  .text              0x0000          0x0 build/default/debug/_ext/1200941409/state_engine.o
  .data              0x0000          0x0 build/default/debug/_ext/1200941409/state_engine.o
  .bss               0x0000          0x0 build/default/debug/_ext/1200941409/state_engine.o
- .text              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
- .data              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
- .bss               0x0000          0x0 build/default/debug/_ext/1360937237/main.o
  .text              0x0000          0x0 build/default/debug/_ext/1200941409/mcu_config.o
  .data              0x0000          0x0 build/default/debug/_ext/1200941409/mcu_config.o
  .bss               0x0000          0x0 build/default/debug/_ext/1200941409/mcu_config.o
+ .text              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
+ .data              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
+ .bss               0x0000          0x0 build/default/debug/_ext/1360937237/main.o
  .text              0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
  .data              0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
  .bss               0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
@@ -968,12 +967,11 @@ LOAD build/default/debug/_ext/1375476428/diagnostics.o
 LOAD build/default/debug/_ext/1375476428/tuning.o
 LOAD build/default/debug/_ext/1375476428/device_startup.o
 LOAD build/default/debug/_ext/1200941409/state_engine.o
-LOAD build/default/debug/_ext/1360937237/main.o
 LOAD build/default/debug/_ext/1200941409/mcu_config.o
+LOAD build/default/debug/_ext/1360937237/main.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
-                    0x0001                  __MPLAB_DEBUGGER_PICKITBASIC = 0x1
 LOAD p32AK1216GC41064
 LOAD c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libfx-elf.a
                     0x7f3000                  __FCP = 0x7f3000
@@ -1201,8 +1199,8 @@ __FWPUCB
  .comment           0x0620         0x62 build/default/debug/_ext/1375476428/tuning.o
  .comment           0x0682         0x62 build/default/debug/_ext/1375476428/device_startup.o
  .comment           0x06e4         0x62 build/default/debug/_ext/1200941409/state_engine.o
- .comment           0x0746         0x62 build/default/debug/_ext/1360937237/main.o
- .comment           0x07a8         0x62 build/default/debug/_ext/1200941409/mcu_config.o
+ .comment           0x0746         0x62 build/default/debug/_ext/1200941409/mcu_config.o
+ .comment           0x07a8         0x62 build/default/debug/_ext/1360937237/main.o
  .comment           0x080a         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcmp.GENERIC-32PIC-AK_o)
  .comment           0x0866         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
 
@@ -1227,8 +1225,8 @@ __FWPUCB
  .debug_info        0xb6ae       0x2d9f build/default/debug/_ext/1375476428/tuning.o
  .debug_info        0xe44d        0x449 build/default/debug/_ext/1375476428/device_startup.o
  .debug_info        0xe896        0xd61 build/default/debug/_ext/1200941409/state_engine.o
- .debug_info        0xf5f7        0x445 build/default/debug/_ext/1360937237/main.o
- .debug_info        0xfa3c        0x99c build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_info        0xf5f7        0x99c build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_info        0xff93        0x445 build/default/debug/_ext/1360937237/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev       0x0000       0x1f7a
@@ -1252,8 +1250,8 @@ __FWPUCB
  .debug_abbrev      0x195b        0x271 build/default/debug/_ext/1375476428/tuning.o
  .debug_abbrev      0x1bcc         0xf5 build/default/debug/_ext/1375476428/device_startup.o
  .debug_abbrev      0x1cc1        0x18d build/default/debug/_ext/1200941409/state_engine.o
- .debug_abbrev      0x1e4e         0xf3 build/default/debug/_ext/1360937237/main.o
- .debug_abbrev      0x1f41         0x39 build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_abbrev      0x1e4e         0x39 build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_abbrev      0x1e87         0xf3 build/default/debug/_ext/1360937237/main.o
 
 .debug_line         0x0000       0x5705
  *(.debug_line)
@@ -1276,8 +1274,8 @@ __FWPUCB
  .debug_line        0x41ad        0xfc6 build/default/debug/_ext/1375476428/tuning.o
  .debug_line        0x5173        0x15c build/default/debug/_ext/1375476428/device_startup.o
  .debug_line        0x52cf        0x220 build/default/debug/_ext/1200941409/state_engine.o
- .debug_line        0x54ef        0x1d9 build/default/debug/_ext/1360937237/main.o
- .debug_line        0x56c8         0x3d build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_line        0x54ef         0x3d build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_line        0x552c        0x1d9 build/default/debug/_ext/1360937237/main.o
 
 .debug_frame        0x0000        0xf38
  *(.debug_frame)
@@ -1323,8 +1321,8 @@ __FWPUCB
  .debug_str         0x043d         0x67 build/default/debug/_ext/1375476428/tuning.o
  .debug_str         0x04a4         0x4f build/default/debug/_ext/1375476428/device_startup.o
  .debug_str         0x04f3         0xbf build/default/debug/_ext/1200941409/state_engine.o
- .debug_str         0x05b2         0x4a build/default/debug/_ext/1360937237/main.o
- .debug_str         0x05fc          0xd build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_str         0x05b2          0xd build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_str         0x05bf         0x4a build/default/debug/_ext/1360937237/main.o
 
 .debug_loc          0x0000       0x3904
  *(.debug_loc)
@@ -1415,9 +1413,9 @@ __FWPUCB
  .debug_aranges
                     0x0708         0x30 build/default/debug/_ext/1200941409/state_engine.o
  .debug_aranges
-                    0x0738         0x20 build/default/debug/_ext/1360937237/main.o
+                    0x0738         0x18 build/default/debug/_ext/1200941409/mcu_config.o
  .debug_aranges
-                    0x0758         0x18 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x0750         0x20 build/default/debug/_ext/1360937237/main.o
                     0x0000                  PC = 0x0
                     0x0000                  _PC = 0x0
                     0x0000                  _PCbits = 0x0
@@ -4289,9 +4287,9 @@ __c30_signature
  __c30_signature
                     0x006c          0x6 build/default/debug/_ext/1200941409/state_engine.o
  __c30_signature
-                    0x0072          0x6 build/default/debug/_ext/1360937237/main.o
+                    0x0072          0x6 build/default/debug/_ext/1200941409/mcu_config.o
  __c30_signature
-                    0x0078          0x6 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x0078          0x6 build/default/debug/_ext/1360937237/main.o
  __c30_signature
                     0x007e          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedaa.o)
  __c30_signature
@@ -5711,9 +5709,9 @@ __ivt_0           0x808040        0x480
                   0x80e5f0         0x10 build/default/debug/_ext/1868329136/plib_spi1_host.o
                   0x80e5f0                  _SPI1_CallbackRegister
 
-C:\Users\HP\AppData\Local\Temp\ccGCp6bF.s.scn1
+C:\Users\HP\AppData\Local\Temp\ccRlZ4Ib.s.scn1
                   0x80e600         0x10
- C:\Users\HP\AppData\Local\Temp\ccGCp6bF.s.scn1
+ C:\Users\HP\AppData\Local\Temp\ccRlZ4Ib.s.scn1
                   0x80e600         0x10 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.send_diag_data

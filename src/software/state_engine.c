@@ -1,12 +1,7 @@
-#include <math.h>
 #include "definitions.h"
-#include "state_engine.h"
-#include "../driver/driver_UART.h"
-#include "../driver/tuning.h"
-#include "../driver/driver_CANbus.h"
-#include "../driver/mcu_config.h"
-#include "../driver/driver_mcp2515.h"
-#include "../driver/device_stat.h"
+#include "driver.h"
+#include "middleware.h"
+#include "software.h"
 
 #define SLOW_ROUTINE_COUNT 5
 
@@ -151,25 +146,21 @@ void drive_init(int * p_adr, float * CONFIG_THROTTLE_ZERO_adr, float * CONFIG_TH
 // STATE MACHINE TASKS
 //--------------------------------------------------
 
-void STATE_ENGINE_Tasks(void) {
+void State_Engine_Tasks(void) {
     static int ctr = 0, v2 = 0;
     static float v1 = 0.0;
 
     switch (currentState) {
-            //--------------------------------------------------
         case STATE_INIT:
-            //--------------------------------------------------
         {
-            Get_MAC_ID();
+            Get_PIC_ID();
             Tuner_Init();
             state_init();
             currentState = STATE_RUN;
             break;
         }
 
-            //--------------------------------------------------
         case STATE_RUN:
-            //--------------------------------------------------
         {
             MCP2515_Task();
             recieve_command_uart();
@@ -177,22 +168,18 @@ void STATE_ENGINE_Tasks(void) {
             CANbus_read();
             CAN_Send_Status();
 
-             ctr++;
-             if (ctr >= 10000) {
-                 UART_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
-                 CAN_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
-                 ctr = 0;
-                 v1 = (v1 < 360.0) ? (v1 + 12.0) : 0.0;
-                 v2 = (v2 == 0) ? 1 : 0;
-             }
+            ctr++;
+            if (ctr >= 10000) {
+                UART_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
+                CAN_Tuner_Send_Zero_Angle(v1, 0.0, 0.0, v2);
+                ctr = 0;
+                v1 = (v1 < 360.0) ? (v1 + 12.0) : 0.0;
+                v2 = (v2 == 0) ? 1 : 0;
+            }
             break;
         }
 
-            //--------------------------------------------------
         default:
-            //--------------------------------------------------
-        {
             break;
-        }
     }
 }

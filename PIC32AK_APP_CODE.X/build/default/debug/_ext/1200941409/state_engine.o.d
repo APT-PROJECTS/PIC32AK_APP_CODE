@@ -12,14 +12,13 @@ build/default/debug/_ext/1200941409/state_engine.o: \
  ../src/config/default/peripheral/tmr/plib_tmr_common.h \
  ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.h \
  ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h \
- ../src/config/default/peripheral/nvm/plib_nvm.h \
- ../src/software/state_engine.h ../src/software/../driver/driver_UART.h \
- ../src/software/../driver/tuning.h \
- ../src/software/../driver/driver_CANbus.h \
- ../src/software/../driver/mcu_config.h \
- ../src/software/../driver/driver_mcp2515.h \
- ../src/software/../driver/device_stat.h \
- ../src/software/../driver/flash_eeprom.h
+ ../src/config/default/peripheral/nvm/plib_nvm.h ../src/driver.h \
+ ../src/driver/driver_CANbus.h ../src/driver/driver_mcp2515.h \
+ ../src/driver/driver_UART.h ../src/driver/flash_eeprom.h \
+ ../src/middleware.h ../src/middleware/boot_handler.h \
+ ../src/middleware/device_startup.h ../src/middleware/diagnostics.h \
+ ../src/middleware/tuning.h ../src/software.h \
+ ../src/software/mcu_config.h ../src/software/state_engine.h
 
 ../src/config/default/definitions.h:
 
@@ -49,18 +48,28 @@ build/default/debug/_ext/1200941409/state_engine.o: \
 
 ../src/config/default/peripheral/nvm/plib_nvm.h:
 
+../src/driver.h:
+
+../src/driver/driver_CANbus.h:
+
+../src/driver/driver_mcp2515.h:
+
+../src/driver/driver_UART.h:
+
+../src/driver/flash_eeprom.h:
+
+../src/middleware.h:
+
+../src/middleware/boot_handler.h:
+
+../src/middleware/device_startup.h:
+
+../src/middleware/diagnostics.h:
+
+../src/middleware/tuning.h:
+
+../src/software.h:
+
+../src/software/mcu_config.h:
+
 ../src/software/state_engine.h:
-
-../src/software/../driver/driver_UART.h:
-
-../src/software/../driver/tuning.h:
-
-../src/software/../driver/driver_CANbus.h:
-
-../src/software/../driver/mcu_config.h:
-
-../src/software/../driver/driver_mcp2515.h:
-
-../src/software/../driver/device_stat.h:
-
-../src/software/../driver/flash_eeprom.h:

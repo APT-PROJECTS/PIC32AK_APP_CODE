@@ -43,38 +43,40 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f1" displayName="driver" projectFiles="true">
-        <itemPath>../src/driver/device_stat.h</itemPath>
-        <itemPath>../src/driver/diagnostics.h</itemPath>
         <itemPath>../src/driver/driver_CANbus.h</itemPath>
         <itemPath>../src/driver/driver_UART.h</itemPath>
         <itemPath>../src/driver/driver_mcp2515.h</itemPath>
-        <itemPath>../src/driver/fault.h</itemPath>
         <itemPath>../src/driver/flash_eeprom.h</itemPath>
-        <itemPath>../src/driver/mcu_config.h</itemPath>
-        <itemPath>../src/driver/tuning.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f3" displayName="middleware" projectFiles="true">
+      <logicalFolder name="f2" displayName="middleware" projectFiles="true">
         <itemPath>../src/middleware/boot_handler.h</itemPath>
+        <itemPath>../src/middleware/diagnostics.h</itemPath>
+        <itemPath>../src/middleware/tuning.h</itemPath>
+        <itemPath>../src/middleware/device_startup.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="software" projectFiles="true">
+      <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.h</itemPath>
+        <itemPath>../src/software/mcu_config.h</itemPath>
       </logicalFolder>
+      <itemPath>../src/driver.h</itemPath>
+      <itemPath>../src/middleware.h</itemPath>
+      <itemPath>../src/software.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="true">
-      <logicalFolder name="PIC32AK64_App_Code_default"
-                     displayName="PIC32AK64_App_Code_default"
+      <logicalFolder name="PIC32AK_APP_CODE_default"
+                     displayName="PIC32AK_APP_CODE_default"
                      projectFiles="true">
         <logicalFolder name="components" displayName="components" projectFiles="true">
-          <itemPath>PIC32AK64_App_Code_default/components/nvm.yml</itemPath>
-          <itemPath>PIC32AK64_App_Code_default/components/uart1.yml</itemPath>
-          <itemPath>PIC32AK64_App_Code_default/components/core.yml</itemPath>
-          <itemPath>PIC32AK64_App_Code_default/components/timer1.yml</itemPath>
-          <itemPath>PIC32AK64_App_Code_default/components/spi1.yml</itemPath>
-          <itemPath>PIC32AK64_App_Code_default/components/dfp.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/spi1.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/core.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/nvm.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/uart1.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/timer1.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/dfp.yml</itemPath>
         </logicalFolder>
-        <itemPath>PIC32AK64_App_Code_default/mcc-config.mc4</itemPath>
+        <itemPath>PIC32AK_APP_CODE_default/mcc-config.mc4</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
@@ -85,7 +87,7 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
-      <itemPath>p32AK1216GC41064.gld</itemPath>
+      <itemPath>../src/config/default/APP_p32AK1216GC41064.gld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -126,30 +128,26 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f1" displayName="driver" projectFiles="true">
-        <itemPath>../src/driver/device_stat.c</itemPath>
-        <itemPath>../src/driver/diagnostics.c</itemPath>
         <itemPath>../src/driver/driver_CANbus.c</itemPath>
         <itemPath>../src/driver/driver_UART.c</itemPath>
         <itemPath>../src/driver/driver_mcp2515.c</itemPath>
-        <itemPath>../src/driver/fault.c</itemPath>
         <itemPath>../src/driver/flash_eeprom.c</itemPath>
-        <itemPath>../src/driver/mcu_config.c</itemPath>
-        <itemPath>../src/driver/tuning.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="f3" displayName="middleware" projectFiles="true">
+      <logicalFolder name="f2" displayName="middleware" projectFiles="true">
         <itemPath>../src/middleware/boot_handler.c</itemPath>
+        <itemPath>../src/middleware/diagnostics.c</itemPath>
+        <itemPath>../src/middleware/tuning.c</itemPath>
+        <itemPath>../src/middleware/device_startup.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="software" projectFiles="true">
+      <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.c</itemPath>
+        <itemPath>../src/software/mcu_config.c</itemPath>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>.</Elem>
-    <Elem>../src/driver</Elem>
-    <Elem>../src/software</Elem>
-    <Elem>../src/middleware</Elem>
+    <Elem>../src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -159,7 +157,7 @@
         <targetDevice>PIC32AK1216GC41064</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pickitbasic</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>5.00</languageToolchainVersion>
         <platform>3</platform>
@@ -177,6 +175,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
+                        CT="1"
+                        CN="default"
+                        AC="true"
+                        BL="true"
+                        WD="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
+                        BC="${MAKE}  -f Makefile CONF=default"
+                        DBC="${MAKE}  -f Makefile CONF=default TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/default&quot; &quot;dist/default&quot;"
+                        OP="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
+                        DOP="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf"
+                        FL="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
+                        PD="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.elf"
+                        DD="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -189,7 +202,7 @@
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>xc32-objcopy -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK_APP_CODE.X.debug.elf" "dist\default\debug\hub_sp_1.1_scu_14.bin"</makeCustomizationPostStep>
+        <makeCustomizationPostStep>"C:\Program Files\Microchip\xc32\v5.00\bin\xc32-objcopy.exe" -O binary -R .config_* -R .comment -R .debug* -R __c30_signature "dist\default\debug\PIC32AK_APP_CODE.X.debug.elf" "dist\default\debug\PIC32AK_APP_CODE.bin"</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -447,9 +460,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="808000-81efff"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/HP/MPLABXProjects/PIC32AK64_App_Code/PIC32AK64_App_Code.X/debug/default/PIC32AK64_App_Code_ptg"/>
+        <property key="memories.programmemory.ranges" value="800000-81ffff"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -459,8 +470,7 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges"
-                  value="800000-807fff, 81f000-81ffff"/>
+        <property key="programoptions.preserveprogram.ranges" value="81f000-81ffff"/>
         <property key="programoptions.preserveprogramrange" value="true"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
@@ -552,7 +562,7 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="808000-81efff"/>
+        <property key="memories.programmemory.ranges" value="800000-81ffff"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -562,8 +572,7 @@
                   value="${memories.dataflash.default}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges"
-                  value="800000-807fff, 81f000-81ffff"/>
+        <property key="programoptions.preserveprogram.ranges" value="81f000-81ffff"/>
         <property key="programoptions.preserveprogramrange" value="true"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>

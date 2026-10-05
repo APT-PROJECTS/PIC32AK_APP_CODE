@@ -1,7 +1,5 @@
-#include <string.h>
 #include "definitions.h"
-#include "flash_eeprom.h"
-
+#include "driver.h"
 
 typedef struct {
     uint32_t marker;
@@ -121,21 +119,17 @@ static uint32_t find_latest_page(void) {
     return latest;
 }
 
-FLASH_EEPROM_STATUS FLASH_EEPROM_Init(void)
-{
+FLASH_EEPROM_STATUS FLASH_EEPROM_Init(void) {
     activePage = find_latest_page();
 
-    if(activePage == 0xFFFFFFFF)
-    {
-        for(int i=0;i<EEPROM_NUM_PAGES;i++)
-        {
-            if(!erase_page(pages[i]))
-            {
+    if (activePage == 0xFFFFFFFF) {
+        for (int i = 0; i < EEPROM_NUM_PAGES; i++) {
+            if (!erase_page(pages[i])) {
                 return FLASH_EEPROM_ERROR;
             }
         }
 
-        activePage = pages[0];   // FIX
+        activePage = pages[0]; // FIX
     }
 
     return FLASH_EEPROM_OK;
@@ -198,12 +192,12 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_Write_Page(uint8_t *data, uint32_t length) {
     newHdr.padding[2] = 0xFFFFFFFF;
 
     /* Write sequence, crc, length, reserved first */
-    if (!write_quadword(nextPage + 16U, ((uint8_t *)&newHdr) + 16U, 16U)) {
+    if (!write_quadword(nextPage + 16U, ((uint8_t *) & newHdr) + 16U, 16U)) {
         return FLASH_EEPROM_ERROR;
     }
 
     /* Write marker LAST -> final commit */
-    if (!write_quadword(nextPage, (uint8_t *)&newHdr, 16U)) {
+    if (!write_quadword(nextPage, (uint8_t *) & newHdr, 16U)) {
         return FLASH_EEPROM_ERROR;
     }
 

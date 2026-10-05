@@ -49,7 +49,7 @@
 #include "interrupts.h"
 #include "../../software/state_engine.h"
 
-volatile static TIMER_OBJECT tmr1Obj;
+static volatile TIMER_OBJECT tmr1Obj;
 
 // Section: Macro Definitions
 
@@ -158,7 +158,7 @@ void __attribute__((used)) T1_InterruptHandler (void)
 {
     uint32_t status = _T1IF;
     _T1IF = 0;
-    STATE_ENGINE_Tasks();
+    State_Engine_Tasks();
 
     tmr1Obj.tickCounter++;
 

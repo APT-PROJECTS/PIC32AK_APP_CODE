@@ -1,6 +1,5 @@
 build/default/debug/_ext/362756510/driver_mcp2515.o: \
- ../src/driver/driver_mcp2515.c ../src/driver/driver_mcp2515.h \
- ../src/config/default/definitions.h \
+ ../src/driver/driver_mcp2515.c ../src/config/default/definitions.h \
  ../src/config/default/peripheral/uart/plib_uart1.h \
  ../src/config/default/peripheral/uart/plib_uart_common.h \
  ../src/config/default/peripheral/clk/plib_clk.h \
@@ -13,9 +12,9 @@ build/default/debug/_ext/362756510/driver_mcp2515.o: \
  ../src/config/default/peripheral/tmr/plib_tmr_common.h \
  ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.h \
  ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h \
- ../src/config/default/peripheral/nvm/plib_nvm.h
-
-../src/driver/driver_mcp2515.h:
+ ../src/config/default/peripheral/nvm/plib_nvm.h ../src/driver.h \
+ ../src/driver/driver_CANbus.h ../src/driver/driver_mcp2515.h \
+ ../src/driver/driver_UART.h ../src/driver/flash_eeprom.h
 
 ../src/config/default/definitions.h:
 
@@ -44,3 +43,13 @@ build/default/debug/_ext/362756510/driver_mcp2515.o: \
 ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h:
 
 ../src/config/default/peripheral/nvm/plib_nvm.h:
+
+../src/driver.h:
+
+../src/driver/driver_CANbus.h:
+
+../src/driver/driver_mcp2515.h:
+
+../src/driver/driver_UART.h:
+
+../src/driver/flash_eeprom.h:

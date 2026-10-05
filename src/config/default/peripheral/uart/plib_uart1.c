@@ -1,20 +1,20 @@
 /*******************************************************************************
   uart1 PLIB
- 
+
   Company:
     Microchip Technology Inc.
- 
+
   File Name:
     plib_uart1.c
- 
+
   Summary:
     uart1 PLIB Source File
- 
+
   Description:
     None
- 
+
 *******************************************************************************/
- 
+
 /*******************************************************************************
 * Copyright (C) 2025 Microchip Technology Inc. and its subsidiaries.
 *
@@ -52,30 +52,30 @@
 // Section: Macro Definitions
 
 //UART UxCON MODE options
-#define U1CON_MODE_8_BIT_NONE          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(0) << _U1CON_MODE_POSITION))) 
-#define U1CON_MODE_7_BIT          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(1) << _U1CON_MODE_POSITION))) 
-#define U1CON_MODE_8_BIT_ODD          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(2) << _U1CON_MODE_POSITION))) 
-#define U1CON_MODE_8_BIT_EVEN          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(3) << _U1CON_MODE_POSITION))) 
+#define U1CON_MODE_8_BIT_NONE          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(0) << _U1CON_MODE_POSITION)))
+#define U1CON_MODE_7_BIT          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(1) << _U1CON_MODE_POSITION)))
+#define U1CON_MODE_8_BIT_ODD          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(2) << _U1CON_MODE_POSITION)))
+#define U1CON_MODE_8_BIT_EVEN          ((uint32_t)(_U1CON_MODE_MASK & ((uint32_t)(3) << _U1CON_MODE_POSITION)))
 
 //UART UxCON STP options
-#define U1CON_STP_1_SENT_1_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(0) << _U1CON_STP_POSITION))) 
-#define U1CON_STP_1_5_SENT_1_5_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(1) << _U1CON_STP_POSITION))) 
-#define U1CON_STP_2_SENT_2_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(2) << _U1CON_STP_POSITION))) 
-#define U1CON_STP_2_SENT_1_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(3) << _U1CON_STP_POSITION))) 
+#define U1CON_STP_1_SENT_1_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(0) << _U1CON_STP_POSITION)))
+#define U1CON_STP_1_5_SENT_1_5_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(1) << _U1CON_STP_POSITION)))
+#define U1CON_STP_2_SENT_2_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(2) << _U1CON_STP_POSITION)))
+#define U1CON_STP_2_SENT_1_RECEIVE           ((uint32_t)(_U1CON_STP_MASK & ((uint32_t)(3) << _U1CON_STP_POSITION)))
 
 //UART UxCON CLKSEL options
-#define U1CON_CLKSEL_UPB_CLOCK        ((uint32_t)(_U1CON_CLKSEL_MASK & ((uint32_t)(0) << _U1CON_CLKSEL_POSITION))) 
-#define U1CON_CLKSEL_CLOCK_GEN_8        ((uint32_t)(_U1CON_CLKSEL_MASK & ((uint32_t)(1) << _U1CON_CLKSEL_POSITION))) 
+#define U1CON_CLKSEL_UPB_CLOCK        ((uint32_t)(_U1CON_CLKSEL_MASK & ((uint32_t)(0) << _U1CON_CLKSEL_POSITION)))
+#define U1CON_CLKSEL_CLOCK_GEN_8        ((uint32_t)(_U1CON_CLKSEL_MASK & ((uint32_t)(1) << _U1CON_CLKSEL_POSITION)))
 
 //UART UxCON FLO options
-#define U1CON_FLO_NONE        ((uint32_t)(_U1CON_FLO_MASK & ((uint32_t)(0) << _U1CON_FLO_POSITION))) 
+#define U1CON_FLO_NONE        ((uint32_t)(_U1CON_FLO_MASK & ((uint32_t)(0) << _U1CON_FLO_POSITION)))
 
 #define UART_MAX_BAUD 0xFFFFFUL
 #define UART_MIN_FRACTIONAL_BAUD 16U
 
 // Section: UART1 Implementation
 
-void static UART1_ErrorClear( void )
+static void UART1_ErrorClear( void )
 {
     UART_ERROR errors = UART_ERROR_NONE;
     uint8_t dummyData = 0u;
@@ -141,11 +141,11 @@ bool UART1_SerialSetup(UART_SERIAL_SETUP *setup, uint32_t srcClkFreq)
 
         srcClkFreq = UART1_FrequencyGet();
 
-        
+
         /* Turn OFF UART1. Save UTXEN, URXEN bits as these are cleared upon disabling UART */
         ctrlReg = U1CON & (_U1CON_TXEN_MASK | _U1CON_RXEN_MASK );
         U1CONbits.ON = 0U;
-        
+
         /* Calculate BRG value in fractional mode as it has least error rate */
         uxbrg = (srcClkFreq/baud);
         /* Check if the valid baud value is set */
@@ -159,7 +159,7 @@ bool UART1_SerialSetup(UART_SERIAL_SETUP *setup, uint32_t srcClkFreq)
             /* Calculate BRG value for high speed mode*/
             uxbrg = (srcClkFreq/(4U*baud)) - 1U;
             U1CONbits.BRGS = 1U;
-            
+
             if(uxbrg > UART_MAX_BAUD)
             {
                 /* Calculate BRG value for low speed mode*/
@@ -176,7 +176,7 @@ bool UART1_SerialSetup(UART_SERIAL_SETUP *setup, uint32_t srcClkFreq)
         {
             U1CONbits.CLKMOD = 1U;
         }
-        
+
         if(setup->dataWidth == UART_DATA_8_BIT)
         {
             /* Configure UART1 mode with parity if mode is 8 bit */
@@ -196,7 +196,7 @@ bool UART1_SerialSetup(UART_SERIAL_SETUP *setup, uint32_t srcClkFreq)
 
         /* Restore UTXEN, URXEN bits. */
         U1CON |= ctrlReg;
-        
+
         U1CONbits.ON = 1U;
 
         status = true;
@@ -231,7 +231,7 @@ bool UART1_Read(void* buffer, const size_t size)
             {
                 break;
             }
-            
+
             /* 8-bit and 7-bit mode */
             ((uint8_t*)(buffer))[processedSize] = (uint8_t)(U1RXB);
             processedSize++;

@@ -5,22 +5,12 @@
 #include "driver.h"
 #include "middleware.h"
 
-#define MCP2515_STARTUP_ATTEMPTS  5U
-
 int main(void) {
-    static uint8_t attempt;
-
     SYS_Initialize(NULL);
 
     GREEN_LED_Set();
 
-    for (attempt = 0U; attempt < MCP2515_STARTUP_ATTEMPTS; attempt++) {
-        if (MCP2515_Init() == true) {
-            break;
-        }
-    }
-
-    NVM_EEPROM_Initialize();
+    MCP2515_Init();
 
     TMR1_Start();
 

@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include "definitions.h"
+#include "driver.h"
 
 //--------------------------------------------------
 // CAN TUNER
@@ -20,185 +21,212 @@ extern "C" {
 #define CAN_CMD_TUNER_PIC_ID_1          0x04
 #define CAN_CMD_TUNER_PIC_ID_2          0x05
     
+//--------------------------------------------------
+// MATRIX SIZE
+//--------------------------------------------------
+#define ROWS    16
+#define COLS    4
+    
+//==================================================
+// ROW 0
+//==================================================
+#define R_PROJECT_ID                 tunerReadMatrix[0][0]
+#define R_FIRMWARE_ID                tunerReadMatrix[0][1]
+#define R_BOOT_FLAG                  tunerReadMatrix[0][2]
+#define R_BOOT_VERSION               tunerReadMatrix[0][3]
+#define R_APP_SIZE                   tunerReadMatrix[0][4]
+
+#define W_PROJECT_ID                 tunerWriteMatrix[0][0]
+#define W_FIRMWARE_ID                tunerWriteMatrix[0][1]
+#define W_BOOT_FLAG                  tunerWriteMatrix[0][2]
+#define W_BOOT_VERSION               tunerWriteMatrix[0][3]
+#define W_APP_SIZE                   tunerWriteMatrix[0][4]
+    
 //==================================================
 // ROW 1
 //==================================================
-#define R_FF01_01                    readMatrix[1][0]
-#define R_FF01_02                    readMatrix[1][1]
-#define R_FF01_03                    readMatrix[1][2]
-#define R_FF01_04                    readMatrix[1][3]
+#define R_FF01_01                    tunerReadMatrix[1][0]
+#define R_FF01_02                    tunerReadMatrix[1][1]
+#define R_FF01_03                    tunerReadMatrix[1][2]
+#define R_FF01_04                    tunerReadMatrix[1][3]
 
-#define W_FF01_01                    writeMatrix[1][0]
-#define W_FF01_02                    writeMatrix[1][1]
-#define W_FF01_03                    writeMatrix[1][2]
-#define W_FF01_04                    writeMatrix[1][3]
+#define W_FF01_01                    tunerWriteMatrix[1][0]
+#define W_FF01_02                    tunerWriteMatrix[1][1]
+#define W_FF01_03                    tunerWriteMatrix[1][2]
+#define W_FF01_04                    tunerWriteMatrix[1][3]
 
 //==================================================
 // ROW 2
 //==================================================
-#define R_FF02_01                    readMatrix[2][0]
-#define R_FF02_02                    readMatrix[2][1]
-#define R_FF02_03                    readMatrix[2][2]
-#define R_FF02_04                    readMatrix[2][3]
+#define R_FF02_01                    tunerReadMatrix[2][0]
+#define R_FF02_02                    tunerReadMatrix[2][1]
+#define R_FF02_03                    tunerReadMatrix[2][2]
+#define R_FF02_04                    tunerReadMatrix[2][3]
 
-#define W_FF02_01                    writeMatrix[2][0]
-#define W_FF02_02                    writeMatrix[2][1]
-#define W_FF02_03                    writeMatrix[2][2]
-#define W_FF02_04                    writeMatrix[2][3]
+#define W_FF02_01                    tunerWriteMatrix[2][0]
+#define W_FF02_02                    tunerWriteMatrix[2][1]
+#define W_FF02_03                    tunerWriteMatrix[2][2]
+#define W_FF02_04                    tunerWriteMatrix[2][3]
 
 //==================================================
 // ROW 3
 //==================================================
-#define R_FF03_01                    readMatrix[3][0]
-#define R_FF03_02                    readMatrix[3][1]
-#define R_FF03_03                    readMatrix[3][2]
-#define R_FF03_04                    readMatrix[3][3]
+#define R_FF03_01                    tunerReadMatrix[3][0]
+#define R_FF03_02                    tunerReadMatrix[3][1]
+#define R_FF03_03                    tunerReadMatrix[3][2]
+#define R_FF03_04                    tunerReadMatrix[3][3]
 
-#define W_FF03_01                    writeMatrix[3][0]
-#define W_FF03_02                    writeMatrix[3][1]
-#define W_FF03_03                    writeMatrix[3][2]
-#define W_FF03_04                    writeMatrix[3][3]
+#define W_FF03_01                    tunerWriteMatrix[3][0]
+#define W_FF03_02                    tunerWriteMatrix[3][1]
+#define W_FF03_03                    tunerWriteMatrix[3][2]
+#define W_FF03_04                    tunerWriteMatrix[3][3]
 
 //==================================================
 // ROW 4
 //==================================================
-#define R_FF04_01                    readMatrix[4][0]
-#define R_FF04_02                    readMatrix[4][1]   //(NA)
-#define R_FF04_03                    readMatrix[4][2]
-#define R_FF04_04                    readMatrix[4][3]
+#define R_FF04_01                    tunerReadMatrix[4][0]
+#define R_FF04_02                    tunerReadMatrix[4][1]   //(NA)
+#define R_FF04_03                    tunerReadMatrix[4][2]
+#define R_FF04_04                    tunerReadMatrix[4][3]
 
-#define W_FF04_01                    writeMatrix[4][0]
-#define W_FF04_02                    writeMatrix[4][1]   //(NA)
-#define W_FF04_03                    writeMatrix[4][2]
-#define W_FF04_04                    writeMatrix[4][3]
+#define W_FF04_01                    tunerWriteMatrix[4][0]
+#define W_FF04_02                    tunerWriteMatrix[4][1]   //(NA)
+#define W_FF04_03                    tunerWriteMatrix[4][2]
+#define W_FF04_04                    tunerWriteMatrix[4][3]
 
 //==================================================
 // ROW 5
 //==================================================
-#define R_FF05_01                    readMatrix[5][0]
-#define R_FF05_02                    readMatrix[5][1]
-#define R_FF05_03                    readMatrix[5][2]
-#define R_FF05_04                    readMatrix[5][3]
+#define R_FF05_01                    tunerReadMatrix[5][0]
+#define R_FF05_02                    tunerReadMatrix[5][1]
+#define R_FF05_03                    tunerReadMatrix[5][2]
+#define R_FF05_04                    tunerReadMatrix[5][3]
 
-#define W_FF05_01                    writeMatrix[5][0]
-#define W_FF05_02                    writeMatrix[5][1]
-#define W_FF05_03                    writeMatrix[5][2]
-#define W_FF05_04                    writeMatrix[5][3]
+#define W_FF05_01                    tunerWriteMatrix[5][0]
+#define W_FF05_02                    tunerWriteMatrix[5][1]
+#define W_FF05_03                    tunerWriteMatrix[5][2]
+#define W_FF05_04                    tunerWriteMatrix[5][3]
 
 //==================================================
 // ROW 6
 //==================================================
-#define R_FF06_01                    readMatrix[6][0]
-#define R_FF06_02                    readMatrix[6][1]
-#define R_FF06_03                    readMatrix[6][2]
-#define R_FF06_04                    readMatrix[6][3]
+#define R_FF06_01                    tunerReadMatrix[6][0]
+#define R_FF06_02                    tunerReadMatrix[6][1]
+#define R_FF06_03                    tunerReadMatrix[6][2]
+#define R_FF06_04                    tunerReadMatrix[6][3]
 
-#define W_FF06_01                    writeMatrix[6][0]
-#define W_FF06_02                    writeMatrix[6][1]
-#define W_FF06_03                    writeMatrix[6][2]
-#define W_FF06_04                    writeMatrix[6][3]
+#define W_FF06_01                    tunerWriteMatrix[6][0]
+#define W_FF06_02                    tunerWriteMatrix[6][1]
+#define W_FF06_03                    tunerWriteMatrix[6][2]
+#define W_FF06_04                    tunerWriteMatrix[6][3]
 
 //==================================================
 // ROW 7
 //==================================================
-#define R_FF07_01                    readMatrix[7][0]
-#define R_FF07_02                    readMatrix[7][1]
-#define R_FF07_03                    readMatrix[7][2]
-#define R_FF07_04                    readMatrix[7][3]
+#define R_FF07_01                    tunerReadMatrix[7][0]
+#define R_FF07_02                    tunerReadMatrix[7][1]
+#define R_FF07_03                    tunerReadMatrix[7][2]
+#define R_FF07_04                    tunerReadMatrix[7][3]
 
-#define W_FF07_01                    writeMatrix[7][0]
-#define W_FF07_02                    writeMatrix[7][1]
-#define W_FF07_03                    writeMatrix[7][2]
-#define W_FF07_04                    writeMatrix[7][3]
+#define W_FF07_01                    tunerWriteMatrix[7][0]
+#define W_FF07_02                    tunerWriteMatrix[7][1]
+#define W_FF07_03                    tunerWriteMatrix[7][2]
+#define W_FF07_04                    tunerWriteMatrix[7][3]
 
 //==================================================
 // ROW 8
 //==================================================
-#define R_FF08_01                    readMatrix[8][0]
-#define R_FF08_02                    readMatrix[8][1]
-#define R_FF08_03                    readMatrix[8][2]
-#define R_FF08_04                    readMatrix[8][3]
+#define R_FF08_01                    tunerReadMatrix[8][0]
+#define R_FF08_02                    tunerReadMatrix[8][1]
+#define R_FF08_03                    tunerReadMatrix[8][2]
+#define R_FF08_04                    tunerReadMatrix[8][3]
 
-#define W_FF08_01                    writeMatrix[8][0]
-#define W_FF08_02                    writeMatrix[8][1]
-#define W_FF08_03                    writeMatrix[8][2]
-#define W_FF08_04                    writeMatrix[8][3]
+#define W_FF08_01                    tunerWriteMatrix[8][0]
+#define W_FF08_02                    tunerWriteMatrix[8][1]
+#define W_FF08_03                    tunerWriteMatrix[8][2]
+#define W_FF08_04                    tunerWriteMatrix[8][3]
 
 //==================================================
 // ROW 9
 //==================================================
-#define R_FF09_01                    readMatrix[9][0]
-#define R_FF09_02                    readMatrix[9][1]
-#define R_FF09_03                    readMatrix[9][2]
-#define R_FF09_04                    readMatrix[9][3]
+#define R_FF09_01                    tunerReadMatrix[9][0]
+#define R_FF09_02                    tunerReadMatrix[9][1]
+#define R_FF09_03                    tunerReadMatrix[9][2]
+#define R_FF09_04                    tunerReadMatrix[9][3]
 
-#define W_FF09_01                    writeMatrix[9][0]
-#define W_FF09_02                    writeMatrix[9][1]
-#define W_FF09_03                    writeMatrix[9][2]
-#define W_FF09_04                    writeMatrix[9][3]
+#define W_FF09_01                    tunerWriteMatrix[9][0]
+#define W_FF09_02                    tunerWriteMatrix[9][1]
+#define W_FF09_03                    tunerWriteMatrix[9][2]
+#define W_FF09_04                    tunerWriteMatrix[9][3]
 
 //==================================================
 // ROW 10
 //==================================================
-#define R_FF0A_01                    readMatrix[10][0]
-#define R_FF0A_02                    readMatrix[10][1]
-#define R_FF0A_03                    readMatrix[10][2]
-#define R_FF0A_04                    readMatrix[10][3]
+#define R_FF0A_01                    tunerReadMatrix[10][0]
+#define R_FF0A_02                    tunerReadMatrix[10][1]
+#define R_FF0A_03                    tunerReadMatrix[10][2]
+#define R_FF0A_04                    tunerReadMatrix[10][3]
 
-#define W_FF0A_01                    writeMatrix[10][0]
-#define W_FF0A_02                    writeMatrix[10][1]
-#define W_FF0A_03                    writeMatrix[10][2]
-#define W_FF0A_04                    writeMatrix[10][3]
+#define W_FF0A_01                    tunerWriteMatrix[10][0]
+#define W_FF0A_02                    tunerWriteMatrix[10][1]
+#define W_FF0A_03                    tunerWriteMatrix[10][2]
+#define W_FF0A_04                    tunerWriteMatrix[10][3]
 
 //==================================================
 // ROW 11
 //==================================================
-#define R_FF0B_01                    readMatrix[11][0]
-#define R_FF0B_02                    readMatrix[11][1]
-#define R_FF0B_03                    readMatrix[11][2]
-#define R_FF0B_04                    readMatrix[11][3]
+#define R_FF0B_01                    tunerReadMatrix[11][0]
+#define R_FF0B_02                    tunerReadMatrix[11][1]
+#define R_FF0B_03                    tunerReadMatrix[11][2]
+#define R_FF0B_04                    tunerReadMatrix[11][3]
 
-#define W_FF0B_01                    writeMatrix[11][0]
-#define W_FF0B_02                    writeMatrix[11][1]
-#define W_FF0B_03                    writeMatrix[11][2]
-#define W_FF0B_04                    writeMatrix[11][3]
+#define W_FF0B_01                    tunerWriteMatrix[11][0]
+#define W_FF0B_02                    tunerWriteMatrix[11][1]
+#define W_FF0B_03                    tunerWriteMatrix[11][2]
+#define W_FF0B_04                    tunerWriteMatrix[11][3]
 
 //==================================================
 // ROW 12
 //==================================================
-#define R_FF0C_01                    readMatrix[12][0]
-#define R_FF0C_02                    readMatrix[12][1]
-#define R_FF0C_03                    readMatrix[12][2]
-#define R_FF0C_04                    readMatrix[12][3]
+#define R_FF0C_01                    tunerReadMatrix[12][0]
+#define R_FF0C_02                    tunerReadMatrix[12][1]
+#define R_FF0C_03                    tunerReadMatrix[12][2]
+#define R_FF0C_04                    tunerReadMatrix[12][3]
 
-#define W_FF0C_01                    writeMatrix[12][0]
-#define W_FF0C_02                    writeMatrix[12][1]
-#define W_FF0C_03                    writeMatrix[12][2]
-#define W_FF0C_04                    writeMatrix[12][3]
+#define W_FF0C_01                    tunerWriteMatrix[12][0]
+#define W_FF0C_02                    tunerWriteMatrix[12][1]
+#define W_FF0C_03                    tunerWriteMatrix[12][2]
+#define W_FF0C_04                    tunerWriteMatrix[12][3]
 
 //==================================================
 // ROW 13
 //==================================================
-#define R_FF0D_01                    readMatrix[13][0]
-#define R_FF0D_02                    readMatrix[13][1]
-#define R_FF0D_03                    readMatrix[13][2]
-#define R_FF0D_04                    readMatrix[13][3]
+#define R_FF0D_01                    tunerReadMatrix[13][0]
+#define R_FF0D_02                    tunerReadMatrix[13][1]
+#define R_FF0D_03                    tunerReadMatrix[13][2]
+#define R_FF0D_04                    tunerReadMatrix[13][3]
 
 //==================================================
 // ROW 14
 //==================================================
-#define R_FF0E_01                    readMatrix[14][0]
-#define R_FF0E_02                    readMatrix[14][1]
-#define R_FF0E_03                    readMatrix[14][2]
-#define R_FF0E_04                    readMatrix[14][3]
+#define R_FF0E_01                    tunerReadMatrix[14][0]
+#define R_FF0E_02                    tunerReadMatrix[14][1]
+#define R_FF0E_03                    tunerReadMatrix[14][2]
+#define R_FF0E_04                    tunerReadMatrix[14][3]
 
 //==================================================
 // ROW 15
 //==================================================
-#define R_FF0F_01                    readMatrix[15][0]
-#define R_FF0F_02                    readMatrix[15][1]
-#define R_FF0F_03                    readMatrix[15][2]
-#define R_FF0F_04                    readMatrix[15][3]
+#define R_FF0F_01                    tunerReadMatrix[15][0]
+#define R_FF0F_02                    tunerReadMatrix[15][1]
+#define R_FF0F_03                    tunerReadMatrix[15][2]
+#define R_FF0F_04                    tunerReadMatrix[15][3]
+
+//--------------------------------------------------
+// EXTERNAL MATRIX
+//--------------------------------------------------
+extern float tunerReadMatrix[ROWS][COLS];
+extern float tunerWriteMatrix[ROWS][COLS];
 
 
 void Tuner_Init(void);

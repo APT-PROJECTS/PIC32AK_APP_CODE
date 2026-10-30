@@ -13,11 +13,11 @@ build/default/debug/_ext/1200941409/mcu_config.o: \
  ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.h \
  ../src/config/default/peripheral/spi/spi_host/plib_spi_host_common.h \
  ../src/config/default/peripheral/nvm/plib_nvm.h ../src/middleware.h \
- ../src/middleware/boot_handler.h ../src/middleware/device_startup.h \
- ../src/driver.h ../src/driver/driver_CANbus.h \
- ../src/driver/driver_mcp2515.h ../src/driver/driver_UART.h \
+ ../src/middleware/boot_handler.h ../src/middleware/metadata.h \
  ../src/driver/flash_eeprom.h ../src/middleware/diagnostics.h \
- ../src/middleware/tuning.h
+ ../src/middleware/tuning.h ../src/driver.h ../src/driver/driver_CANbus.h \
+ ../src/driver/driver_mcp2515.h ../src/driver/driver_UART.h \
+ ../src/driver/flash_eeprom.h
 
 ../src/config/default/definitions.h:
 
@@ -51,7 +51,13 @@ build/default/debug/_ext/1200941409/mcu_config.o: \
 
 ../src/middleware/boot_handler.h:
 
-../src/middleware/device_startup.h:
+../src/middleware/metadata.h:
+
+../src/driver/flash_eeprom.h:
+
+../src/middleware/diagnostics.h:
+
+../src/middleware/tuning.h:
 
 ../src/driver.h:
 
@@ -62,7 +68,3 @@ build/default/debug/_ext/1200941409/mcu_config.o: \
 ../src/driver/driver_UART.h:
 
 ../src/driver/flash_eeprom.h:
-
-../src/middleware/diagnostics.h:
-
-../src/middleware/tuning.h:

@@ -194,9 +194,10 @@ void Boot_Software_ID_Handler(void) {
             }
 
             __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            __builtin_memcpy(eepromBuffer, writeMatrix, sizeof (writeMatrix));
+            __builtin_memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
 
-            if (FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (writeMatrix)) == FLASH_EEPROM_OK) {
+            if (FLASH_EEPROM_Write_Page(eepromBuffer,
+                    sizeof (tunerWriteMatrix)) == FLASH_EEPROM_OK) {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
 
                 /* Commit the application only after its firmware ID is saved. */
@@ -331,12 +332,13 @@ void Boot_App_Size_Handler(void)
                          ((uint32_t)canRxBuffer[7]);
 
             memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            memcpy(eepromBuffer, writeMatrix, sizeof(writeMatrix));
+            memcpy(eepromBuffer, tunerWriteMatrix, sizeof(tunerWriteMatrix));
 
             txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
             txBuf[2] = BOOT_CAN_CMD_2_WRITE;
 
-            if (FLASH_EEPROM_Write_Page(eepromBuffer, sizeof(writeMatrix)) == FLASH_EEPROM_OK)
+            if (FLASH_EEPROM_Write_Page(eepromBuffer,
+                    sizeof(tunerWriteMatrix)) == FLASH_EEPROM_OK)
             {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
             }
@@ -446,10 +448,10 @@ void Boot_Jump_Handler(void)
             W_BOOT_FLAG = 1.0f;
 
             __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            __builtin_memcpy(eepromBuffer, writeMatrix, sizeof(writeMatrix));
+            __builtin_memcpy(eepromBuffer, tunerWriteMatrix, sizeof(tunerWriteMatrix));
 
             if (FLASH_EEPROM_Write_Page(eepromBuffer,
-                                        sizeof(writeMatrix)) == FLASH_EEPROM_OK)
+                    sizeof(tunerWriteMatrix)) == FLASH_EEPROM_OK)
             {
                 asm("reset");
             }

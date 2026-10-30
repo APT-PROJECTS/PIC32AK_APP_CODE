@@ -52,7 +52,7 @@
         <itemPath>../src/middleware/boot_handler.h</itemPath>
         <itemPath>../src/middleware/diagnostics.h</itemPath>
         <itemPath>../src/middleware/tuning.h</itemPath>
-        <itemPath>../src/middleware/device_startup.h</itemPath>
+        <itemPath>../src/middleware/metadata.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.h</itemPath>
@@ -69,11 +69,11 @@
                      displayName="PIC32AK_APP_CODE_default"
                      projectFiles="true">
         <logicalFolder name="components" displayName="components" projectFiles="true">
-          <itemPath>PIC32AK_APP_CODE_default/components/spi1.yml</itemPath>
-          <itemPath>PIC32AK_APP_CODE_default/components/core.yml</itemPath>
           <itemPath>PIC32AK_APP_CODE_default/components/nvm.yml</itemPath>
-          <itemPath>PIC32AK_APP_CODE_default/components/uart1.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/spi1.yml</itemPath>
           <itemPath>PIC32AK_APP_CODE_default/components/timer1.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/core.yml</itemPath>
+          <itemPath>PIC32AK_APP_CODE_default/components/uart1.yml</itemPath>
           <itemPath>PIC32AK_APP_CODE_default/components/dfp.yml</itemPath>
         </logicalFolder>
         <itemPath>PIC32AK_APP_CODE_default/mcc-config.mc4</itemPath>
@@ -137,7 +137,7 @@
         <itemPath>../src/middleware/boot_handler.c</itemPath>
         <itemPath>../src/middleware/diagnostics.c</itemPath>
         <itemPath>../src/middleware/tuning.c</itemPath>
-        <itemPath>../src/middleware/device_startup.c</itemPath>
+        <itemPath>../src/middleware/metadata.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.c</itemPath>
@@ -157,7 +157,7 @@
         <targetDevice>PIC32AK1216GC41064</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pickitbasic</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>5.00</languageToolchainVersion>
         <platform>3</platform>
@@ -175,21 +175,6 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <makeArtifact PL="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
-                        CT="1"
-                        CN="default"
-                        AC="true"
-                        BL="true"
-                        WD="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
-                        BC="${MAKE}  -f Makefile CONF=default"
-                        DBC="${MAKE}  -f Makefile CONF=default TYPE_IMAGE=DEBUG_RUN"
-                        CC="rm -rf &quot;build/default&quot; &quot;dist/default&quot;"
-                        OP="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
-                        DOP="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf"
-                        FL="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
-                        PD="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.elf"
-                        DD="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf">
-          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

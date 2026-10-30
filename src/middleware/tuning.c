@@ -33,9 +33,40 @@ static uint8_t read_tuning_data[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 static uint8_t send_tuning_data[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+float tunerReadMatrix[ROWS][COLS];
+float tunerWriteMatrix[ROWS][COLS];
+
+static int mcuID = 0;
+
 void Tuner_Init(void) {
     received_rows_mask = 0;
     all_rows_received = false;
+    
+    __builtin_memset(eepromBuffer, 0, EEPROM_DATA_SIZE);
+    __builtin_memset(tunerReadMatrix, 0, sizeof (tunerReadMatrix));
+    __builtin_memset(tunerWriteMatrix, 0, sizeof (tunerWriteMatrix));
+
+    FLASH_EEPROM_Read_Page(eepromBuffer, sizeof (tunerReadMatrix));
+    //--------------------------------------------------
+    // Copy eeprom buffer to read matrix
+    //--------------------------------------------------
+    __builtin_memcpy(tunerReadMatrix, eepromBuffer, sizeof (tunerReadMatrix));
+
+    mcuID = R_FF01_01;
+
+    //--------------------------------------------------
+    // Check ESC ID
+    //--------------------------------------------------
+    if (mcuID <= 0) {
+        Get_Config();
+    } else {
+        Update_Config();
+    }
+
+    //--------------------------------------------------
+    // Copy read matrix to write matrix     
+    //--------------------------------------------------
+    __builtin_memcpy(tunerWriteMatrix, tunerReadMatrix, sizeof (tunerWriteMatrix));
 }
 
 void Get_Config(void) {
@@ -474,19 +505,19 @@ void UART_Tuner_Write(void) {
     //--------------------------------------------------
     memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
 
-    memcpy(eepromBuffer, writeMatrix, sizeof (writeMatrix));
+    memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
 
     //--------------------------------------------------
     // Write complete matrix to EEPROM so this row survives reset.
     //--------------------------------------------------
-    if (FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (writeMatrix)) ==
-            FLASH_EEPROM_OK) {
+    if (FLASH_EEPROM_Write_Page(eepromBuffer, 
+            sizeof (tunerWriteMatrix)) == FLASH_EEPROM_OK) {
         GREEN_LED_Set();
 
         //--------------------------------------------------
         // Update runtime matrix
         //--------------------------------------------------
-        // memcpy(readMatrix, writeMatrix, sizeof (readMatrix));
+        // memcpy(tunerReadMatrix, tunerWriteMatrix, sizeof (tunerReadMatrix));
 
         all_rows_received = true;
 
@@ -979,8 +1010,8 @@ void CAN_Tuner_Write_Flash(void) {
     // Prepare EEPROM write buffer with the complete matrix.
     //--------------------------------------------------
     memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-    memcpy(eepromBuffer, writeMatrix, sizeof (writeMatrix));
-    FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (writeMatrix));
+    memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
+    FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (tunerWriteMatrix));
 }
 
 void CAN_Send_Status(void) {

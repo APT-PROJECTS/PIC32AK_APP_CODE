@@ -17,10 +17,8 @@ typedef enum
 } STATE_ENGINE_STATES;
 
 //--------------------------------------------------
-// PUBLIC FUNCTIONS
+// MAIN STATE ENGINE
 //--------------------------------------------------
-void drive_init(int * p_adr, float * CONFIG_THROTTLE_ZERO_adr, float * CONFIG_THROTTLE_MAX_adr, float motor_TfaultC, float ESC_TfaultC, float * rpm_to_speed_adr);
-void state_init(void);
 void State_Engine_Tasks(void);
 
 #ifdef __cplusplus

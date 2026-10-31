@@ -193,11 +193,13 @@ void Boot_Software_ID_Handler(void) {
                     return;
             }
 
-            __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            __builtin_memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
+            __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
+                    EEPROM_TUNER_SIZE);
+            __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
+                    tunerWriteMatrix, sizeof (tunerWriteMatrix));
 
             if (FLASH_EEPROM_Write_Page(eepromBuffer,
-                    sizeof (tunerWriteMatrix)) == FLASH_EEPROM_OK) {
+                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
 
                 /* Commit the application only after its firmware ID is saved. */
@@ -331,14 +333,16 @@ void Boot_App_Size_Handler(void)
                          ((uint32_t)canRxBuffer[6] << 8)  |
                          ((uint32_t)canRxBuffer[7]);
 
-            memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            memcpy(eepromBuffer, tunerWriteMatrix, sizeof(tunerWriteMatrix));
+            memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
+                    EEPROM_TUNER_SIZE);
+            memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], tunerWriteMatrix,
+                    sizeof(tunerWriteMatrix));
 
             txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
             txBuf[2] = BOOT_CAN_CMD_2_WRITE;
 
             if (FLASH_EEPROM_Write_Page(eepromBuffer,
-                    sizeof(tunerWriteMatrix)) == FLASH_EEPROM_OK)
+                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
             {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
             }
@@ -447,11 +451,13 @@ void Boot_Jump_Handler(void)
             /* Set boot flag and reset */
             W_BOOT_FLAG = 1.0f;
 
-            __builtin_memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-            __builtin_memcpy(eepromBuffer, tunerWriteMatrix, sizeof(tunerWriteMatrix));
+            __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
+                    EEPROM_TUNER_SIZE);
+            __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
+                    tunerWriteMatrix, sizeof(tunerWriteMatrix));
 
             if (FLASH_EEPROM_Write_Page(eepromBuffer,
-                    sizeof(tunerWriteMatrix)) == FLASH_EEPROM_OK)
+                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
             {
                 asm("reset");
             }

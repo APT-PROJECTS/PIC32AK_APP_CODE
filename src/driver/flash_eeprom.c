@@ -10,13 +10,16 @@ typedef struct {
     uint32_t padding[3];
 } EEPROM_HEADER;
 
+typedef char EEPROM_HEADER_SIZE_MUST_BE_32[
+        (sizeof (EEPROM_HEADER) == EEPROM_HEADER_SIZE) ? 1 : -1];
+
 static const uint32_t pages[EEPROM_NUM_PAGES] = {
     EEPROM_PAGE1_ADDR
 };
 
 static uint32_t activePage = 0;
 
-static uint32_t calculate_crc(uint8_t *data, uint32_t len) {
+static uint32_t calculate_crc(const uint8_t *data, uint32_t len) {
     uint32_t crc = 0;
 
     for (uint32_t i = 0; i < len; i++) {
@@ -85,16 +88,10 @@ static bool page_is_valid(uint32_t addr, EEPROM_HEADER *header) {
     if (header->reserved != 0xAAAAAAAA)
         return false;
 
-    /* verify actual stored data CRC */
-    static uint8_t tempBuffer[EEPROM_DATA_SIZE];
-
-    memcpy(
-            tempBuffer,
-            (void*) (addr + sizeof (EEPROM_HEADER)),
+    uint32_t crc = calculate_crc(
+            (const uint8_t *) (addr + sizeof (EEPROM_HEADER)),
             header->length
             );
-
-    uint32_t crc = calculate_crc(tempBuffer, header->length);
 
     if (crc != header->crc)
         return false;
@@ -135,11 +132,12 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_Init(void) {
     return FLASH_EEPROM_OK;
 }
 
-FLASH_EEPROM_STATUS FLASH_EEPROM_Write_Page(uint8_t *data, uint32_t length) {
-    if (length > EEPROM_DATA_SIZE)
+FLASH_EEPROM_STATUS FLASH_EEPROM_Write_Page(const uint8_t *data, uint32_t length) {
+    if ((data == NULL) || (length > EEPROM_DATA_SIZE))
         return FLASH_EEPROM_ERROR;
 
     EEPROM_HEADER oldHdr;
+    bool hadValidPage;
     uint32_t nextPage = 0;
     int currentIndex = -1;
 
@@ -159,12 +157,14 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_Write_Page(uint8_t *data, uint32_t length) {
     if (nextPage == 0)
         return FLASH_EEPROM_ERROR;
 
+    hadValidPage = (activePage != 0xFFFFFFFF) && page_is_valid(activePage, &oldHdr);
+
     if (!erase_page(nextPage))
         return FLASH_EEPROM_ERROR;
 
     EEPROM_HEADER newHdr;
 
-    if ((activePage != 0xFFFFFFFF) && page_is_valid(activePage, &oldHdr)) {
+    if (hadValidPage) {
         newHdr.sequence = oldHdr.sequence + 1;
     } else {
         newHdr.sequence = 1;
@@ -222,7 +222,9 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_Read_Page(uint8_t *data, uint32_t length) {
         return FLASH_EEPROM_ERROR;
     }
 
-    uint32_t crc = calculate_crc(data, length);
+    uint32_t crc = calculate_crc(
+            (const uint8_t *) (activePage + sizeof (EEPROM_HEADER)),
+            hdr.length);
 
     if (crc != hdr.crc)
         return FLASH_EEPROM_CRC_ERROR;
@@ -230,12 +232,16 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_Read_Page(uint8_t *data, uint32_t length) {
     return FLASH_EEPROM_OK;
 }
 
-FLASH_EEPROM_STATUS FLASH_EEPROM_WriteWord(uint32_t address, uint32_t data) {
+FLASH_EEPROM_STATUS FLASH_EEPROM_WriteWord(uint32_t address, uint32_t data,
+                                            uint8_t *buffer) {
     if (address >= (EEPROM_DATA_SIZE / 4)) {
         return FLASH_EEPROM_ERROR;
     }
 
-    static uint8_t buffer[EEPROM_DATA_SIZE];
+    if (buffer == NULL) {
+        return FLASH_EEPROM_ERROR;
+    }
+
     memset(buffer, 0xFF, EEPROM_DATA_SIZE);
 
     FLASH_EEPROM_STATUS status;
@@ -259,19 +265,18 @@ FLASH_EEPROM_STATUS FLASH_EEPROM_ReadWord(uint32_t address, uint32_t *data) {
         return FLASH_EEPROM_ERROR;
     }
 
-    static uint8_t buffer[EEPROM_DATA_SIZE];
+    EEPROM_HEADER hdr;
 
-    FLASH_EEPROM_STATUS status;
-
-    status = FLASH_EEPROM_Read_Page(buffer, EEPROM_DATA_SIZE);
-
-    if (status != FLASH_EEPROM_OK) {
-        return status;
+    if ((data == NULL) || !page_is_valid(activePage, &hdr)) {
+        return FLASH_EEPROM_NO_VALID_PAGE;
     }
 
-    uint32_t *wordBuffer = (uint32_t*) buffer;
+    if (((address + 1U) * sizeof (uint32_t)) > hdr.length) {
+        return FLASH_EEPROM_ERROR;
+    }
 
-    *data = wordBuffer[address];
+    memcpy(data, (const void *) (activePage + sizeof (EEPROM_HEADER) +
+            (address * sizeof (uint32_t))), sizeof (*data));
 
     return FLASH_EEPROM_OK;
 }

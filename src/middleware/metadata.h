@@ -97,6 +97,13 @@ extern "C" {
                                          APP_VERSION_R)
 
 #define BOOT_VERSION_OFFSET             (APP_SIZE_OFFSET + APP_SIZE)
+    
+    
+//--------------------------------------------------
+// EEPROM FIELD OFFSET
+//-------------------------------------------------- 
+#define EEPROM_METADATA_OFFSET          0UL
+#define EEPROM_METADATA_SIZE            (EEPROM_DATA_SIZE / 2UL)
 
 
 //--------------------------------------------------

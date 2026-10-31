@@ -221,6 +221,12 @@ extern "C" {
 #define R_FF0F_02                    tunerReadMatrix[15][1]
 #define R_FF0F_03                    tunerReadMatrix[15][2]
 #define R_FF0F_04                    tunerReadMatrix[15][3]
+    
+//==================================================
+// EEPROM FIELD OFFSET
+//================================================== 
+#define EEPROM_TUNER_OFFSET         (EEPROM_METADATA_OFFSET + EEPROM_METADATA_SIZE)
+#define EEPROM_TUNER_SIZE           (EEPROM_DATA_SIZE - EEPROM_TUNER_OFFSET)
 
 //--------------------------------------------------
 // EXTERNAL MATRIX

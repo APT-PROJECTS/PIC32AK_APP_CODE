@@ -48,7 +48,8 @@ void Tuner_Init(void) {
     //--------------------------------------------------
     // Copy eeprom buffer to read matrix
     //--------------------------------------------------
-    __builtin_memcpy(tunerReadMatrix, eepromBuffer, sizeof (tunerReadMatrix));
+    __builtin_memcpy(tunerReadMatrix,
+            &eepromBuffer[EEPROM_TUNER_OFFSET], sizeof (tunerReadMatrix));
 
     mcuID = R_FF01_01;
 
@@ -501,15 +502,15 @@ void UART_Tuner_Write(void) {
     //--------------------------------------------------
     // Prepare EEPROM write buffer with the complete matrix.
     //--------------------------------------------------
-    memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
+    memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF, EEPROM_TUNER_SIZE);
 
-    memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
+    memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], tunerWriteMatrix,
+            sizeof (tunerWriteMatrix));
 
     //--------------------------------------------------
     // Write complete matrix to EEPROM so this row survives reset.
     //--------------------------------------------------
-    if (FLASH_EEPROM_Write_Page(eepromBuffer, 
-            sizeof (tunerWriteMatrix)) == FLASH_EEPROM_OK) {
+    if (FLASH_EEPROM_Write_Page(eepromBuffer, EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
         GREEN_LED_Set();
 
         //--------------------------------------------------
@@ -1007,9 +1008,10 @@ void CAN_Tuner_Write_Flash(void) {
     //--------------------------------------------------
     // Prepare EEPROM write buffer with the complete matrix.
     //--------------------------------------------------
-    memset(eepromBuffer, 0xFF, EEPROM_DATA_SIZE);
-    memcpy(eepromBuffer, tunerWriteMatrix, sizeof (tunerWriteMatrix));
-    FLASH_EEPROM_Write_Page(eepromBuffer, sizeof (tunerWriteMatrix));
+    memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF, EEPROM_TUNER_SIZE);
+    memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], tunerWriteMatrix,
+            sizeof (tunerWriteMatrix));
+    FLASH_EEPROM_Write_Page(eepromBuffer, EEPROM_DATA_SIZE);
 }
 
 void CAN_Send_Status(void) {

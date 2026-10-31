@@ -194,7 +194,7 @@ void Metadata_Init(void) {
      * and copy the stored metadata into RAM.
      */
     __builtin_memcpy(metadata,
-            eepromBuffer,
+            &eepromBuffer[EEPROM_METADATA_OFFSET],
             METADATA_LENGTH);
 
     metadata[METADATA_LENGTH] = '\0';
@@ -288,11 +288,14 @@ void Metadata_Init(void) {
     if (firmwareChanged) {
         Build_Metadata();
 
-        __builtin_memcpy(eepromBuffer,
+        __builtin_memset(&eepromBuffer[EEPROM_METADATA_OFFSET], 0xFF,
+                EEPROM_METADATA_SIZE);
+
+        __builtin_memcpy(&eepromBuffer[EEPROM_METADATA_OFFSET],
                 metadata,
                 METADATA_LENGTH);
 
         FLASH_EEPROM_Write_Page(eepromBuffer,
-                sizeof (eepromBuffer));
+                EEPROM_DATA_SIZE);
     }
 }

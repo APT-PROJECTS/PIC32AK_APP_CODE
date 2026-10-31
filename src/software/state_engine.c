@@ -20,6 +20,7 @@ void State_Engine_Tasks(void) {
         case STATE_INIT:
         {
             FLASH_EEPROM_Init();
+            Load_EEPROM_Data();
             Metadata_Init();
             Tuner_Init();
             currentState = STATE_RUN;

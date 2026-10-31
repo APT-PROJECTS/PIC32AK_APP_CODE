@@ -42,11 +42,9 @@ void Tuner_Init(void) {
     received_rows_mask = 0;
     all_rows_received = false;
     
-    __builtin_memset(eepromBuffer, 0, EEPROM_DATA_SIZE);
     __builtin_memset(tunerReadMatrix, 0, sizeof (tunerReadMatrix));
     __builtin_memset(tunerWriteMatrix, 0, sizeof (tunerWriteMatrix));
 
-    FLASH_EEPROM_Read_Page(eepromBuffer, sizeof (tunerReadMatrix));
     //--------------------------------------------------
     // Copy eeprom buffer to read matrix
     //--------------------------------------------------

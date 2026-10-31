@@ -53,6 +53,7 @@
         <itemPath>../src/middleware/diagnostics.h</itemPath>
         <itemPath>../src/middleware/tuning.h</itemPath>
         <itemPath>../src/middleware/metadata.h</itemPath>
+        <itemPath>../src/middleware/device_startup.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.h</itemPath>
@@ -138,6 +139,7 @@
         <itemPath>../src/middleware/diagnostics.c</itemPath>
         <itemPath>../src/middleware/tuning.c</itemPath>
         <itemPath>../src/middleware/metadata.c</itemPath>
+        <itemPath>../src/middleware/device_startup.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="software" projectFiles="true">
         <itemPath>../src/software/state_engine.c</itemPath>

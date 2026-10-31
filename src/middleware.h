@@ -15,6 +15,7 @@
 #include "middleware/metadata.h"
 #include "middleware/diagnostics.h"
 #include "middleware/tuning.h"
+#include "middleware/device_startup.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

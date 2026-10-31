@@ -16,8 +16,8 @@ build/default/debug/_ext/1375476428/tuning.o: ../src/middleware/tuning.c \
  ../src/driver/driver_CANbus.h ../src/driver/driver_mcp2515.h \
  ../src/driver/driver_UART.h ../src/driver/flash_eeprom.h \
  ../src/middleware.h ../src/middleware/boot_handler.h \
- ../src/middleware/metadata.h ../src/driver/flash_eeprom.h \
- ../src/middleware/diagnostics.h ../src/middleware/tuning.h \
+ ../src/middleware/metadata.h ../src/middleware/diagnostics.h \
+ ../src/middleware/tuning.h ../src/middleware/device_startup.h \
  ../src/software.h ../src/software/mcu_config.h \
  ../src/software/state_engine.h
 
@@ -65,11 +65,11 @@ build/default/debug/_ext/1375476428/tuning.o: ../src/middleware/tuning.c \
 
 ../src/middleware/metadata.h:
 
-../src/driver/flash_eeprom.h:
-
 ../src/middleware/diagnostics.h:
 
 ../src/middleware/tuning.h:
+
+../src/middleware/device_startup.h:
 
 ../src/software.h:
 

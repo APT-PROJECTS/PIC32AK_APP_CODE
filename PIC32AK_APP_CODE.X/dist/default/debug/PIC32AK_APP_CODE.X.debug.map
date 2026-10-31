@@ -26,6 +26,7 @@ Command:
   build/default/debug/_ext/362756510/driver_CANbus.o \
   build/default/debug/_ext/362756510/driver_UART.o \
   build/default/debug/_ext/362756510/driver_mcp2515.o \
+  build/default/debug/_ext/362756510/flash_eeprom.o \
   build/default/debug/_ext/1375476428/boot_handler.o \
   build/default/debug/_ext/1375476428/diagnostics.o \
   build/default/debug/_ext/1375476428/tuning.o \
@@ -33,7 +34,7 @@ Command:
   build/default/debug/_ext/1200941409/state_engine.o \
   build/default/debug/_ext/1200941409/mcu_config.o \
   build/default/debug/_ext/1360937237/main.o \
-  build/default/debug/_ext/362756510/flash_eeprom.o \
+  build/default/debug/_ext/1375476428/device_startup.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
@@ -96,110 +97,111 @@ __ivt_0                   0x808040               0x480           0x480  (1152)
 .text.Boot_Software_ID_Handler  0x80be54               0x230           0x230  (560)
 .text.Boot_Jump_Handler   0x80c084               0x1d0           0x1d0  (464)
 .text.Boot_App_Size_Handler  0x80c254               0x1c8           0x1c8  (456)
-.text.Metadata_Init       0x80c41c               0x1c0           0x1c0  (448)
-.text.SPI1_WriteRead      0x80c5dc               0x1bc           0x1bc  (444)
-.text.MCP2515_FrameDequeue  0x80c798               0x154           0x154  (340)
-.text.FLASH_EEPROM_Write_Page  0x80c8ec               0x150           0x150  (336)
-.text.CLOCK_Initialize    0x80ca3c               0x14c           0x14c  (332)
-.text.Boot_App_Erase_Handler  0x80cb88               0x14c           0x14c  (332)
-.text.SPI1RX_InterruptHandler  0x80ccd4               0x140           0x140  (320)
-.text.Boot_APP_CRC_Handler  0x80ce14               0x13c           0x13c  (316)
-.text.MCP2515_FrameEnqueue  0x80cf50               0x128           0x128  (296)
-.text.App_Firmware_Write_Flash  0x80d078               0x120           0x120  (288)
-.text.CAN_Tuner_Send_Zero_Angle  0x80d198               0x120           0x120  (288)
-.text.Boot_App_Chunk_Handler  0x80d2b8                0xf8            0xf8  (248)
-.text.MCP2515_Init        0x80d3b0                0xf4            0xf4  (244)
-.text.Boot_PIC_ID_Handler  0x80d4a4                0xf4            0xf4  (244)
-.text.State_Engine_Tasks  0x80d598                0xdc            0xdc  (220)
-.text.Run_Boot_Handler    0x80d674                0xc8            0xc8  (200)
-.text.Get_Software_ID     0x80d73c                0xc8            0xc8  (200)
-.text.Boot_Status_Handler  0x80d804                0xa4            0xa4  (164)
-.text.page_is_valid       0x80d8a8                0x94            0x94  (148)
-.text.SPI_FIFO_Fill       0x80d93c                0x90            0x90  (144)
-.text.Tuner_Init          0x80d9cc                0x8c            0x8c  (140)
-.text.Get_Model_Number    0x80da58                0x8c            0x8c  (140)
-.text.MCP2515_StartWriteTransaction  0x80dae4                0x80            0x80  (128)
-.text.MCP2515_StartReadTransaction  0x80db64                0x7c            0x7c  (124)
-.text.GPIO_Initialize     0x80dbe0                0x78            0x78  (120)
-.text.CANbus_read         0x80dc58                0x78            0x78  (120)
-.text.CAN_Tuner_Handler   0x80dcd0                0x74            0x74  (116)
-.text.SPI1TX_InterruptHandler  0x80dd44                0x70            0x70  (112)
-.text.Boot_App_Jump       0x80ddb4                0x70            0x70  (112)
-.text.calculate_crc       0x80de24                0x70            0x70  (112)
-.text.FLASH_EEPROM_Read_Page  0x80de94                0x70            0x70  (112)
-.text.Get_Part_Number     0x80df04                0x68            0x68  (104)
-.text.SPI1E_InterruptHandler  0x80df6c                0x64            0x64  (100)
-.text.C0_send_TU_data_CAN  0x80dfd0                0x64            0x64  (100)
-.text.CAN_Tuner_Send_PIC_ID_1  0x80e034                0x60            0x60  (96)
-.text.CAN_Tuner_Send_PIC_ID_2  0x80e094                0x60            0x60  (96)
-.text.Get_PIC_ID          0x80e0f4                0x5c            0x5c  (92)
-.text.Get_Firmware_ID     0x80e150                0x5c            0x5c  (92)
-.text.INTC_Initialize     0x80e1ac                0x54            0x54  (84)
-.text.Boot_Stay_In_Boot_Handler  0x80e200                0x54            0x54  (84)
-.text.UART_Tuner_Send_PIC_ID  0x80e254                0x54            0x54  (84)
-.text.UART_Tuner_Command  0x80e2a8                0x50            0x50  (80)
-.text.NVM_QuadWordWrite   0x80e2f8                0x4c            0x4c  (76)
-.text.SPI1_Initialize     0x80e344                0x4c            0x4c  (76)
-.text.T1_InterruptHandler  0x80e390                0x4c            0x4c  (76)
-.text.Boot_APP_CRC32_Software  0x80e3dc                0x4c            0x4c  (76)
-.text.MCP2515_ReadRegister  0x80e428                0x48            0x48  (72)
-.text.write_quadword      0x80e470                0x48            0x48  (72)
-.text.FLASH_EEPROM_Init   0x80e4b8                0x48            0x48  (72)
-.text.Build_Metadata      0x80e500                0x44            0x44  (68)
-.text.find_latest_page    0x80e544                0x3c            0x3c  (60)
-.text.MCP2515_Reset       0x80e580                0x38            0x38  (56)
-.text.MCP2515_WriteRegister  0x80e5b8                0x38            0x38  (56)
-.text.Boot_App_Chunk_Ack  0x80e5f0                0x38            0x38  (56)
-.text.CAN_Tuner_Write_Flash  0x80e628                0x38            0x38  (56)
-.text.CAN_Send_Status     0x80e660                0x34            0x34  (52)
-.text.NVM_RowWrite        0x80e694                0x30            0x30  (48)
-.text.TMR1_Initialize     0x80e6c4                0x30            0x30  (48)
-.text.send_byte_uart      0x80e6f4                0x30            0x30  (48)
-.text.MCP2515_Delay       0x80e724                0x30            0x30  (48)
-.text.Boot_Is_App_Present  0x80e754                0x2c            0x2c  (44)
-.text.SPI1_IsBusy         0x80e780                0x28            0x28  (40)
-.text.UART1_Initialize    0x80e7a8                0x28            0x28  (40)
-.text.SYS_Initialize      0x80e7d0                0x28            0x28  (40)
-.text.MCP2515_AsyncBitModify  0x80e7f8                0x28            0x28  (40)
-.text.CANbus_write        0x80e820                0x24            0x24  (36)
-.text.MCP2515_DelayMs     0x80e844                0x24            0x24  (36)
-.text.MCP2515_AsyncRegisterCallback  0x80e868                0x24            0x24  (36)
-.text.MCP2515_AsyncReadRegister  0x80e88c                0x24            0x24  (36)
-.text.MCP2515_SendMessage  0x80e8b0                0x24            0x24  (36)
-.text.flash_wait_complete  0x80e8d4                0x24            0x24  (36)
-.text.MCP2515_AsyncResetState  0x80e8f8                0x20            0x20  (32)
-.text.UART_Tuner_Send_Zero_Angle  0x80e918                0x20            0x20  (32)
-.text.NVM_InterruptHandler  0x80e938                0x1c            0x1c  (28)
-.text.UART1_WriteByte     0x80e954                0x1c            0x1c  (28)
-.text.MCP2515_AsyncRtsTx0  0x80e970                0x1c            0x1c  (28)
-.text.MCP2515_ReceiveMessage  0x80e98c                0x1c            0x1c  (28)
-.text.NVM_PageErase       0x80e9a8                0x18            0x18  (24)
-.text.MCP2515_FifoWriteByte  0x80e9c0                0x18            0x18  (24)
-.text.MCP2515_FifoReadByte  0x80e9d8                0x18            0x18  (24)
-.text.Next_Chunk_Index    0x80e9f0                0x18            0x18  (24)
-.text.main                0x80ea08                0x18            0x18  (24)
-.text.NVM_StartOperationAtAddress  0x80ea20                0x14            0x14  (20)
-.text.NVM_Read            0x80ea34                0x14            0x14  (20)
-.text.UART1_ReceiverIsReady  0x80ea48                0x14            0x14  (20)
-.text.UART1_TransmitterIsReady  0x80ea5c                0x14            0x14  (20)
-.text.MCP2515_SPI_Callback  0x80ea70                0x14            0x14  (20)
-.text.NVM_Initialize      0x80ea84                0x10            0x10  (16)
-.text.NVM_ErrorGet        0x80ea94                0x10            0x10  (16)
-.text.NVM_IsBusy          0x80eaa4                0x10            0x10  (16)
-.text.SPI1_CallbackRegister  0x80eab4                0x10            0x10  (16)
-.text.send_diag_data      0x80eac4                0x10            0x10  (16)
-C:\Users\HP\AppData\Local\Temp\cct7PZZB.s.scn1  0x80ead4                0x10            0x10  (16)
-.text.SPI1_Write          0x80eae4                 0xc             0xc  (12)
-.text.TRAPS_halt_on_error  0x80eaf0                 0xc             0xc  (12)
-.text.send_data_uart      0x80eafc                 0xc             0xc  (12)
-.text.erase_page          0x80eb08                 0xc             0xc  (12)
-.text.TMR1_Start          0x80eb14                 0x8             0x8  (8)
-.text.TMR1_InterruptEnable  0x80eb1c                 0x8             0x8  (8)
-.text.UART1_ReadByte      0x80eb24                 0x8             0x8  (8)
-.text.MCP2515_Select      0x80eb2c                 0x8             0x8  (8)
-.text.MCP2515_Deselect    0x80eb34                 0x8             0x8  (8)
+.text.SPI1_WriteRead      0x80c41c               0x1bc           0x1bc  (444)
+.text.Metadata_Init       0x80c5d8               0x198           0x198  (408)
+.text.MCP2515_FrameDequeue  0x80c770               0x154           0x154  (340)
+.text.FLASH_EEPROM_Write_Page  0x80c8c4               0x150           0x150  (336)
+.text.CLOCK_Initialize    0x80ca14               0x14c           0x14c  (332)
+.text.Boot_App_Erase_Handler  0x80cb60               0x14c           0x14c  (332)
+.text.SPI1RX_InterruptHandler  0x80ccac               0x140           0x140  (320)
+.text.Boot_APP_CRC_Handler  0x80cdec               0x13c           0x13c  (316)
+.text.MCP2515_FrameEnqueue  0x80cf28               0x128           0x128  (296)
+.text.App_Firmware_Write_Flash  0x80d050               0x120           0x120  (288)
+.text.CAN_Tuner_Send_Zero_Angle  0x80d170               0x120           0x120  (288)
+.text.Boot_App_Chunk_Handler  0x80d290                0xf8            0xf8  (248)
+.text.MCP2515_Init        0x80d388                0xf4            0xf4  (244)
+.text.Boot_PIC_ID_Handler  0x80d47c                0xf4            0xf4  (244)
+.text.State_Engine_Tasks  0x80d570                0xe0            0xe0  (224)
+.text.Run_Boot_Handler    0x80d650                0xc8            0xc8  (200)
+.text.Get_Software_ID     0x80d718                0xc8            0xc8  (200)
+.text.Boot_Status_Handler  0x80d7e0                0xa4            0xa4  (164)
+.text.page_is_valid       0x80d884                0x94            0x94  (148)
+.text.SPI_FIFO_Fill       0x80d918                0x90            0x90  (144)
+.text.Get_Model_Number    0x80d9a8                0x8c            0x8c  (140)
+.text.MCP2515_StartWriteTransaction  0x80da34                0x80            0x80  (128)
+.text.MCP2515_StartReadTransaction  0x80dab4                0x7c            0x7c  (124)
+.text.GPIO_Initialize     0x80db30                0x78            0x78  (120)
+.text.CANbus_read         0x80dba8                0x78            0x78  (120)
+.text.CAN_Tuner_Handler   0x80dc20                0x74            0x74  (116)
+.text.SPI1TX_InterruptHandler  0x80dc94                0x70            0x70  (112)
+.text.calculate_crc       0x80dd04                0x70            0x70  (112)
+.text.FLASH_EEPROM_Read_Page  0x80dd74                0x70            0x70  (112)
+.text.Boot_App_Jump       0x80dde4                0x70            0x70  (112)
+.text.Get_Part_Number     0x80de54                0x68            0x68  (104)
+.text.SPI1E_InterruptHandler  0x80debc                0x64            0x64  (100)
+.text.C0_send_TU_data_CAN  0x80df20                0x64            0x64  (100)
+.text.Tuner_Init          0x80df84                0x60            0x60  (96)
+.text.CAN_Tuner_Send_PIC_ID_1  0x80dfe4                0x60            0x60  (96)
+.text.CAN_Tuner_Send_PIC_ID_2  0x80e044                0x60            0x60  (96)
+.text.Get_PIC_ID          0x80e0a4                0x5c            0x5c  (92)
+.text.Get_Firmware_ID     0x80e100                0x5c            0x5c  (92)
+.text.INTC_Initialize     0x80e15c                0x54            0x54  (84)
+.text.Boot_Stay_In_Boot_Handler  0x80e1b0                0x54            0x54  (84)
+.text.UART_Tuner_Send_PIC_ID  0x80e204                0x54            0x54  (84)
+.text.UART_Tuner_Command  0x80e258                0x50            0x50  (80)
+.text.NVM_QuadWordWrite   0x80e2a8                0x4c            0x4c  (76)
+.text.SPI1_Initialize     0x80e2f4                0x4c            0x4c  (76)
+.text.T1_InterruptHandler  0x80e340                0x4c            0x4c  (76)
+.text.Boot_APP_CRC32_Software  0x80e38c                0x4c            0x4c  (76)
+.text.MCP2515_ReadRegister  0x80e3d8                0x48            0x48  (72)
+.text.write_quadword      0x80e420                0x48            0x48  (72)
+.text.FLASH_EEPROM_Init   0x80e468                0x48            0x48  (72)
+.text.Build_Metadata      0x80e4b0                0x44            0x44  (68)
+.text.find_latest_page    0x80e4f4                0x3c            0x3c  (60)
+.text.MCP2515_Reset       0x80e530                0x38            0x38  (56)
+.text.MCP2515_WriteRegister  0x80e568                0x38            0x38  (56)
+.text.Boot_App_Chunk_Ack  0x80e5a0                0x38            0x38  (56)
+.text.CAN_Tuner_Write_Flash  0x80e5d8                0x38            0x38  (56)
+.text.CAN_Send_Status     0x80e610                0x34            0x34  (52)
+.text.NVM_RowWrite        0x80e644                0x30            0x30  (48)
+.text.TMR1_Initialize     0x80e674                0x30            0x30  (48)
+.text.send_byte_uart      0x80e6a4                0x30            0x30  (48)
+.text.MCP2515_Delay       0x80e6d4                0x30            0x30  (48)
+.text.Boot_Is_App_Present  0x80e704                0x2c            0x2c  (44)
+.text.SPI1_IsBusy         0x80e730                0x28            0x28  (40)
+.text.UART1_Initialize    0x80e758                0x28            0x28  (40)
+.text.SYS_Initialize      0x80e780                0x28            0x28  (40)
+.text.MCP2515_AsyncBitModify  0x80e7a8                0x28            0x28  (40)
+.text.CANbus_write        0x80e7d0                0x24            0x24  (36)
+.text.MCP2515_DelayMs     0x80e7f4                0x24            0x24  (36)
+.text.MCP2515_AsyncRegisterCallback  0x80e818                0x24            0x24  (36)
+.text.MCP2515_AsyncReadRegister  0x80e83c                0x24            0x24  (36)
+.text.MCP2515_SendMessage  0x80e860                0x24            0x24  (36)
+.text.flash_wait_complete  0x80e884                0x24            0x24  (36)
+.text.MCP2515_AsyncResetState  0x80e8a8                0x20            0x20  (32)
+.text.UART_Tuner_Send_Zero_Angle  0x80e8c8                0x20            0x20  (32)
+.text.NVM_InterruptHandler  0x80e8e8                0x1c            0x1c  (28)
+.text.UART1_WriteByte     0x80e904                0x1c            0x1c  (28)
+.text.MCP2515_AsyncRtsTx0  0x80e920                0x1c            0x1c  (28)
+.text.MCP2515_ReceiveMessage  0x80e93c                0x1c            0x1c  (28)
+.text.Load_EEPROM_Data    0x80e958                0x1c            0x1c  (28)
+.text.NVM_PageErase       0x80e974                0x18            0x18  (24)
+.text.MCP2515_FifoWriteByte  0x80e98c                0x18            0x18  (24)
+.text.MCP2515_FifoReadByte  0x80e9a4                0x18            0x18  (24)
+.text.Next_Chunk_Index    0x80e9bc                0x18            0x18  (24)
+.text.main                0x80e9d4                0x18            0x18  (24)
+.text.NVM_StartOperationAtAddress  0x80e9ec                0x14            0x14  (20)
+.text.NVM_Read            0x80ea00                0x14            0x14  (20)
+.text.UART1_ReceiverIsReady  0x80ea14                0x14            0x14  (20)
+.text.UART1_TransmitterIsReady  0x80ea28                0x14            0x14  (20)
+.text.MCP2515_SPI_Callback  0x80ea3c                0x14            0x14  (20)
+.text.NVM_Initialize      0x80ea50                0x10            0x10  (16)
+.text.NVM_ErrorGet        0x80ea60                0x10            0x10  (16)
+.text.NVM_IsBusy          0x80ea70                0x10            0x10  (16)
+.text.SPI1_CallbackRegister  0x80ea80                0x10            0x10  (16)
+C:\Users\HP\AppData\Local\Temp\cc1sXZfD.s.scn1  0x80ea90                0x10            0x10  (16)
+.text.send_diag_data      0x80eaa0                0x10            0x10  (16)
+.text.SPI1_Write          0x80eab0                 0xc             0xc  (12)
+.text.TRAPS_halt_on_error  0x80eabc                 0xc             0xc  (12)
+.text.send_data_uart      0x80eac8                 0xc             0xc  (12)
+.text.erase_page          0x80ead4                 0xc             0xc  (12)
+.text.TMR1_Start          0x80eae0                 0x8             0x8  (8)
+.text.TMR1_InterruptEnable  0x80eae8                 0x8             0x8  (8)
+.text.UART1_ReadByte      0x80eaf0                 0x8             0x8  (8)
+.text.MCP2515_Select      0x80eaf8                 0x8             0x8  (8)
+.text.MCP2515_Deselect    0x80eb00                 0x8             0x8  (8)
 
-                   Total "program" memory used (bytes):         0x6b38  (27448) 29%
+                   Total "program" memory used (bytes):         0x6b04  (27396) 29%
 
 
 "data" Memory  [Origin = 0x4000, Length = 0x4000]
@@ -207,85 +209,85 @@ C:\Users\HP\AppData\Local\Temp\cct7PZZB.s.scn1  0x80ead4                0x10    
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss.nvmCallbackObj        0x4000                   0             0x8  (8)
-.nbss.Utime.13869           0x4008                   0             0x4  (4)
-.nbss.command_byte_num.13868    0x400c                   0             0x4  (4)
+.nbss.Utime.13871           0x4008                   0             0x4  (4)
+.nbss.command_byte_num.13870    0x400c                   0             0x4  (4)
 .nbss.byte_adr              0x4010                   0             0x4  (4)
 .nbss.num_of_bytes          0x4014                   0             0x4  (4)
 .nbss.activeRxId            0x4018                   0             0x4  (4)
 .nbss.activeTxId            0x401c                   0             0x4  (4)
 .nbss.activeSpiOp           0x4020                   0             0x4  (4)
 .nbss.asyncState            0x4024                   0             0x4  (4)
-.nbss.firmwareExpectedSize    0x4028                   0             0x4  (4)
-.ndata.flashWriteAddress    0x402c                   0             0x4  (4)
-.nbss.flashBufferIndex      0x4030                   0             0x4  (4)
-.nbss.temp.14416            0x4034                   0             0x4  (4)
-.nbss.ctr.14407             0x4038                   0             0x4  (4)
-.nbss.devid                 0x403c                   0             0x4  (4)
-.nbss.v1.13929              0x4040                   0             0x4  (4)
-.nbss.v2.13928              0x4044                   0             0x4  (4)
-.nbss.ctr.13927             0x4048                   0             0x4  (4)
-.nbss.currentState          0x404c                   0             0x4  (4)
-.ndata.CONFIG_RPM_KI_MAX    0x4050                   0             0x4  (4)
-.nbss.CONFIG_RPM_KI_MIN     0x4054                   0             0x4  (4)
-.ndata.CONFIG_RPM_KP_MAX    0x4058                   0             0x4  (4)
-.nbss.CONFIG_RPM_KP_MIN     0x405c                   0             0x4  (4)
-.nbss.CONFIG_NA2            0x4060                   0             0x4  (4)
-.ndata.CONFIG_IDC_MAX       0x4064                   0             0x4  (4)
-.ndata.CONFIG_VMIN          0x4068                   0             0x4  (4)
-.ndata.CONFIG_VMAX          0x406c                   0             0x4  (4)
-.ndata.CONFIG_MCU_TMAX      0x4070                   0             0x4  (4)
-.ndata.CONFIG_MOTOR_TMAX    0x4074                   0             0x4  (4)
-.ndata.CONFIG_FMOTOR_MAX    0x4078                   0             0x4  (4)
-.ndata.CONFIG_IPH_MAX       0x407c                   0             0x4  (4)
-.nbss.CONFIG_NA1            0x4080                   0             0x4  (4)
-.ndata.CONFIG_GEN_VMARGIN    0x4084                   0             0x4  (4)
-.ndata.CONFIG_BRAKE_ITIME    0x4088                   0             0x4  (4)
-.ndata.CONFIG_BRAKE_IPH     0x408c                   0             0x4  (4)
-.ndata.CONFIG_M_IPH         0x4090                   0             0x4  (4)
-.ndata.CONFIG_L_IPH         0x4094                   0             0x4  (4)
-.ndata.CONFIG_M_IDC         0x4098                   0             0x4  (4)
-.ndata.CONFIG_L_IDC         0x409c                   0             0x4  (4)
-.ndata.CONFIG_M_ACCELERATION    0x40a0                   0             0x4  (4)
-.ndata.CONFIG_L_ACCELERATION    0x40a4                   0             0x4  (4)
-.ndata.CONFIG_RPM_KI        0x40a8                   0             0x4  (4)
-.ndata.CONFIG_RPM_KP        0x40ac                   0             0x4  (4)
-.nbss.CONFIG_AUTO_GEN       0x40b0                   0             0x4  (4)
-.ndata.CONFIG_GEN_VLIMIT    0x40b4                   0             0x4  (4)
-.ndata.CONFIG_THROTTLE_MAX    0x40b8                   0             0x4  (4)
-.ndata.CONFIG_THROTTLE_ZERO    0x40bc                   0             0x4  (4)
-.ndata.CONFIG_M_RPM         0x40c0                   0             0x4  (4)
-.ndata.CONFIG_L_RPM         0x40c4                   0             0x4  (4)
-.ndata.CONFIG_REVERSE_RPM    0x40c8                   0             0x4  (4)
-.ndata.CONFIG_MOTOR_MODE    0x40cc                   0             0x4  (4)
-.ndata.CONFIG_IDC_FAULT     0x40d0                   0             0x4  (4)
-.ndata.CONFIG_IPH_FAULT     0x40d4                   0             0x4  (4)
-.ndata.CONFIG_IDC_NMAX      0x40d8                   0             0x4  (4)
-.ndata.CONFIG_IDC_PMAX      0x40dc                   0             0x4  (4)
-.ndata.CONFIG_UV_FAULT      0x40e0                   0             0x4  (4)
-.ndata.CONFIG_OV_FAULT      0x40e4                   0             0x4  (4)
-.ndata.CONFIG_IDC_DEFAULT    0x40e8                   0             0x4  (4)
-.ndata.CONFIG_VDC_MAX       0x40ec                   0             0x4  (4)
-.ndata.CONFIG_MCU_TFAULT    0x40f0                   0             0x4  (4)
-.ndata.CONFIG_MCU_DERATE    0x40f4                   0             0x4  (4)
-.ndata.CONFIG_MOTOR_TFAULT    0x40f8                   0             0x4  (4)
-.ndata.CONFIG_MOTOR_DERATE    0x40fc                   0             0x4  (4)
-.ndata.CONFIG_RPM_FAULT     0x4100                   0             0x4  (4)
-.ndata.CONFIG_RPM_TO_KMPH    0x4104                   0             0x4  (4)
-.ndata.CONFIG_CAN_BAUD      0x4108                   0             0x4  (4)
-.nbss.CONFIG_ROTATION_DIRECTION    0x410c                   0             0x4  (4)
-.nbss.CONFIG_SENSOR_DIRECTION_ESTIMATE    0x4110                   0             0x4  (4)
-.nbss.CONFIG_ZERO_ANGLE_ESTIMATE    0x4114                   0             0x4  (4)
-.nbss.CONFIG_SENSOR_DIRECTION    0x4118                   0             0x4  (4)
-.ndata.CONFIG_ZERO_ANGLE    0x411c                   0             0x4  (4)
-.ndata.CONFIG_V_CONSTANT    0x4120                   0             0x4  (4)
-.ndata.CONFIG_LQ            0x4124                   0             0x4  (4)
-.ndata.CONFIG_LD            0x4128                   0             0x4  (4)
-.ndata.CONFIG_RPH           0x412c                   0             0x4  (4)
-.ndata.CONFIG_POLES         0x4130                   0             0x4  (4)
-.ndata.CONFIG_H_RPM         0x4134                   0             0x4  (4)
-.ndata.CONFIG_H_IPH         0x4138                   0             0x4  (4)
-.nbss.activePage            0x413c                   0             0x4  (4)
-.nbss.recieved_byte.13867    0x4140                   0             0x2  (2)
+.nbss.activePage            0x4028                   0             0x4  (4)
+.nbss.firmwareExpectedSize    0x402c                   0             0x4  (4)
+.ndata.flashWriteAddress    0x4030                   0             0x4  (4)
+.nbss.flashBufferIndex      0x4034                   0             0x4  (4)
+.nbss.temp.14418            0x4038                   0             0x4  (4)
+.nbss.ctr.14409             0x403c                   0             0x4  (4)
+.nbss.devid                 0x4040                   0             0x4  (4)
+.nbss.v1.13931              0x4044                   0             0x4  (4)
+.nbss.v2.13930              0x4048                   0             0x4  (4)
+.nbss.ctr.13929             0x404c                   0             0x4  (4)
+.nbss.currentState          0x4050                   0             0x4  (4)
+.ndata.CONFIG_RPM_KI_MAX    0x4054                   0             0x4  (4)
+.nbss.CONFIG_RPM_KI_MIN     0x4058                   0             0x4  (4)
+.ndata.CONFIG_RPM_KP_MAX    0x405c                   0             0x4  (4)
+.nbss.CONFIG_RPM_KP_MIN     0x4060                   0             0x4  (4)
+.nbss.CONFIG_NA2            0x4064                   0             0x4  (4)
+.ndata.CONFIG_IDC_MAX       0x4068                   0             0x4  (4)
+.ndata.CONFIG_VMIN          0x406c                   0             0x4  (4)
+.ndata.CONFIG_VMAX          0x4070                   0             0x4  (4)
+.ndata.CONFIG_MCU_TMAX      0x4074                   0             0x4  (4)
+.ndata.CONFIG_MOTOR_TMAX    0x4078                   0             0x4  (4)
+.ndata.CONFIG_FMOTOR_MAX    0x407c                   0             0x4  (4)
+.ndata.CONFIG_IPH_MAX       0x4080                   0             0x4  (4)
+.nbss.CONFIG_NA1            0x4084                   0             0x4  (4)
+.ndata.CONFIG_GEN_VMARGIN    0x4088                   0             0x4  (4)
+.ndata.CONFIG_BRAKE_ITIME    0x408c                   0             0x4  (4)
+.ndata.CONFIG_BRAKE_IPH     0x4090                   0             0x4  (4)
+.ndata.CONFIG_M_IPH         0x4094                   0             0x4  (4)
+.ndata.CONFIG_L_IPH         0x4098                   0             0x4  (4)
+.ndata.CONFIG_M_IDC         0x409c                   0             0x4  (4)
+.ndata.CONFIG_L_IDC         0x40a0                   0             0x4  (4)
+.ndata.CONFIG_M_ACCELERATION    0x40a4                   0             0x4  (4)
+.ndata.CONFIG_L_ACCELERATION    0x40a8                   0             0x4  (4)
+.ndata.CONFIG_RPM_KI        0x40ac                   0             0x4  (4)
+.ndata.CONFIG_RPM_KP        0x40b0                   0             0x4  (4)
+.nbss.CONFIG_AUTO_GEN       0x40b4                   0             0x4  (4)
+.ndata.CONFIG_GEN_VLIMIT    0x40b8                   0             0x4  (4)
+.ndata.CONFIG_THROTTLE_MAX    0x40bc                   0             0x4  (4)
+.ndata.CONFIG_THROTTLE_ZERO    0x40c0                   0             0x4  (4)
+.ndata.CONFIG_M_RPM         0x40c4                   0             0x4  (4)
+.ndata.CONFIG_L_RPM         0x40c8                   0             0x4  (4)
+.ndata.CONFIG_REVERSE_RPM    0x40cc                   0             0x4  (4)
+.ndata.CONFIG_MOTOR_MODE    0x40d0                   0             0x4  (4)
+.ndata.CONFIG_IDC_FAULT     0x40d4                   0             0x4  (4)
+.ndata.CONFIG_IPH_FAULT     0x40d8                   0             0x4  (4)
+.ndata.CONFIG_IDC_NMAX      0x40dc                   0             0x4  (4)
+.ndata.CONFIG_IDC_PMAX      0x40e0                   0             0x4  (4)
+.ndata.CONFIG_UV_FAULT      0x40e4                   0             0x4  (4)
+.ndata.CONFIG_OV_FAULT      0x40e8                   0             0x4  (4)
+.ndata.CONFIG_IDC_DEFAULT    0x40ec                   0             0x4  (4)
+.ndata.CONFIG_VDC_MAX       0x40f0                   0             0x4  (4)
+.ndata.CONFIG_MCU_TFAULT    0x40f4                   0             0x4  (4)
+.ndata.CONFIG_MCU_DERATE    0x40f8                   0             0x4  (4)
+.ndata.CONFIG_MOTOR_TFAULT    0x40fc                   0             0x4  (4)
+.ndata.CONFIG_MOTOR_DERATE    0x4100                   0             0x4  (4)
+.ndata.CONFIG_RPM_FAULT     0x4104                   0             0x4  (4)
+.ndata.CONFIG_RPM_TO_KMPH    0x4108                   0             0x4  (4)
+.ndata.CONFIG_CAN_BAUD      0x410c                   0             0x4  (4)
+.nbss.CONFIG_ROTATION_DIRECTION    0x4110                   0             0x4  (4)
+.nbss.CONFIG_SENSOR_DIRECTION_ESTIMATE    0x4114                   0             0x4  (4)
+.nbss.CONFIG_ZERO_ANGLE_ESTIMATE    0x4118                   0             0x4  (4)
+.nbss.CONFIG_SENSOR_DIRECTION    0x411c                   0             0x4  (4)
+.ndata.CONFIG_ZERO_ANGLE    0x4120                   0             0x4  (4)
+.ndata.CONFIG_V_CONSTANT    0x4124                   0             0x4  (4)
+.ndata.CONFIG_LQ            0x4128                   0             0x4  (4)
+.ndata.CONFIG_LD            0x412c                   0             0x4  (4)
+.ndata.CONFIG_RPH           0x4130                   0             0x4  (4)
+.ndata.CONFIG_POLES         0x4134                   0             0x4  (4)
+.ndata.CONFIG_H_RPM         0x4138                   0             0x4  (4)
+.ndata.CONFIG_H_IPH         0x413c                   0             0x4  (4)
+.nbss.recieved_byte.13869    0x4140                   0             0x2  (2)
 .nbss.rxFifoCount           0x4142                   0             0x2  (2)
 .nbss.rxFifoTail            0x4144                   0             0x2  (2)
 .nbss.rxFifoHead            0x4146                   0             0x2  (2)
@@ -306,11 +308,11 @@ section                    address      alignment gaps    total length  (dec)
 .nbss.firmwareCrcVerified    0x4164                   0             0x2  (2)
 .nbss.firmwareUpdateFailed    0x4166                   0             0x2  (2)
 .nbss.firmwareUpdateActive    0x4168                   0             0x2  (2)
-.bss.eepromBuffer           0x416a                   0           0xfe0  (4064)
-.bss.tempBuffer.13755       0x514a                   0           0xfe0  (4064)
+.bss.tempBuffer.13755       0x416a                   0           0xfe0  (4064)
+.bss.eepromBuffer           0x514a                   0           0xfe0  (4064)
 .bss.flashBuffer            0x612a                   0           0x400  (1024)
 .data.stayInBootFlag        0x652a                   0             0x2  (2)
-.bss.rowData.13967          0x652c                   0           0x200  (512)
+.bss.rowData.13969          0x652c                   0           0x200  (512)
 .bss.tunerWriteMatrix       0x672c                   0           0x100  (256)
 .bss.tunerReadMatrix        0x682c                   0           0x100  (256)
 .bss.rxFifo                 0x692c                   0            0x80  (128)
@@ -323,7 +325,7 @@ section                    address      alignment gaps    total length  (dec)
 .bss.failsafe_stack.12810    0x6aec                   0            0x20  (32)
 .data.diag_data             0x6b0c                   0            0x1a  (26)
 .bss.softwareId             0x6b26                   0            0x16  (22)
-.bss.uart_command.13870     0x6b3c                   0            0x14  (20)
+.bss.uart_command.13872     0x6b3c                   0            0x14  (20)
 .bss.send_tuning_data       0x6b50                   0            0x14  (20)
 .bss.read_tuning_data       0x6b64                   0            0x14  (20)
 .data.udid_string           0x6b78                   0            0x12  (18)
@@ -336,9 +338,9 @@ section                    address      alignment gaps    total length  (dec)
 .bss.activeRxData           0x6bd4                   0             0x8  (8)
 .bss.activeTxData           0x6bdc                   0             0x8  (8)
 .bss.canRxBuffer            0x6be4                   0             0x8  (8)
-.data.data.13897            0x6bec                   0             0x8  (8)
-.bss.data.14415             0x6bf4                   0             0x8  (8)
-.bss.data.14408             0x6bfc                   0             0x8  (8)
+.data.data.13899            0x6bec                   0             0x8  (8)
+.bss.data.14417             0x6bf4                   0             0x8  (8)
+.bss.data.14410             0x6bfc                   0             0x8  (8)
 .data.appSize               0x6c04                   0             0x8  (8)
 .bss.partNumber             0x6c0c                   0             0x8  (8)
 .data.bootVersionR          0x6c14                   0             0x4  (4)
@@ -389,67 +391,67 @@ Info: Project is using a large data memory model when small data memory model is
 
 External Symbols in Data Memory (by address):
 
-                    0x403c                  _devid
-                    0x4050                  _CONFIG_RPM_KI_MAX
-                    0x4054                  _CONFIG_RPM_KI_MIN
-                    0x4058                  _CONFIG_RPM_KP_MAX
-                    0x405c                  _CONFIG_RPM_KP_MIN
-                    0x4060                  _CONFIG_NA2
-                    0x4064                  _CONFIG_IDC_MAX
-                    0x4068                  _CONFIG_VMIN
-                    0x406c                  _CONFIG_VMAX
-                    0x4070                  _CONFIG_MCU_TMAX
-                    0x4074                  _CONFIG_MOTOR_TMAX
-                    0x4078                  _CONFIG_FMOTOR_MAX
-                    0x407c                  _CONFIG_IPH_MAX
-                    0x4080                  _CONFIG_NA1
-                    0x4084                  _CONFIG_GEN_VMARGIN
-                    0x4088                  _CONFIG_BRAKE_ITIME
-                    0x408c                  _CONFIG_BRAKE_IPH
-                    0x4090                  _CONFIG_M_IPH
-                    0x4094                  _CONFIG_L_IPH
-                    0x4098                  _CONFIG_M_IDC
-                    0x409c                  _CONFIG_L_IDC
-                    0x40a0                  _CONFIG_M_ACCELERATION
-                    0x40a4                  _CONFIG_L_ACCELERATION
-                    0x40a8                  _CONFIG_RPM_KI
-                    0x40ac                  _CONFIG_RPM_KP
-                    0x40b0                  _CONFIG_AUTO_GEN
-                    0x40b4                  _CONFIG_GEN_VLIMIT
-                    0x40b8                  _CONFIG_THROTTLE_MAX
-                    0x40bc                  _CONFIG_THROTTLE_ZERO
-                    0x40c0                  _CONFIG_M_RPM
-                    0x40c4                  _CONFIG_L_RPM
-                    0x40c8                  _CONFIG_REVERSE_RPM
-                    0x40cc                  _CONFIG_MOTOR_MODE
-                    0x40d0                  _CONFIG_IDC_FAULT
-                    0x40d4                  _CONFIG_IPH_FAULT
-                    0x40d8                  _CONFIG_IDC_NMAX
-                    0x40dc                  _CONFIG_IDC_PMAX
-                    0x40e0                  _CONFIG_UV_FAULT
-                    0x40e4                  _CONFIG_OV_FAULT
-                    0x40e8                  _CONFIG_IDC_DEFAULT
-                    0x40ec                  _CONFIG_VDC_MAX
-                    0x40f0                  _CONFIG_MCU_TFAULT
-                    0x40f4                  _CONFIG_MCU_DERATE
-                    0x40f8                  _CONFIG_MOTOR_TFAULT
-                    0x40fc                  _CONFIG_MOTOR_DERATE
-                    0x4100                  _CONFIG_RPM_FAULT
-                    0x4104                  _CONFIG_RPM_TO_KMPH
-                    0x4108                  _CONFIG_CAN_BAUD
-                    0x410c                  _CONFIG_ROTATION_DIRECTION
-                    0x4110                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
-                    0x4114                  _CONFIG_ZERO_ANGLE_ESTIMATE
-                    0x4118                  _CONFIG_SENSOR_DIRECTION
-                    0x411c                  _CONFIG_ZERO_ANGLE
-                    0x4120                  _CONFIG_V_CONSTANT
-                    0x4124                  _CONFIG_LQ
-                    0x4128                  _CONFIG_LD
-                    0x412c                  _CONFIG_RPH
-                    0x4130                  _CONFIG_POLES
-                    0x4134                  _CONFIG_H_RPM
-                    0x4138                  _CONFIG_H_IPH
-                    0x416a                  _eepromBuffer
+                    0x4040                  _devid
+                    0x4054                  _CONFIG_RPM_KI_MAX
+                    0x4058                  _CONFIG_RPM_KI_MIN
+                    0x405c                  _CONFIG_RPM_KP_MAX
+                    0x4060                  _CONFIG_RPM_KP_MIN
+                    0x4064                  _CONFIG_NA2
+                    0x4068                  _CONFIG_IDC_MAX
+                    0x406c                  _CONFIG_VMIN
+                    0x4070                  _CONFIG_VMAX
+                    0x4074                  _CONFIG_MCU_TMAX
+                    0x4078                  _CONFIG_MOTOR_TMAX
+                    0x407c                  _CONFIG_FMOTOR_MAX
+                    0x4080                  _CONFIG_IPH_MAX
+                    0x4084                  _CONFIG_NA1
+                    0x4088                  _CONFIG_GEN_VMARGIN
+                    0x408c                  _CONFIG_BRAKE_ITIME
+                    0x4090                  _CONFIG_BRAKE_IPH
+                    0x4094                  _CONFIG_M_IPH
+                    0x4098                  _CONFIG_L_IPH
+                    0x409c                  _CONFIG_M_IDC
+                    0x40a0                  _CONFIG_L_IDC
+                    0x40a4                  _CONFIG_M_ACCELERATION
+                    0x40a8                  _CONFIG_L_ACCELERATION
+                    0x40ac                  _CONFIG_RPM_KI
+                    0x40b0                  _CONFIG_RPM_KP
+                    0x40b4                  _CONFIG_AUTO_GEN
+                    0x40b8                  _CONFIG_GEN_VLIMIT
+                    0x40bc                  _CONFIG_THROTTLE_MAX
+                    0x40c0                  _CONFIG_THROTTLE_ZERO
+                    0x40c4                  _CONFIG_M_RPM
+                    0x40c8                  _CONFIG_L_RPM
+                    0x40cc                  _CONFIG_REVERSE_RPM
+                    0x40d0                  _CONFIG_MOTOR_MODE
+                    0x40d4                  _CONFIG_IDC_FAULT
+                    0x40d8                  _CONFIG_IPH_FAULT
+                    0x40dc                  _CONFIG_IDC_NMAX
+                    0x40e0                  _CONFIG_IDC_PMAX
+                    0x40e4                  _CONFIG_UV_FAULT
+                    0x40e8                  _CONFIG_OV_FAULT
+                    0x40ec                  _CONFIG_IDC_DEFAULT
+                    0x40f0                  _CONFIG_VDC_MAX
+                    0x40f4                  _CONFIG_MCU_TFAULT
+                    0x40f8                  _CONFIG_MCU_DERATE
+                    0x40fc                  _CONFIG_MOTOR_TFAULT
+                    0x4100                  _CONFIG_MOTOR_DERATE
+                    0x4104                  _CONFIG_RPM_FAULT
+                    0x4108                  _CONFIG_RPM_TO_KMPH
+                    0x410c                  _CONFIG_CAN_BAUD
+                    0x4110                  _CONFIG_ROTATION_DIRECTION
+                    0x4114                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
+                    0x4118                  _CONFIG_ZERO_ANGLE_ESTIMATE
+                    0x411c                  _CONFIG_SENSOR_DIRECTION
+                    0x4120                  _CONFIG_ZERO_ANGLE
+                    0x4124                  _CONFIG_V_CONSTANT
+                    0x4128                  _CONFIG_LQ
+                    0x412c                  _CONFIG_LD
+                    0x4130                  _CONFIG_RPH
+                    0x4134                  _CONFIG_POLES
+                    0x4138                  _CONFIG_H_RPM
+                    0x413c                  _CONFIG_H_IPH
+                    0x514a                  _eepromBuffer
                     0x652a                  _stayInBootFlag
                     0x672c                  _tunerWriteMatrix
                     0x682c                  _tunerReadMatrix
@@ -483,65 +485,65 @@ External Symbols in Data Memory (by address):
 
 External Symbols in Data Memory (by name):
 
-                    0x40b0                  _CONFIG_AUTO_GEN
-                    0x408c                  _CONFIG_BRAKE_IPH
-                    0x4088                  _CONFIG_BRAKE_ITIME
-                    0x4108                  _CONFIG_CAN_BAUD
-                    0x4078                  _CONFIG_FMOTOR_MAX
-                    0x40b4                  _CONFIG_GEN_VLIMIT
-                    0x4084                  _CONFIG_GEN_VMARGIN
-                    0x4138                  _CONFIG_H_IPH
-                    0x4134                  _CONFIG_H_RPM
-                    0x40e8                  _CONFIG_IDC_DEFAULT
-                    0x40d0                  _CONFIG_IDC_FAULT
-                    0x4064                  _CONFIG_IDC_MAX
-                    0x40d8                  _CONFIG_IDC_NMAX
-                    0x40dc                  _CONFIG_IDC_PMAX
-                    0x40d4                  _CONFIG_IPH_FAULT
-                    0x407c                  _CONFIG_IPH_MAX
-                    0x4128                  _CONFIG_LD
-                    0x4124                  _CONFIG_LQ
-                    0x40a4                  _CONFIG_L_ACCELERATION
-                    0x409c                  _CONFIG_L_IDC
-                    0x4094                  _CONFIG_L_IPH
-                    0x40c4                  _CONFIG_L_RPM
-                    0x40f4                  _CONFIG_MCU_DERATE
-                    0x40f0                  _CONFIG_MCU_TFAULT
-                    0x4070                  _CONFIG_MCU_TMAX
-                    0x40fc                  _CONFIG_MOTOR_DERATE
-                    0x40cc                  _CONFIG_MOTOR_MODE
-                    0x40f8                  _CONFIG_MOTOR_TFAULT
-                    0x4074                  _CONFIG_MOTOR_TMAX
-                    0x40a0                  _CONFIG_M_ACCELERATION
-                    0x4098                  _CONFIG_M_IDC
-                    0x4090                  _CONFIG_M_IPH
-                    0x40c0                  _CONFIG_M_RPM
-                    0x4080                  _CONFIG_NA1
-                    0x4060                  _CONFIG_NA2
-                    0x40e4                  _CONFIG_OV_FAULT
-                    0x4130                  _CONFIG_POLES
-                    0x40c8                  _CONFIG_REVERSE_RPM
-                    0x410c                  _CONFIG_ROTATION_DIRECTION
-                    0x412c                  _CONFIG_RPH
-                    0x4100                  _CONFIG_RPM_FAULT
-                    0x40a8                  _CONFIG_RPM_KI
-                    0x4050                  _CONFIG_RPM_KI_MAX
-                    0x4054                  _CONFIG_RPM_KI_MIN
-                    0x40ac                  _CONFIG_RPM_KP
-                    0x4058                  _CONFIG_RPM_KP_MAX
-                    0x405c                  _CONFIG_RPM_KP_MIN
-                    0x4104                  _CONFIG_RPM_TO_KMPH
-                    0x4118                  _CONFIG_SENSOR_DIRECTION
-                    0x4110                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
-                    0x40b8                  _CONFIG_THROTTLE_MAX
-                    0x40bc                  _CONFIG_THROTTLE_ZERO
-                    0x40e0                  _CONFIG_UV_FAULT
-                    0x40ec                  _CONFIG_VDC_MAX
-                    0x406c                  _CONFIG_VMAX
-                    0x4068                  _CONFIG_VMIN
-                    0x4120                  _CONFIG_V_CONSTANT
-                    0x411c                  _CONFIG_ZERO_ANGLE
-                    0x4114                  _CONFIG_ZERO_ANGLE_ESTIMATE
+                    0x40b4                  _CONFIG_AUTO_GEN
+                    0x4090                  _CONFIG_BRAKE_IPH
+                    0x408c                  _CONFIG_BRAKE_ITIME
+                    0x410c                  _CONFIG_CAN_BAUD
+                    0x407c                  _CONFIG_FMOTOR_MAX
+                    0x40b8                  _CONFIG_GEN_VLIMIT
+                    0x4088                  _CONFIG_GEN_VMARGIN
+                    0x413c                  _CONFIG_H_IPH
+                    0x4138                  _CONFIG_H_RPM
+                    0x40ec                  _CONFIG_IDC_DEFAULT
+                    0x40d4                  _CONFIG_IDC_FAULT
+                    0x4068                  _CONFIG_IDC_MAX
+                    0x40dc                  _CONFIG_IDC_NMAX
+                    0x40e0                  _CONFIG_IDC_PMAX
+                    0x40d8                  _CONFIG_IPH_FAULT
+                    0x4080                  _CONFIG_IPH_MAX
+                    0x412c                  _CONFIG_LD
+                    0x4128                  _CONFIG_LQ
+                    0x40a8                  _CONFIG_L_ACCELERATION
+                    0x40a0                  _CONFIG_L_IDC
+                    0x4098                  _CONFIG_L_IPH
+                    0x40c8                  _CONFIG_L_RPM
+                    0x40f8                  _CONFIG_MCU_DERATE
+                    0x40f4                  _CONFIG_MCU_TFAULT
+                    0x4074                  _CONFIG_MCU_TMAX
+                    0x4100                  _CONFIG_MOTOR_DERATE
+                    0x40d0                  _CONFIG_MOTOR_MODE
+                    0x40fc                  _CONFIG_MOTOR_TFAULT
+                    0x4078                  _CONFIG_MOTOR_TMAX
+                    0x40a4                  _CONFIG_M_ACCELERATION
+                    0x409c                  _CONFIG_M_IDC
+                    0x4094                  _CONFIG_M_IPH
+                    0x40c4                  _CONFIG_M_RPM
+                    0x4084                  _CONFIG_NA1
+                    0x4064                  _CONFIG_NA2
+                    0x40e8                  _CONFIG_OV_FAULT
+                    0x4134                  _CONFIG_POLES
+                    0x40cc                  _CONFIG_REVERSE_RPM
+                    0x4110                  _CONFIG_ROTATION_DIRECTION
+                    0x4130                  _CONFIG_RPH
+                    0x4104                  _CONFIG_RPM_FAULT
+                    0x40ac                  _CONFIG_RPM_KI
+                    0x4054                  _CONFIG_RPM_KI_MAX
+                    0x4058                  _CONFIG_RPM_KI_MIN
+                    0x40b0                  _CONFIG_RPM_KP
+                    0x405c                  _CONFIG_RPM_KP_MAX
+                    0x4060                  _CONFIG_RPM_KP_MIN
+                    0x4108                  _CONFIG_RPM_TO_KMPH
+                    0x411c                  _CONFIG_SENSOR_DIRECTION
+                    0x4114                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
+                    0x40bc                  _CONFIG_THROTTLE_MAX
+                    0x40c0                  _CONFIG_THROTTLE_ZERO
+                    0x40e4                  _CONFIG_UV_FAULT
+                    0x40f0                  _CONFIG_VDC_MAX
+                    0x4070                  _CONFIG_VMAX
+                    0x406c                  _CONFIG_VMIN
+                    0x4124                  _CONFIG_V_CONSTANT
+                    0x4120                  _CONFIG_ZERO_ANGLE
+                    0x4118                  _CONFIG_ZERO_ANGLE_ESTIMATE
                     0x6c04                  _appSize
                     0x6baa                  _appVersionL
                     0x6c20                  _appVersionM
@@ -552,8 +554,8 @@ External Symbols in Data Memory (by name):
                     0x6c3c                  _brandName
                     0x6c2c                  _coms
                     0x6c30                  _connector
-                    0x403c                  _devid
-                    0x416a                  _eepromBuffer
+                    0x4040                  _devid
+                    0x514a                  _eepromBuffer
                     0x6aa0                  _firmwareId
                     0x6ac8                  _mcuId
                     0x6a2c                  _metadata
@@ -600,159 +602,161 @@ External Symbols in Program Memory (by address):
                   0x80be54                  _Boot_Software_ID_Handler
                   0x80c084                  _Boot_Jump_Handler
                   0x80c254                  _Boot_App_Size_Handler
-                  0x80c41c                  _Metadata_Init
-                  0x80c5dc                  _SPI1_WriteRead
-                  0x80c8ec                  _FLASH_EEPROM_Write_Page
-                  0x80ca3c                  _CLOCK_Initialize
-                  0x80cb88                  _Boot_App_Erase_Handler
-                  0x80ccd4                  _SPI1RX_InterruptHandler
-                  0x80ce14                  _Boot_APP_CRC_Handler
-                  0x80d078                  _App_Firmware_Write_Flash
-                  0x80d198                  _CAN_Tuner_Send_Zero_Angle
-                  0x80d2b8                  _Boot_App_Chunk_Handler
-                  0x80d3b0                  _MCP2515_Init
-                  0x80d4a4                  _Boot_PIC_ID_Handler
-                  0x80d598                  _State_Engine_Tasks
-                  0x80d674                  _Run_Boot_Handler
-                  0x80d73c                  _Get_Software_ID
-                  0x80d804                  _Boot_Status_Handler
-                  0x80d9cc                  _Tuner_Init
-                  0x80da58                  _Get_Model_Number
-                  0x80dbe0                  _GPIO_Initialize
-                  0x80dc58                  _CANbus_read
-                  0x80dcd0                  _CAN_Tuner_Handler
-                  0x80dd44                  _SPI1TX_InterruptHandler
-                  0x80ddb4                  _Boot_App_Jump
-                  0x80de94                  _FLASH_EEPROM_Read_Page
-                  0x80df04                  _Get_Part_Number
-                  0x80df6c                  _SPI1E_InterruptHandler
-                  0x80dfd0                  _C0_send_TU_data_CAN
-                  0x80e034                  _CAN_Tuner_Send_PIC_ID_1
-                  0x80e094                  _CAN_Tuner_Send_PIC_ID_2
-                  0x80e0f4                  _Get_PIC_ID
-                  0x80e150                  _Get_Firmware_ID
-                  0x80e1ac                  _INTC_Initialize
-                  0x80e200                  _Boot_Stay_In_Boot_Handler
-                  0x80e254                  _UART_Tuner_Send_PIC_ID
-                  0x80e2a8                  _UART_Tuner_Command
-                  0x80e2f8                  _NVM_QuadWordWrite
-                  0x80e344                  _SPI1_Initialize
-                  0x80e390                  _T1_InterruptHandler
-                  0x80e3dc                  _Boot_APP_CRC32_Software
-                  0x80e4b8                  _FLASH_EEPROM_Init
-                  0x80e500                  _Build_Metadata
-                  0x80e5f0                  _Boot_App_Chunk_Ack
-                  0x80e628                  _CAN_Tuner_Write_Flash
-                  0x80e660                  _CAN_Send_Status
-                  0x80e694                  _NVM_RowWrite
-                  0x80e6c4                  _TMR1_Initialize
-                  0x80e6f4                  _send_byte_uart
-                  0x80e754                  _Boot_Is_App_Present
-                  0x80e780                  _SPI1_IsBusy
-                  0x80e7a8                  _UART1_Initialize
-                  0x80e7d0                  _SYS_Initialize
-                  0x80e820                  _CANbus_write
-                  0x80e8b0                  _MCP2515_SendMessage
-                  0x80e918                  _UART_Tuner_Send_Zero_Angle
-                  0x80e938                  _NVM_InterruptHandler
-                  0x80e954                  _UART1_WriteByte
-                  0x80e98c                  _MCP2515_ReceiveMessage
-                  0x80e9a8                  _NVM_PageErase
-                  0x80e9f0                  _Next_Chunk_Index
-                  0x80ea08                  _main
-                  0x80ea34                  _NVM_Read
-                  0x80ea48                  _UART1_ReceiverIsReady
-                  0x80ea5c                  _UART1_TransmitterIsReady
-                  0x80ea84                  _NVM_Initialize
-                  0x80ea94                  _NVM_ErrorGet
-                  0x80eaa4                  _NVM_IsBusy
-                  0x80eab4                  _SPI1_CallbackRegister
-                  0x80eac4                  _send_diag_data
-                  0x80eae4                  _SPI1_Write
-                  0x80eafc                  _send_data_uart
-                  0x80eb14                  _TMR1_Start
-                  0x80eb1c                  _TMR1_InterruptEnable
-                  0x80eb24                  _UART1_ReadByte
+                  0x80c41c                  _SPI1_WriteRead
+                  0x80c5d8                  _Metadata_Init
+                  0x80c8c4                  _FLASH_EEPROM_Write_Page
+                  0x80ca14                  _CLOCK_Initialize
+                  0x80cb60                  _Boot_App_Erase_Handler
+                  0x80ccac                  _SPI1RX_InterruptHandler
+                  0x80cdec                  _Boot_APP_CRC_Handler
+                  0x80d050                  _App_Firmware_Write_Flash
+                  0x80d170                  _CAN_Tuner_Send_Zero_Angle
+                  0x80d290                  _Boot_App_Chunk_Handler
+                  0x80d388                  _MCP2515_Init
+                  0x80d47c                  _Boot_PIC_ID_Handler
+                  0x80d570                  _State_Engine_Tasks
+                  0x80d650                  _Run_Boot_Handler
+                  0x80d718                  _Get_Software_ID
+                  0x80d7e0                  _Boot_Status_Handler
+                  0x80d9a8                  _Get_Model_Number
+                  0x80db30                  _GPIO_Initialize
+                  0x80dba8                  _CANbus_read
+                  0x80dc20                  _CAN_Tuner_Handler
+                  0x80dc94                  _SPI1TX_InterruptHandler
+                  0x80dd74                  _FLASH_EEPROM_Read_Page
+                  0x80dde4                  _Boot_App_Jump
+                  0x80de54                  _Get_Part_Number
+                  0x80debc                  _SPI1E_InterruptHandler
+                  0x80df20                  _C0_send_TU_data_CAN
+                  0x80df84                  _Tuner_Init
+                  0x80dfe4                  _CAN_Tuner_Send_PIC_ID_1
+                  0x80e044                  _CAN_Tuner_Send_PIC_ID_2
+                  0x80e0a4                  _Get_PIC_ID
+                  0x80e100                  _Get_Firmware_ID
+                  0x80e15c                  _INTC_Initialize
+                  0x80e1b0                  _Boot_Stay_In_Boot_Handler
+                  0x80e204                  _UART_Tuner_Send_PIC_ID
+                  0x80e258                  _UART_Tuner_Command
+                  0x80e2a8                  _NVM_QuadWordWrite
+                  0x80e2f4                  _SPI1_Initialize
+                  0x80e340                  _T1_InterruptHandler
+                  0x80e38c                  _Boot_APP_CRC32_Software
+                  0x80e468                  _FLASH_EEPROM_Init
+                  0x80e4b0                  _Build_Metadata
+                  0x80e5a0                  _Boot_App_Chunk_Ack
+                  0x80e5d8                  _CAN_Tuner_Write_Flash
+                  0x80e610                  _CAN_Send_Status
+                  0x80e644                  _NVM_RowWrite
+                  0x80e674                  _TMR1_Initialize
+                  0x80e6a4                  _send_byte_uart
+                  0x80e704                  _Boot_Is_App_Present
+                  0x80e730                  _SPI1_IsBusy
+                  0x80e758                  _UART1_Initialize
+                  0x80e780                  _SYS_Initialize
+                  0x80e7d0                  _CANbus_write
+                  0x80e860                  _MCP2515_SendMessage
+                  0x80e8c8                  _UART_Tuner_Send_Zero_Angle
+                  0x80e8e8                  _NVM_InterruptHandler
+                  0x80e904                  _UART1_WriteByte
+                  0x80e93c                  _MCP2515_ReceiveMessage
+                  0x80e958                  _Load_EEPROM_Data
+                  0x80e974                  _NVM_PageErase
+                  0x80e9bc                  _Next_Chunk_Index
+                  0x80e9d4                  _main
+                  0x80ea00                  _NVM_Read
+                  0x80ea14                  _UART1_ReceiverIsReady
+                  0x80ea28                  _UART1_TransmitterIsReady
+                  0x80ea50                  _NVM_Initialize
+                  0x80ea60                  _NVM_ErrorGet
+                  0x80ea70                  _NVM_IsBusy
+                  0x80ea80                  _SPI1_CallbackRegister
+                  0x80eaa0                  _send_diag_data
+                  0x80eab0                  _SPI1_Write
+                  0x80eac8                  _send_data_uart
+                  0x80eae0                  _TMR1_Start
+                  0x80eae8                  _TMR1_InterruptEnable
+                  0x80eaf0                  _UART1_ReadByte
 
 External Symbols in Program Memory (by name):
 
-                  0x80d078                  _App_Firmware_Write_Flash
-                  0x80e3dc                  _Boot_APP_CRC32_Software
-                  0x80ce14                  _Boot_APP_CRC_Handler
-                  0x80e5f0                  _Boot_App_Chunk_Ack
-                  0x80d2b8                  _Boot_App_Chunk_Handler
-                  0x80cb88                  _Boot_App_Erase_Handler
-                  0x80ddb4                  _Boot_App_Jump
+                  0x80d050                  _App_Firmware_Write_Flash
+                  0x80e38c                  _Boot_APP_CRC32_Software
+                  0x80cdec                  _Boot_APP_CRC_Handler
+                  0x80e5a0                  _Boot_App_Chunk_Ack
+                  0x80d290                  _Boot_App_Chunk_Handler
+                  0x80cb60                  _Boot_App_Erase_Handler
+                  0x80dde4                  _Boot_App_Jump
                   0x80c254                  _Boot_App_Size_Handler
-                  0x80e754                  _Boot_Is_App_Present
+                  0x80e704                  _Boot_Is_App_Present
                   0x80c084                  _Boot_Jump_Handler
-                  0x80d4a4                  _Boot_PIC_ID_Handler
+                  0x80d47c                  _Boot_PIC_ID_Handler
                   0x80be54                  _Boot_Software_ID_Handler
-                  0x80d804                  _Boot_Status_Handler
-                  0x80e200                  _Boot_Stay_In_Boot_Handler
-                  0x80e500                  _Build_Metadata
-                  0x80dfd0                  _C0_send_TU_data_CAN
-                  0x80e660                  _CAN_Send_Status
-                  0x80dcd0                  _CAN_Tuner_Handler
+                  0x80d7e0                  _Boot_Status_Handler
+                  0x80e1b0                  _Boot_Stay_In_Boot_Handler
+                  0x80e4b0                  _Build_Metadata
+                  0x80df20                  _C0_send_TU_data_CAN
+                  0x80e610                  _CAN_Send_Status
+                  0x80dc20                  _CAN_Tuner_Handler
                   0x808930                  _CAN_Tuner_Read
-                  0x80e034                  _CAN_Tuner_Send_PIC_ID_1
-                  0x80e094                  _CAN_Tuner_Send_PIC_ID_2
-                  0x80d198                  _CAN_Tuner_Send_Zero_Angle
-                  0x80e628                  _CAN_Tuner_Write_Flash
+                  0x80dfe4                  _CAN_Tuner_Send_PIC_ID_1
+                  0x80e044                  _CAN_Tuner_Send_PIC_ID_2
+                  0x80d170                  _CAN_Tuner_Send_Zero_Angle
+                  0x80e5d8                  _CAN_Tuner_Write_Flash
                   0x80ad38                  _CAN_Tuner_Write_Matrix
-                  0x80dc58                  _CANbus_read
-                  0x80e820                  _CANbus_write
-                  0x80ca3c                  _CLOCK_Initialize
-                  0x80e4b8                  _FLASH_EEPROM_Init
-                  0x80de94                  _FLASH_EEPROM_Read_Page
-                  0x80c8ec                  _FLASH_EEPROM_Write_Page
-                  0x80dbe0                  _GPIO_Initialize
+                  0x80dba8                  _CANbus_read
+                  0x80e7d0                  _CANbus_write
+                  0x80ca14                  _CLOCK_Initialize
+                  0x80e468                  _FLASH_EEPROM_Init
+                  0x80dd74                  _FLASH_EEPROM_Read_Page
+                  0x80c8c4                  _FLASH_EEPROM_Write_Page
+                  0x80db30                  _GPIO_Initialize
                   0x80b688                  _Get_Config
-                  0x80e150                  _Get_Firmware_ID
-                  0x80da58                  _Get_Model_Number
-                  0x80e0f4                  _Get_PIC_ID
-                  0x80df04                  _Get_Part_Number
-                  0x80d73c                  _Get_Software_ID
-                  0x80e1ac                  _INTC_Initialize
-                  0x80d3b0                  _MCP2515_Init
-                  0x80e98c                  _MCP2515_ReceiveMessage
-                  0x80e8b0                  _MCP2515_SendMessage
+                  0x80e100                  _Get_Firmware_ID
+                  0x80d9a8                  _Get_Model_Number
+                  0x80e0a4                  _Get_PIC_ID
+                  0x80de54                  _Get_Part_Number
+                  0x80d718                  _Get_Software_ID
+                  0x80e15c                  _INTC_Initialize
+                  0x80e958                  _Load_EEPROM_Data
+                  0x80d388                  _MCP2515_Init
+                  0x80e93c                  _MCP2515_ReceiveMessage
+                  0x80e860                  _MCP2515_SendMessage
                   0x80b288                  _MCP2515_Task
-                  0x80c41c                  _Metadata_Init
-                  0x80ea94                  _NVM_ErrorGet
-                  0x80ea84                  _NVM_Initialize
-                  0x80e938                  _NVM_InterruptHandler
-                  0x80eaa4                  _NVM_IsBusy
-                  0x80e9a8                  _NVM_PageErase
-                  0x80e2f8                  _NVM_QuadWordWrite
-                  0x80ea34                  _NVM_Read
-                  0x80e694                  _NVM_RowWrite
-                  0x80e9f0                  _Next_Chunk_Index
-                  0x80d674                  _Run_Boot_Handler
-                  0x80df6c                  _SPI1E_InterruptHandler
-                  0x80ccd4                  _SPI1RX_InterruptHandler
-                  0x80dd44                  _SPI1TX_InterruptHandler
-                  0x80eab4                  _SPI1_CallbackRegister
-                  0x80e344                  _SPI1_Initialize
-                  0x80e780                  _SPI1_IsBusy
-                  0x80eae4                  _SPI1_Write
-                  0x80c5dc                  _SPI1_WriteRead
-                  0x80e7d0                  _SYS_Initialize
-                  0x80d598                  _State_Engine_Tasks
-                  0x80e390                  _T1_InterruptHandler
-                  0x80e6c4                  _TMR1_Initialize
-                  0x80eb1c                  _TMR1_InterruptEnable
-                  0x80eb14                  _TMR1_Start
-                  0x80d9cc                  _Tuner_Init
-                  0x80e7a8                  _UART1_Initialize
-                  0x80eb24                  _UART1_ReadByte
-                  0x80ea48                  _UART1_ReceiverIsReady
-                  0x80ea5c                  _UART1_TransmitterIsReady
-                  0x80e954                  _UART1_WriteByte
-                  0x80e2a8                  _UART_Tuner_Command
+                  0x80c5d8                  _Metadata_Init
+                  0x80ea60                  _NVM_ErrorGet
+                  0x80ea50                  _NVM_Initialize
+                  0x80e8e8                  _NVM_InterruptHandler
+                  0x80ea70                  _NVM_IsBusy
+                  0x80e974                  _NVM_PageErase
+                  0x80e2a8                  _NVM_QuadWordWrite
+                  0x80ea00                  _NVM_Read
+                  0x80e644                  _NVM_RowWrite
+                  0x80e9bc                  _Next_Chunk_Index
+                  0x80d650                  _Run_Boot_Handler
+                  0x80debc                  _SPI1E_InterruptHandler
+                  0x80ccac                  _SPI1RX_InterruptHandler
+                  0x80dc94                  _SPI1TX_InterruptHandler
+                  0x80ea80                  _SPI1_CallbackRegister
+                  0x80e2f4                  _SPI1_Initialize
+                  0x80e730                  _SPI1_IsBusy
+                  0x80eab0                  _SPI1_Write
+                  0x80c41c                  _SPI1_WriteRead
+                  0x80e780                  _SYS_Initialize
+                  0x80d570                  _State_Engine_Tasks
+                  0x80e340                  _T1_InterruptHandler
+                  0x80e674                  _TMR1_Initialize
+                  0x80eae8                  _TMR1_InterruptEnable
+                  0x80eae0                  _TMR1_Start
+                  0x80df84                  _Tuner_Init
+                  0x80e758                  _UART1_Initialize
+                  0x80eaf0                  _UART1_ReadByte
+                  0x80ea14                  _UART1_ReceiverIsReady
+                  0x80ea28                  _UART1_TransmitterIsReady
+                  0x80e904                  _UART1_WriteByte
+                  0x80e258                  _UART_Tuner_Command
                   0x809e4c                  _UART_Tuner_Read
-                  0x80e254                  _UART_Tuner_Send_PIC_ID
-                  0x80e918                  _UART_Tuner_Send_Zero_Angle
+                  0x80e204                  _UART_Tuner_Send_PIC_ID
+                  0x80e8c8                  _UART_Tuner_Send_Zero_Angle
                   0x80a698                  _UART_Tuner_Write
                   0x80b954                  _Update_Config
                   0x8088d8                  __DefaultInterrupt
@@ -765,13 +769,13 @@ External Symbols in Program Memory (by name):
                   0x80856c                  __data_init_extended
                   0x808040                  __ivt_0
                   0x8084c0                  __resetPRI
-                  0x80ea08                  _main
+                  0x80e9d4                  _main
                   0x8088e4                  _memcmp
                   0x808914                  _memcpy
                   0x80bc20                  _recieve_command_uart
-                  0x80e6f4                  _send_byte_uart
-                  0x80eafc                  _send_data_uart
-                  0x80eac4                  _send_diag_data
+                  0x80e6a4                  _send_byte_uart
+                  0x80eac8                  _send_data_uart
+                  0x80eaa0                  _send_diag_data
 
 Discarded input sections
 
@@ -924,6 +928,19 @@ Discarded input sections
                     0x0000         0x28 build/default/debug/_ext/362756510/driver_mcp2515.o
  .text.MCP2515_SendMessageDone
                     0x0000          0xc build/default/debug/_ext/362756510/driver_mcp2515.o
+ .text              0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
+ .data              0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
+ .bss               0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
+ .text.FLASH_EEPROM_WriteWord
+                    0x0000         0x64 build/default/debug/_ext/362756510/flash_eeprom.o
+ .text.FLASH_EEPROM_ReadWord
+                    0x0000         0x44 build/default/debug/_ext/362756510/flash_eeprom.o
+ .text.FLASH_EEPROM_EraseAll
+                    0x0000         0x30 build/default/debug/_ext/362756510/flash_eeprom.o
+ .bss.buffer.13809
+                    0x0000        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
+ .bss.buffer.13802
+                    0x0000        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
  .text              0x0000          0x0 build/default/debug/_ext/1375476428/boot_handler.o
  .data              0x0000          0x0 build/default/debug/_ext/1375476428/boot_handler.o
  .bss               0x0000          0x0 build/default/debug/_ext/1375476428/boot_handler.o
@@ -959,19 +976,9 @@ Discarded input sections
  .text              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
  .data              0x0000          0x0 build/default/debug/_ext/1360937237/main.o
  .bss               0x0000          0x0 build/default/debug/_ext/1360937237/main.o
- .text              0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
- .data              0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
- .bss               0x0000          0x0 build/default/debug/_ext/362756510/flash_eeprom.o
- .text.FLASH_EEPROM_WriteWord
-                    0x0000         0x64 build/default/debug/_ext/362756510/flash_eeprom.o
- .text.FLASH_EEPROM_ReadWord
-                    0x0000         0x44 build/default/debug/_ext/362756510/flash_eeprom.o
- .text.FLASH_EEPROM_EraseAll
-                    0x0000         0x30 build/default/debug/_ext/362756510/flash_eeprom.o
- .bss.buffer.13809
-                    0x0000        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
- .bss.buffer.13802
-                    0x0000        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
+ .text              0x0000          0x0 build/default/debug/_ext/1375476428/device_startup.o
+ .data              0x0000          0x0 build/default/debug/_ext/1375476428/device_startup.o
+ .bss               0x0000          0x0 build/default/debug/_ext/1375476428/device_startup.o
  .text              0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
  .data              0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
  .bss               0x0000          0x0 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.AAMeo)
@@ -1045,6 +1052,7 @@ LOAD build/default/debug/_ext/1171490990/traps.o
 LOAD build/default/debug/_ext/362756510/driver_CANbus.o
 LOAD build/default/debug/_ext/362756510/driver_UART.o
 LOAD build/default/debug/_ext/362756510/driver_mcp2515.o
+LOAD build/default/debug/_ext/362756510/flash_eeprom.o
 LOAD build/default/debug/_ext/1375476428/boot_handler.o
 LOAD build/default/debug/_ext/1375476428/diagnostics.o
 LOAD build/default/debug/_ext/1375476428/tuning.o
@@ -1052,7 +1060,7 @@ LOAD build/default/debug/_ext/1375476428/metadata.o
 LOAD build/default/debug/_ext/1200941409/state_engine.o
 LOAD build/default/debug/_ext/1200941409/mcu_config.o
 LOAD build/default/debug/_ext/1360937237/main.o
-LOAD build/default/debug/_ext/362756510/flash_eeprom.o
+LOAD build/default/debug/_ext/1375476428/device_startup.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
@@ -1262,7 +1270,7 @@ __FEPUCB
 __FWPUCB
  *(__FWPUCB.sec*)
 
-.comment            0x0000        0x8c2
+.comment            0x0000        0x924
  *(.comment)
  .comment           0x0000         0x62 build/default/debug/_ext/60165520/plib_clk.o
  .comment           0x0062         0x62 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1277,18 +1285,19 @@ __FWPUCB
  .comment           0x03d4         0x62 build/default/debug/_ext/362756510/driver_CANbus.o
  .comment           0x0436         0x62 build/default/debug/_ext/362756510/driver_UART.o
  .comment           0x0498         0x62 build/default/debug/_ext/362756510/driver_mcp2515.o
- .comment           0x04fa         0x62 build/default/debug/_ext/1375476428/boot_handler.o
- .comment           0x055c         0x62 build/default/debug/_ext/1375476428/diagnostics.o
- .comment           0x05be         0x62 build/default/debug/_ext/1375476428/tuning.o
- .comment           0x0620         0x62 build/default/debug/_ext/1375476428/metadata.o
- .comment           0x0682         0x62 build/default/debug/_ext/1200941409/state_engine.o
- .comment           0x06e4         0x62 build/default/debug/_ext/1200941409/mcu_config.o
- .comment           0x0746         0x62 build/default/debug/_ext/1360937237/main.o
- .comment           0x07a8         0x62 build/default/debug/_ext/362756510/flash_eeprom.o
- .comment           0x080a         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcmp.GENERIC-32PIC-AK_o)
- .comment           0x0866         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
+ .comment           0x04fa         0x62 build/default/debug/_ext/362756510/flash_eeprom.o
+ .comment           0x055c         0x62 build/default/debug/_ext/1375476428/boot_handler.o
+ .comment           0x05be         0x62 build/default/debug/_ext/1375476428/diagnostics.o
+ .comment           0x0620         0x62 build/default/debug/_ext/1375476428/tuning.o
+ .comment           0x0682         0x62 build/default/debug/_ext/1375476428/metadata.o
+ .comment           0x06e4         0x62 build/default/debug/_ext/1200941409/state_engine.o
+ .comment           0x0746         0x62 build/default/debug/_ext/1200941409/mcu_config.o
+ .comment           0x07a8         0x62 build/default/debug/_ext/1360937237/main.o
+ .comment           0x080a         0x62 build/default/debug/_ext/1375476428/device_startup.o
+ .comment           0x086c         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcmp.GENERIC-32PIC-AK_o)
+ .comment           0x08c8         0x5c c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
 
-.debug_info         0x0000      0x10035
+.debug_info         0x0000      0x102e6
  *(.debug_info)
  .debug_info        0x0000        0xaaa build/default/debug/_ext/60165520/plib_clk.o
  .debug_info        0x0aaa        0x8a3 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1303,17 +1312,18 @@ __FWPUCB
  .debug_info        0x6e38        0x499 build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_info        0x72d1        0x485 build/default/debug/_ext/362756510/driver_UART.o
  .debug_info        0x7756       0x18e0 build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_info        0x9036       0x14bd build/default/debug/_ext/1375476428/boot_handler.o
- .debug_info        0xa4f3        0x63b build/default/debug/_ext/1375476428/diagnostics.o
- .debug_info        0xab2e       0x2e2b build/default/debug/_ext/1375476428/tuning.o
- .debug_info        0xd959        0x8b4 build/default/debug/_ext/1375476428/metadata.o
- .debug_info        0xe20d        0x43c build/default/debug/_ext/1200941409/state_engine.o
- .debug_info        0xe649        0x9ab build/default/debug/_ext/1200941409/mcu_config.o
- .debug_info        0xeff4        0x427 build/default/debug/_ext/1360937237/main.o
- .debug_info        0xf41b        0xc1a build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_info        0x9036        0xc1a build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_info        0x9c50       0x14bd build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_info        0xb10d        0x63b build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_info        0xb748       0x2e02 build/default/debug/_ext/1375476428/tuning.o
+ .debug_info        0xe54a        0x87a build/default/debug/_ext/1375476428/metadata.o
+ .debug_info        0xedc4        0x453 build/default/debug/_ext/1200941409/state_engine.o
+ .debug_info        0xf217        0x9ab build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_info        0xfbc2        0x427 build/default/debug/_ext/1360937237/main.o
+ .debug_info        0xffe9        0x2fd build/default/debug/_ext/1375476428/device_startup.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev       0x0000       0x1e9e
+.debug_abbrev       0x0000       0x1f5d
  *(.debug_abbrev)
  .debug_abbrev      0x0000         0xc3 build/default/debug/_ext/60165520/plib_clk.o
  .debug_abbrev      0x00c3        0x108 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1328,16 +1338,17 @@ __FWPUCB
  .debug_abbrev      0x0dee        0x12f build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_abbrev      0x0f1d         0xd7 build/default/debug/_ext/362756510/driver_UART.o
  .debug_abbrev      0x0ff4        0x2fd build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_abbrev      0x12f1        0x2c3 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_abbrev      0x15b4         0xf0 build/default/debug/_ext/1375476428/diagnostics.o
- .debug_abbrev      0x16a4        0x231 build/default/debug/_ext/1375476428/tuning.o
- .debug_abbrev      0x18d5        0x130 build/default/debug/_ext/1375476428/metadata.o
- .debug_abbrev      0x1a05         0xc7 build/default/debug/_ext/1200941409/state_engine.o
- .debug_abbrev      0x1acc         0x39 build/default/debug/_ext/1200941409/mcu_config.o
- .debug_abbrev      0x1b05         0xe2 build/default/debug/_ext/1360937237/main.o
- .debug_abbrev      0x1be7        0x2b7 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_abbrev      0x12f1        0x2b7 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_abbrev      0x15a8        0x2c3 build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_abbrev      0x186b         0xf0 build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_abbrev      0x195b        0x231 build/default/debug/_ext/1375476428/tuning.o
+ .debug_abbrev      0x1b8c        0x139 build/default/debug/_ext/1375476428/metadata.o
+ .debug_abbrev      0x1cc5         0xc7 build/default/debug/_ext/1200941409/state_engine.o
+ .debug_abbrev      0x1d8c         0x39 build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_abbrev      0x1dc5         0xe2 build/default/debug/_ext/1360937237/main.o
+ .debug_abbrev      0x1ea7         0xb6 build/default/debug/_ext/1375476428/device_startup.o
 
-.debug_line         0x0000       0x572d
+.debug_line         0x0000       0x5857
  *(.debug_line)
  .debug_line        0x0000        0x296 build/default/debug/_ext/60165520/plib_clk.o
  .debug_line        0x0296        0x2a1 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1352,16 +1363,17 @@ __FWPUCB
  .debug_line        0x20a2        0x155 build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_line        0x21f7        0x315 build/default/debug/_ext/362756510/driver_UART.o
  .debug_line        0x250c        0xaae build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_line        0x2fba        0xbe8 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_line        0x3ba2        0x181 build/default/debug/_ext/1375476428/diagnostics.o
- .debug_line        0x3d23        0xfe8 build/default/debug/_ext/1375476428/tuning.o
- .debug_line        0x4d0b        0x27f build/default/debug/_ext/1375476428/metadata.o
- .debug_line        0x4f8a        0x13d build/default/debug/_ext/1200941409/state_engine.o
- .debug_line        0x50c7         0x3d build/default/debug/_ext/1200941409/mcu_config.o
- .debug_line        0x5104        0x199 build/default/debug/_ext/1360937237/main.o
- .debug_line        0x529d        0x490 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_line        0x2fba        0x490 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_line        0x344a        0xbfc build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_line        0x4046        0x181 build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_line        0x41c7        0xffa build/default/debug/_ext/1375476428/tuning.o
+ .debug_line        0x51c1        0x290 build/default/debug/_ext/1375476428/metadata.o
+ .debug_line        0x5451        0x152 build/default/debug/_ext/1200941409/state_engine.o
+ .debug_line        0x55a3         0x3d build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_line        0x55e0        0x199 build/default/debug/_ext/1360937237/main.o
+ .debug_line        0x5779         0xde build/default/debug/_ext/1375476428/device_startup.o
 
-.debug_frame        0x0000        0xf54
+.debug_frame        0x0000        0xf6c
  *(.debug_frame)
  .debug_frame       0x0000         0x24 build/default/debug/_ext/60165520/plib_clk.o
  .debug_frame       0x0024         0xa4 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1376,15 +1388,16 @@ __FWPUCB
  .debug_frame       0x0740         0x3c build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_frame       0x077c         0x44 build/default/debug/_ext/362756510/driver_UART.o
  .debug_frame       0x07c0        0x238 build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_frame       0x09f8        0x194 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_frame       0x0b8c         0x7c build/default/debug/_ext/1375476428/diagnostics.o
- .debug_frame       0x0c08        0x158 build/default/debug/_ext/1375476428/tuning.o
- .debug_frame       0x0d60         0x88 build/default/debug/_ext/1375476428/metadata.o
- .debug_frame       0x0de8         0x24 build/default/debug/_ext/1200941409/state_engine.o
- .debug_frame       0x0e0c         0x24 build/default/debug/_ext/1360937237/main.o
- .debug_frame       0x0e30        0x124 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_frame       0x09f8        0x124 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_frame       0x0b1c        0x194 build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_frame       0x0cb0         0x7c build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_frame       0x0d2c        0x150 build/default/debug/_ext/1375476428/tuning.o
+ .debug_frame       0x0e7c         0x84 build/default/debug/_ext/1375476428/metadata.o
+ .debug_frame       0x0f00         0x24 build/default/debug/_ext/1200941409/state_engine.o
+ .debug_frame       0x0f24         0x24 build/default/debug/_ext/1360937237/main.o
+ .debug_frame       0x0f48         0x24 build/default/debug/_ext/1375476428/device_startup.o
 
-.debug_str          0x0000        0x5f2
+.debug_str          0x0000        0x5f9
  *(.debug_str)
  .debug_str         0x0000         0x2d build/default/debug/_ext/60165520/plib_clk.o
  .debug_str         0x002d          0xa build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1399,14 +1412,15 @@ __FWPUCB
  .debug_str         0x01ba         0x6f build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_str         0x0229         0x94 build/default/debug/_ext/362756510/driver_UART.o
  .debug_str         0x02bd         0x6c build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_str         0x0329         0x86 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_str         0x03af         0x29 build/default/debug/_ext/1375476428/diagnostics.o
- .debug_str         0x03d8         0x7e build/default/debug/_ext/1375476428/tuning.o
- .debug_str         0x0456         0x3c build/default/debug/_ext/1375476428/metadata.o
- .debug_str         0x0492         0xba build/default/debug/_ext/1200941409/state_engine.o
- .debug_str         0x054c          0xd build/default/debug/_ext/1200941409/mcu_config.o
- .debug_str         0x0559         0x34 build/default/debug/_ext/1360937237/main.o
- .debug_str         0x058d         0x65 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_str         0x0329         0x65 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_str         0x038e         0x86 build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_str         0x0414         0x29 build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_str         0x043d         0x67 build/default/debug/_ext/1375476428/tuning.o
+ .debug_str         0x04a4         0x25 build/default/debug/_ext/1375476428/metadata.o
+ .debug_str         0x04c9         0xcb build/default/debug/_ext/1200941409/state_engine.o
+ .debug_str         0x0594          0xd build/default/debug/_ext/1200941409/mcu_config.o
+ .debug_str         0x05a1         0x34 build/default/debug/_ext/1360937237/main.o
+ .debug_str         0x05d5         0x24 build/default/debug/_ext/1375476428/device_startup.o
 
 .debug_loc          0x0000       0x3a80
  *(.debug_loc)
@@ -1421,11 +1435,11 @@ __FWPUCB
  .debug_loc         0x0e8f         0x21 build/default/debug/_ext/1171490990/traps.o
  .debug_loc         0x0eb0         0xfc build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_loc         0x0fac        0xb30 build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_loc         0x1adc        0x605 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_loc         0x20e1         0x81 build/default/debug/_ext/1375476428/diagnostics.o
- .debug_loc         0x2162       0x114a build/default/debug/_ext/1375476428/tuning.o
- .debug_loc         0x32ac        0x198 build/default/debug/_ext/1375476428/metadata.o
- .debug_loc         0x3444        0x63c build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_loc         0x1adc        0x63c build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_loc         0x2118        0x605 build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_loc         0x271d         0x81 build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_loc         0x279e       0x114a build/default/debug/_ext/1375476428/tuning.o
+ .debug_loc         0x38e8        0x198 build/default/debug/_ext/1375476428/metadata.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1433,7 +1447,7 @@ __FWPUCB
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_ranges       0x0000        0x728
+.debug_ranges       0x0000        0x738
  *(.debug_ranges)
  .debug_ranges      0x0000         0x10 build/default/debug/_ext/60165520/plib_clk.o
  .debug_ranges      0x0010         0x50 build/default/debug/_ext/1865254177/plib_gpio.o
@@ -1448,15 +1462,16 @@ __FWPUCB
  .debug_ranges      0x0328         0x18 build/default/debug/_ext/362756510/driver_CANbus.o
  .debug_ranges      0x0340         0x20 build/default/debug/_ext/362756510/driver_UART.o
  .debug_ranges      0x0360         0xe8 build/default/debug/_ext/362756510/driver_mcp2515.o
- .debug_ranges      0x0448         0xb8 build/default/debug/_ext/1375476428/boot_handler.o
- .debug_ranges      0x0500         0x30 build/default/debug/_ext/1375476428/diagnostics.o
- .debug_ranges      0x0530         0x88 build/default/debug/_ext/1375476428/tuning.o
- .debug_ranges      0x05b8         0x58 build/default/debug/_ext/1375476428/metadata.o
- .debug_ranges      0x0610         0x10 build/default/debug/_ext/1200941409/state_engine.o
- .debug_ranges      0x0620         0x10 build/default/debug/_ext/1360937237/main.o
- .debug_ranges      0x0630         0xf8 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_ranges      0x0448         0xf8 build/default/debug/_ext/362756510/flash_eeprom.o
+ .debug_ranges      0x0540         0xb8 build/default/debug/_ext/1375476428/boot_handler.o
+ .debug_ranges      0x05f8         0x30 build/default/debug/_ext/1375476428/diagnostics.o
+ .debug_ranges      0x0628         0x88 build/default/debug/_ext/1375476428/tuning.o
+ .debug_ranges      0x06b0         0x58 build/default/debug/_ext/1375476428/metadata.o
+ .debug_ranges      0x0708         0x10 build/default/debug/_ext/1200941409/state_engine.o
+ .debug_ranges      0x0718         0x10 build/default/debug/_ext/1360937237/main.o
+ .debug_ranges      0x0728         0x10 build/default/debug/_ext/1375476428/device_startup.o
 
-.debug_aranges      0x0000        0x780
+.debug_aranges      0x0000        0x7a0
  *(.debug_aranges)
  .debug_aranges
                     0x0000         0x20 build/default/debug/_ext/60165520/plib_clk.o
@@ -1485,21 +1500,23 @@ __FWPUCB
  .debug_aranges
                     0x03f0         0xf8 build/default/debug/_ext/362756510/driver_mcp2515.o
  .debug_aranges
-                    0x04e8         0xa0 build/default/debug/_ext/1375476428/boot_handler.o
+                    0x04e8         0x78 build/default/debug/_ext/362756510/flash_eeprom.o
  .debug_aranges
-                    0x0588         0x40 build/default/debug/_ext/1375476428/diagnostics.o
+                    0x0560         0xa0 build/default/debug/_ext/1375476428/boot_handler.o
  .debug_aranges
-                    0x05c8         0x98 build/default/debug/_ext/1375476428/tuning.o
+                    0x0600         0x40 build/default/debug/_ext/1375476428/diagnostics.o
  .debug_aranges
-                    0x0660         0x50 build/default/debug/_ext/1375476428/metadata.o
+                    0x0640         0x98 build/default/debug/_ext/1375476428/tuning.o
  .debug_aranges
-                    0x06b0         0x20 build/default/debug/_ext/1200941409/state_engine.o
+                    0x06d8         0x50 build/default/debug/_ext/1375476428/metadata.o
  .debug_aranges
-                    0x06d0         0x18 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x0728         0x20 build/default/debug/_ext/1200941409/state_engine.o
  .debug_aranges
-                    0x06e8         0x20 build/default/debug/_ext/1360937237/main.o
+                    0x0748         0x18 build/default/debug/_ext/1200941409/mcu_config.o
  .debug_aranges
-                    0x0708         0x78 build/default/debug/_ext/362756510/flash_eeprom.o
+                    0x0760         0x20 build/default/debug/_ext/1360937237/main.o
+ .debug_aranges
+                    0x0780         0x20 build/default/debug/_ext/1375476428/device_startup.o
                     0x0000                  PC = 0x0
                     0x0000                  _PC = 0x0
                     0x0000                  _PCbits = 0x0
@@ -4331,7 +4348,7 @@ LOAD default_isr
 LOAD data_init
 
 __c30_signature
-                    0x0000         0x96
+                    0x0000         0x9c
  __c30_signature
                     0x0000          0x6 build/default/debug/_ext/60165520/plib_clk.o
  __c30_signature
@@ -4359,43 +4376,45 @@ __c30_signature
  __c30_signature
                     0x0048          0x6 build/default/debug/_ext/362756510/driver_mcp2515.o
  __c30_signature
-                    0x004e          0x6 build/default/debug/_ext/1375476428/boot_handler.o
+                    0x004e          0x6 build/default/debug/_ext/362756510/flash_eeprom.o
  __c30_signature
-                    0x0054          0x6 build/default/debug/_ext/1375476428/diagnostics.o
+                    0x0054          0x6 build/default/debug/_ext/1375476428/boot_handler.o
  __c30_signature
-                    0x005a          0x6 build/default/debug/_ext/1375476428/tuning.o
+                    0x005a          0x6 build/default/debug/_ext/1375476428/diagnostics.o
  __c30_signature
-                    0x0060          0x6 build/default/debug/_ext/1375476428/metadata.o
+                    0x0060          0x6 build/default/debug/_ext/1375476428/tuning.o
  __c30_signature
-                    0x0066          0x6 build/default/debug/_ext/1200941409/state_engine.o
+                    0x0066          0x6 build/default/debug/_ext/1375476428/metadata.o
  __c30_signature
-                    0x006c          0x6 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x006c          0x6 build/default/debug/_ext/1200941409/state_engine.o
  __c30_signature
-                    0x0072          0x6 build/default/debug/_ext/1360937237/main.o
+                    0x0072          0x6 build/default/debug/_ext/1200941409/mcu_config.o
  __c30_signature
-                    0x0078          0x6 build/default/debug/_ext/362756510/flash_eeprom.o
+                    0x0078          0x6 build/default/debug/_ext/1360937237/main.o
  __c30_signature
-                    0x007e          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedaa.o)
+                    0x007e          0x6 build/default/debug/_ext/1375476428/device_startup.o
  __c30_signature
-                    0x0084          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedaa.o)
+                    0x0084          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedaa.o)
  __c30_signature
-                    0x008a          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcmp.GENERIC-32PIC-AK_o)
+                    0x008a          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedaa.o)
  __c30_signature
-                    0x0090          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
+                    0x0090          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcmp.GENERIC-32PIC-AK_o)
+ __c30_signature
+                    0x0096          0x6 c:/program files/microchip/xc32/v5.00/pic32a/bin/bin/../../lib\libc99-elf.a(memcpy.GENERIC-32PIC-AK_o)
 
 .nbss.nvmCallbackObj
                     0x4000          0x8
  .nbss.nvmCallbackObj
                     0x4000          0x8 build/default/debug/_ext/60176403/plib_nvm.o
 
-.nbss.Utime.13869
+.nbss.Utime.13871
                     0x4008          0x4
- .nbss.Utime.13869
+ .nbss.Utime.13871
                     0x4008          0x4 build/default/debug/_ext/362756510/driver_UART.o
 
-.nbss.command_byte_num.13868
+.nbss.command_byte_num.13870
                     0x400c          0x4
- .nbss.command_byte_num.13868
+ .nbss.command_byte_num.13870
                     0x400c          0x4 build/default/debug/_ext/362756510/driver_UART.o
 
 .nbss.byte_adr      0x4010          0x4
@@ -4427,415 +4446,415 @@ __c30_signature
  .nbss.asyncState
                     0x4024          0x4 build/default/debug/_ext/362756510/driver_mcp2515.o
 
-.nbss.firmwareExpectedSize
+.nbss.activePage
                     0x4028          0x4
- .nbss.firmwareExpectedSize
-                    0x4028          0x4 build/default/debug/_ext/1375476428/boot_handler.o
+ .nbss.activePage
+                    0x4028          0x4 build/default/debug/_ext/362756510/flash_eeprom.o
 
-.ndata.flashWriteAddress
+.nbss.firmwareExpectedSize
                     0x402c          0x4
- .ndata.flashWriteAddress
+ .nbss.firmwareExpectedSize
                     0x402c          0x4 build/default/debug/_ext/1375476428/boot_handler.o
 
-.nbss.flashBufferIndex
+.ndata.flashWriteAddress
                     0x4030          0x4
- .nbss.flashBufferIndex
+ .ndata.flashWriteAddress
                     0x4030          0x4 build/default/debug/_ext/1375476428/boot_handler.o
 
-.nbss.temp.14416
+.nbss.flashBufferIndex
                     0x4034          0x4
- .nbss.temp.14416
-                    0x4034          0x4 build/default/debug/_ext/1375476428/tuning.o
+ .nbss.flashBufferIndex
+                    0x4034          0x4 build/default/debug/_ext/1375476428/boot_handler.o
 
-.nbss.ctr.14407
+.nbss.temp.14418
                     0x4038          0x4
- .nbss.ctr.14407
+ .nbss.temp.14418
                     0x4038          0x4 build/default/debug/_ext/1375476428/tuning.o
 
-.nbss.devid         0x403c          0x4
- .nbss.devid        0x403c          0x4 build/default/debug/_ext/1375476428/metadata.o
-                    0x403c                  _devid
+.nbss.ctr.14409
+                    0x403c          0x4
+ .nbss.ctr.14409
+                    0x403c          0x4 build/default/debug/_ext/1375476428/tuning.o
 
-.nbss.v1.13929      0x4040          0x4
- .nbss.v1.13929
-                    0x4040          0x4 build/default/debug/_ext/1200941409/state_engine.o
+.nbss.devid         0x4040          0x4
+ .nbss.devid        0x4040          0x4 build/default/debug/_ext/1375476428/metadata.o
+                    0x4040                  _devid
 
-.nbss.v2.13928      0x4044          0x4
- .nbss.v2.13928
+.nbss.v1.13931      0x4044          0x4
+ .nbss.v1.13931
                     0x4044          0x4 build/default/debug/_ext/1200941409/state_engine.o
 
-.nbss.ctr.13927
-                    0x4048          0x4
- .nbss.ctr.13927
+.nbss.v2.13930      0x4048          0x4
+ .nbss.v2.13930
                     0x4048          0x4 build/default/debug/_ext/1200941409/state_engine.o
 
-.nbss.currentState
+.nbss.ctr.13929
                     0x404c          0x4
- .nbss.currentState
+ .nbss.ctr.13929
                     0x404c          0x4 build/default/debug/_ext/1200941409/state_engine.o
 
-.ndata.CONFIG_RPM_KI_MAX
+.nbss.currentState
                     0x4050          0x4
+ .nbss.currentState
+                    0x4050          0x4 build/default/debug/_ext/1200941409/state_engine.o
+
+.ndata.CONFIG_RPM_KI_MAX
+                    0x4054          0x4
  .ndata.CONFIG_RPM_KI_MAX
-                    0x4050          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4050                  _CONFIG_RPM_KI_MAX
+                    0x4054          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4054                  _CONFIG_RPM_KI_MAX
 
 .nbss.CONFIG_RPM_KI_MIN
-                    0x4054          0x4
+                    0x4058          0x4
  .nbss.CONFIG_RPM_KI_MIN
-                    0x4054          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4054                  _CONFIG_RPM_KI_MIN
+                    0x4058          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4058                  _CONFIG_RPM_KI_MIN
 
 .ndata.CONFIG_RPM_KP_MAX
-                    0x4058          0x4
+                    0x405c          0x4
  .ndata.CONFIG_RPM_KP_MAX
-                    0x4058          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4058                  _CONFIG_RPM_KP_MAX
+                    0x405c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x405c                  _CONFIG_RPM_KP_MAX
 
 .nbss.CONFIG_RPM_KP_MIN
-                    0x405c          0x4
+                    0x4060          0x4
  .nbss.CONFIG_RPM_KP_MIN
-                    0x405c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x405c                  _CONFIG_RPM_KP_MIN
+                    0x4060          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4060                  _CONFIG_RPM_KP_MIN
 
 .nbss.CONFIG_NA2
-                    0x4060          0x4
+                    0x4064          0x4
  .nbss.CONFIG_NA2
-                    0x4060          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4060                  _CONFIG_NA2
+                    0x4064          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4064                  _CONFIG_NA2
 
 .ndata.CONFIG_IDC_MAX
-                    0x4064          0x4
+                    0x4068          0x4
  .ndata.CONFIG_IDC_MAX
-                    0x4064          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4064                  _CONFIG_IDC_MAX
+                    0x4068          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4068                  _CONFIG_IDC_MAX
 
 .ndata.CONFIG_VMIN
-                    0x4068          0x4
+                    0x406c          0x4
  .ndata.CONFIG_VMIN
-                    0x4068          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4068                  _CONFIG_VMIN
+                    0x406c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x406c                  _CONFIG_VMIN
 
 .ndata.CONFIG_VMAX
-                    0x406c          0x4
+                    0x4070          0x4
  .ndata.CONFIG_VMAX
-                    0x406c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x406c                  _CONFIG_VMAX
+                    0x4070          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4070                  _CONFIG_VMAX
 
 .ndata.CONFIG_MCU_TMAX
-                    0x4070          0x4
+                    0x4074          0x4
  .ndata.CONFIG_MCU_TMAX
-                    0x4070          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4070                  _CONFIG_MCU_TMAX
+                    0x4074          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4074                  _CONFIG_MCU_TMAX
 
 .ndata.CONFIG_MOTOR_TMAX
-                    0x4074          0x4
+                    0x4078          0x4
  .ndata.CONFIG_MOTOR_TMAX
-                    0x4074          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4074                  _CONFIG_MOTOR_TMAX
+                    0x4078          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4078                  _CONFIG_MOTOR_TMAX
 
 .ndata.CONFIG_FMOTOR_MAX
-                    0x4078          0x4
+                    0x407c          0x4
  .ndata.CONFIG_FMOTOR_MAX
-                    0x4078          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4078                  _CONFIG_FMOTOR_MAX
+                    0x407c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x407c                  _CONFIG_FMOTOR_MAX
 
 .ndata.CONFIG_IPH_MAX
-                    0x407c          0x4
+                    0x4080          0x4
  .ndata.CONFIG_IPH_MAX
-                    0x407c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x407c                  _CONFIG_IPH_MAX
+                    0x4080          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4080                  _CONFIG_IPH_MAX
 
 .nbss.CONFIG_NA1
-                    0x4080          0x4
+                    0x4084          0x4
  .nbss.CONFIG_NA1
-                    0x4080          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4080                  _CONFIG_NA1
+                    0x4084          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4084                  _CONFIG_NA1
 
 .ndata.CONFIG_GEN_VMARGIN
-                    0x4084          0x4
+                    0x4088          0x4
  .ndata.CONFIG_GEN_VMARGIN
-                    0x4084          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4084                  _CONFIG_GEN_VMARGIN
+                    0x4088          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4088                  _CONFIG_GEN_VMARGIN
 
 .ndata.CONFIG_BRAKE_ITIME
-                    0x4088          0x4
+                    0x408c          0x4
  .ndata.CONFIG_BRAKE_ITIME
-                    0x4088          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4088                  _CONFIG_BRAKE_ITIME
+                    0x408c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x408c                  _CONFIG_BRAKE_ITIME
 
 .ndata.CONFIG_BRAKE_IPH
-                    0x408c          0x4
+                    0x4090          0x4
  .ndata.CONFIG_BRAKE_IPH
-                    0x408c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x408c                  _CONFIG_BRAKE_IPH
+                    0x4090          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4090                  _CONFIG_BRAKE_IPH
 
 .ndata.CONFIG_M_IPH
-                    0x4090          0x4
+                    0x4094          0x4
  .ndata.CONFIG_M_IPH
-                    0x4090          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4090                  _CONFIG_M_IPH
+                    0x4094          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4094                  _CONFIG_M_IPH
 
 .ndata.CONFIG_L_IPH
-                    0x4094          0x4
+                    0x4098          0x4
  .ndata.CONFIG_L_IPH
-                    0x4094          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4094                  _CONFIG_L_IPH
+                    0x4098          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4098                  _CONFIG_L_IPH
 
 .ndata.CONFIG_M_IDC
-                    0x4098          0x4
+                    0x409c          0x4
  .ndata.CONFIG_M_IDC
-                    0x4098          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4098                  _CONFIG_M_IDC
+                    0x409c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x409c                  _CONFIG_M_IDC
 
 .ndata.CONFIG_L_IDC
-                    0x409c          0x4
+                    0x40a0          0x4
  .ndata.CONFIG_L_IDC
-                    0x409c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x409c                  _CONFIG_L_IDC
+                    0x40a0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40a0                  _CONFIG_L_IDC
 
 .ndata.CONFIG_M_ACCELERATION
-                    0x40a0          0x4
+                    0x40a4          0x4
  .ndata.CONFIG_M_ACCELERATION
-                    0x40a0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40a0                  _CONFIG_M_ACCELERATION
+                    0x40a4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40a4                  _CONFIG_M_ACCELERATION
 
 .ndata.CONFIG_L_ACCELERATION
-                    0x40a4          0x4
+                    0x40a8          0x4
  .ndata.CONFIG_L_ACCELERATION
-                    0x40a4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40a4                  _CONFIG_L_ACCELERATION
+                    0x40a8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40a8                  _CONFIG_L_ACCELERATION
 
 .ndata.CONFIG_RPM_KI
-                    0x40a8          0x4
+                    0x40ac          0x4
  .ndata.CONFIG_RPM_KI
-                    0x40a8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40a8                  _CONFIG_RPM_KI
+                    0x40ac          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40ac                  _CONFIG_RPM_KI
 
 .ndata.CONFIG_RPM_KP
-                    0x40ac          0x4
+                    0x40b0          0x4
  .ndata.CONFIG_RPM_KP
-                    0x40ac          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40ac                  _CONFIG_RPM_KP
+                    0x40b0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40b0                  _CONFIG_RPM_KP
 
 .nbss.CONFIG_AUTO_GEN
-                    0x40b0          0x4
+                    0x40b4          0x4
  .nbss.CONFIG_AUTO_GEN
-                    0x40b0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40b0                  _CONFIG_AUTO_GEN
+                    0x40b4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40b4                  _CONFIG_AUTO_GEN
 
 .ndata.CONFIG_GEN_VLIMIT
-                    0x40b4          0x4
+                    0x40b8          0x4
  .ndata.CONFIG_GEN_VLIMIT
-                    0x40b4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40b4                  _CONFIG_GEN_VLIMIT
+                    0x40b8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40b8                  _CONFIG_GEN_VLIMIT
 
 .ndata.CONFIG_THROTTLE_MAX
-                    0x40b8          0x4
+                    0x40bc          0x4
  .ndata.CONFIG_THROTTLE_MAX
-                    0x40b8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40b8                  _CONFIG_THROTTLE_MAX
+                    0x40bc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40bc                  _CONFIG_THROTTLE_MAX
 
 .ndata.CONFIG_THROTTLE_ZERO
-                    0x40bc          0x4
+                    0x40c0          0x4
  .ndata.CONFIG_THROTTLE_ZERO
-                    0x40bc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40bc                  _CONFIG_THROTTLE_ZERO
+                    0x40c0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40c0                  _CONFIG_THROTTLE_ZERO
 
 .ndata.CONFIG_M_RPM
-                    0x40c0          0x4
+                    0x40c4          0x4
  .ndata.CONFIG_M_RPM
-                    0x40c0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40c0                  _CONFIG_M_RPM
+                    0x40c4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40c4                  _CONFIG_M_RPM
 
 .ndata.CONFIG_L_RPM
-                    0x40c4          0x4
+                    0x40c8          0x4
  .ndata.CONFIG_L_RPM
-                    0x40c4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40c4                  _CONFIG_L_RPM
+                    0x40c8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40c8                  _CONFIG_L_RPM
 
 .ndata.CONFIG_REVERSE_RPM
-                    0x40c8          0x4
+                    0x40cc          0x4
  .ndata.CONFIG_REVERSE_RPM
-                    0x40c8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40c8                  _CONFIG_REVERSE_RPM
+                    0x40cc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40cc                  _CONFIG_REVERSE_RPM
 
 .ndata.CONFIG_MOTOR_MODE
-                    0x40cc          0x4
+                    0x40d0          0x4
  .ndata.CONFIG_MOTOR_MODE
-                    0x40cc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40cc                  _CONFIG_MOTOR_MODE
+                    0x40d0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40d0                  _CONFIG_MOTOR_MODE
 
 .ndata.CONFIG_IDC_FAULT
-                    0x40d0          0x4
+                    0x40d4          0x4
  .ndata.CONFIG_IDC_FAULT
-                    0x40d0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40d0                  _CONFIG_IDC_FAULT
+                    0x40d4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40d4                  _CONFIG_IDC_FAULT
 
 .ndata.CONFIG_IPH_FAULT
-                    0x40d4          0x4
+                    0x40d8          0x4
  .ndata.CONFIG_IPH_FAULT
-                    0x40d4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40d4                  _CONFIG_IPH_FAULT
+                    0x40d8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40d8                  _CONFIG_IPH_FAULT
 
 .ndata.CONFIG_IDC_NMAX
-                    0x40d8          0x4
+                    0x40dc          0x4
  .ndata.CONFIG_IDC_NMAX
-                    0x40d8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40d8                  _CONFIG_IDC_NMAX
+                    0x40dc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40dc                  _CONFIG_IDC_NMAX
 
 .ndata.CONFIG_IDC_PMAX
-                    0x40dc          0x4
+                    0x40e0          0x4
  .ndata.CONFIG_IDC_PMAX
-                    0x40dc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40dc                  _CONFIG_IDC_PMAX
+                    0x40e0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40e0                  _CONFIG_IDC_PMAX
 
 .ndata.CONFIG_UV_FAULT
-                    0x40e0          0x4
+                    0x40e4          0x4
  .ndata.CONFIG_UV_FAULT
-                    0x40e0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40e0                  _CONFIG_UV_FAULT
+                    0x40e4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40e4                  _CONFIG_UV_FAULT
 
 .ndata.CONFIG_OV_FAULT
-                    0x40e4          0x4
+                    0x40e8          0x4
  .ndata.CONFIG_OV_FAULT
-                    0x40e4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40e4                  _CONFIG_OV_FAULT
+                    0x40e8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40e8                  _CONFIG_OV_FAULT
 
 .ndata.CONFIG_IDC_DEFAULT
-                    0x40e8          0x4
+                    0x40ec          0x4
  .ndata.CONFIG_IDC_DEFAULT
-                    0x40e8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40e8                  _CONFIG_IDC_DEFAULT
+                    0x40ec          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40ec                  _CONFIG_IDC_DEFAULT
 
 .ndata.CONFIG_VDC_MAX
-                    0x40ec          0x4
+                    0x40f0          0x4
  .ndata.CONFIG_VDC_MAX
-                    0x40ec          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40ec                  _CONFIG_VDC_MAX
+                    0x40f0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40f0                  _CONFIG_VDC_MAX
 
 .ndata.CONFIG_MCU_TFAULT
-                    0x40f0          0x4
+                    0x40f4          0x4
  .ndata.CONFIG_MCU_TFAULT
-                    0x40f0          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40f0                  _CONFIG_MCU_TFAULT
+                    0x40f4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40f4                  _CONFIG_MCU_TFAULT
 
 .ndata.CONFIG_MCU_DERATE
-                    0x40f4          0x4
+                    0x40f8          0x4
  .ndata.CONFIG_MCU_DERATE
-                    0x40f4          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40f4                  _CONFIG_MCU_DERATE
+                    0x40f8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40f8                  _CONFIG_MCU_DERATE
 
 .ndata.CONFIG_MOTOR_TFAULT
-                    0x40f8          0x4
+                    0x40fc          0x4
  .ndata.CONFIG_MOTOR_TFAULT
-                    0x40f8          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40f8                  _CONFIG_MOTOR_TFAULT
+                    0x40fc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x40fc                  _CONFIG_MOTOR_TFAULT
 
 .ndata.CONFIG_MOTOR_DERATE
-                    0x40fc          0x4
+                    0x4100          0x4
  .ndata.CONFIG_MOTOR_DERATE
-                    0x40fc          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x40fc                  _CONFIG_MOTOR_DERATE
+                    0x4100          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4100                  _CONFIG_MOTOR_DERATE
 
 .ndata.CONFIG_RPM_FAULT
-                    0x4100          0x4
+                    0x4104          0x4
  .ndata.CONFIG_RPM_FAULT
-                    0x4100          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4100                  _CONFIG_RPM_FAULT
+                    0x4104          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4104                  _CONFIG_RPM_FAULT
 
 .ndata.CONFIG_RPM_TO_KMPH
-                    0x4104          0x4
+                    0x4108          0x4
  .ndata.CONFIG_RPM_TO_KMPH
-                    0x4104          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4104                  _CONFIG_RPM_TO_KMPH
+                    0x4108          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4108                  _CONFIG_RPM_TO_KMPH
 
 .ndata.CONFIG_CAN_BAUD
-                    0x4108          0x4
+                    0x410c          0x4
  .ndata.CONFIG_CAN_BAUD
-                    0x4108          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4108                  _CONFIG_CAN_BAUD
+                    0x410c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x410c                  _CONFIG_CAN_BAUD
 
 .nbss.CONFIG_ROTATION_DIRECTION
-                    0x410c          0x4
+                    0x4110          0x4
  .nbss.CONFIG_ROTATION_DIRECTION
-                    0x410c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x410c                  _CONFIG_ROTATION_DIRECTION
+                    0x4110          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4110                  _CONFIG_ROTATION_DIRECTION
 
 .nbss.CONFIG_SENSOR_DIRECTION_ESTIMATE
-                    0x4110          0x4
+                    0x4114          0x4
  .nbss.CONFIG_SENSOR_DIRECTION_ESTIMATE
-                    0x4110          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4110                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
+                    0x4114          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4114                  _CONFIG_SENSOR_DIRECTION_ESTIMATE
 
 .nbss.CONFIG_ZERO_ANGLE_ESTIMATE
-                    0x4114          0x4
+                    0x4118          0x4
  .nbss.CONFIG_ZERO_ANGLE_ESTIMATE
-                    0x4114          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4114                  _CONFIG_ZERO_ANGLE_ESTIMATE
+                    0x4118          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4118                  _CONFIG_ZERO_ANGLE_ESTIMATE
 
 .nbss.CONFIG_SENSOR_DIRECTION
-                    0x4118          0x4
+                    0x411c          0x4
  .nbss.CONFIG_SENSOR_DIRECTION
-                    0x4118          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4118                  _CONFIG_SENSOR_DIRECTION
+                    0x411c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x411c                  _CONFIG_SENSOR_DIRECTION
 
 .ndata.CONFIG_ZERO_ANGLE
-                    0x411c          0x4
+                    0x4120          0x4
  .ndata.CONFIG_ZERO_ANGLE
-                    0x411c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x411c                  _CONFIG_ZERO_ANGLE
+                    0x4120          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4120                  _CONFIG_ZERO_ANGLE
 
 .ndata.CONFIG_V_CONSTANT
-                    0x4120          0x4
+                    0x4124          0x4
  .ndata.CONFIG_V_CONSTANT
-                    0x4120          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4120                  _CONFIG_V_CONSTANT
+                    0x4124          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4124                  _CONFIG_V_CONSTANT
 
 .ndata.CONFIG_LQ
-                    0x4124          0x4
+                    0x4128          0x4
  .ndata.CONFIG_LQ
-                    0x4124          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4124                  _CONFIG_LQ
+                    0x4128          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4128                  _CONFIG_LQ
 
 .ndata.CONFIG_LD
-                    0x4128          0x4
+                    0x412c          0x4
  .ndata.CONFIG_LD
-                    0x4128          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4128                  _CONFIG_LD
+                    0x412c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x412c                  _CONFIG_LD
 
 .ndata.CONFIG_RPH
-                    0x412c          0x4
+                    0x4130          0x4
  .ndata.CONFIG_RPH
-                    0x412c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x412c                  _CONFIG_RPH
+                    0x4130          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4130                  _CONFIG_RPH
 
 .ndata.CONFIG_POLES
-                    0x4130          0x4
+                    0x4134          0x4
  .ndata.CONFIG_POLES
-                    0x4130          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4130                  _CONFIG_POLES
+                    0x4134          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4134                  _CONFIG_POLES
 
 .ndata.CONFIG_H_RPM
-                    0x4134          0x4
+                    0x4138          0x4
  .ndata.CONFIG_H_RPM
-                    0x4134          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4134                  _CONFIG_H_RPM
+                    0x4138          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x4138                  _CONFIG_H_RPM
 
 .ndata.CONFIG_H_IPH
-                    0x4138          0x4
- .ndata.CONFIG_H_IPH
-                    0x4138          0x4 build/default/debug/_ext/1200941409/mcu_config.o
-                    0x4138                  _CONFIG_H_IPH
-
-.nbss.activePage
                     0x413c          0x4
- .nbss.activePage
-                    0x413c          0x4 build/default/debug/_ext/362756510/flash_eeprom.o
+ .ndata.CONFIG_H_IPH
+                    0x413c          0x4 build/default/debug/_ext/1200941409/mcu_config.o
+                    0x413c                  _CONFIG_H_IPH
 
-.nbss.recieved_byte.13867
+.nbss.recieved_byte.13869
                     0x4140          0x2
- .nbss.recieved_byte.13867
+ .nbss.recieved_byte.13869
                     0x4140          0x2 build/default/debug/_ext/362756510/driver_UART.o
 
 .nbss.rxFifoCount
@@ -4937,25 +4956,25 @@ __c30_signature
  .nbss.firmwareUpdateActive
                     0x4168          0x2 build/default/debug/_ext/1375476428/boot_handler.o
 
-.bss.eepromBuffer
-                    0x416a        0xfe0
- .bss.eepromBuffer
-                    0x416a        0xfe0 build/default/debug/_ext/1375476428/metadata.o
-                    0x416a                  _eepromBuffer
-
 .bss.tempBuffer.13755
-                    0x514a        0xfe0
+                    0x416a        0xfe0
  .bss.tempBuffer.13755
-                    0x514a        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
+                    0x416a        0xfe0 build/default/debug/_ext/362756510/flash_eeprom.o
+
+.bss.eepromBuffer
+                    0x514a        0xfe0
+ .bss.eepromBuffer
+                    0x514a        0xfe0 build/default/debug/_ext/1375476428/device_startup.o
+                    0x514a                  _eepromBuffer
 
 .bss.flashBuffer
                     0x612a        0x400
  .bss.flashBuffer
                     0x612a        0x400 build/default/debug/_ext/1375476428/boot_handler.o
 
-.bss.rowData.13967
+.bss.rowData.13969
                     0x652c        0x200
- .bss.rowData.13967
+ .bss.rowData.13969
                     0x652c        0x200 build/default/debug/_ext/1375476428/boot_handler.o
 
 .bss.tunerWriteMatrix
@@ -5009,9 +5028,9 @@ __c30_signature
                     0x6b26         0x16 build/default/debug/_ext/1375476428/metadata.o
                     0x6b26                  _softwareId
 
-.bss.uart_command.13870
+.bss.uart_command.13872
                     0x6b3c         0x14
- .bss.uart_command.13870
+ .bss.uart_command.13872
                     0x6b3c         0x14 build/default/debug/_ext/362756510/driver_UART.o
 
 .bss.send_tuning_data
@@ -5063,19 +5082,19 @@ __c30_signature
  .bss.canRxBuffer
                     0x6be4          0x8 build/default/debug/_ext/1375476428/boot_handler.o
 
-.data.data.13897
+.data.data.13899
                     0x6bec          0x8
- .data.data.13897
+ .data.data.13899
                     0x6bec          0x8 build/default/debug/_ext/1375476428/diagnostics.o
 
-.bss.data.14415
+.bss.data.14417
                     0x6bf4          0x8
- .bss.data.14415
+ .bss.data.14417
                     0x6bf4          0x8 build/default/debug/_ext/1375476428/tuning.o
 
-.bss.data.14408
+.bss.data.14410
                     0x6bfc          0x8
- .bss.data.14408
+ .bss.data.14410
                     0x6bfc          0x8 build/default/debug/_ext/1375476428/tuning.o
 
 .data.appSize       0x6c04          0x8
@@ -5424,296 +5443,296 @@ __ivt_0           0x808040        0x480
                   0x80c254        0x1c8 build/default/debug/_ext/1375476428/boot_handler.o
                   0x80c254                  _Boot_App_Size_Handler
 
-.text.Metadata_Init
-                  0x80c41c        0x1c0
- .text.Metadata_Init
-                  0x80c41c        0x1c0 build/default/debug/_ext/1375476428/metadata.o
-                  0x80c41c                  _Metadata_Init
-
 .text.SPI1_WriteRead
-                  0x80c5dc        0x1bc
+                  0x80c41c        0x1bc
  .text.SPI1_WriteRead
-                  0x80c5dc        0x1bc build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80c5dc                  _SPI1_WriteRead
+                  0x80c41c        0x1bc build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80c41c                  _SPI1_WriteRead
+
+.text.Metadata_Init
+                  0x80c5d8        0x198
+ .text.Metadata_Init
+                  0x80c5d8        0x198 build/default/debug/_ext/1375476428/metadata.o
+                  0x80c5d8                  _Metadata_Init
 
 .text.MCP2515_FrameDequeue
-                  0x80c798        0x154
+                  0x80c770        0x154
  .text.MCP2515_FrameDequeue
-                  0x80c798        0x154 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80c770        0x154 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.FLASH_EEPROM_Write_Page
-                  0x80c8ec        0x150
+                  0x80c8c4        0x150
  .text.FLASH_EEPROM_Write_Page
-                  0x80c8ec        0x150 build/default/debug/_ext/362756510/flash_eeprom.o
-                  0x80c8ec                  _FLASH_EEPROM_Write_Page
+                  0x80c8c4        0x150 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80c8c4                  _FLASH_EEPROM_Write_Page
 
 .text.CLOCK_Initialize
-                  0x80ca3c        0x14c
+                  0x80ca14        0x14c
  .text.CLOCK_Initialize
-                  0x80ca3c        0x14c build/default/debug/_ext/60165520/plib_clk.o
-                  0x80ca3c                  _CLOCK_Initialize
+                  0x80ca14        0x14c build/default/debug/_ext/60165520/plib_clk.o
+                  0x80ca14                  _CLOCK_Initialize
 
 .text.Boot_App_Erase_Handler
-                  0x80cb88        0x14c
+                  0x80cb60        0x14c
  .text.Boot_App_Erase_Handler
-                  0x80cb88        0x14c build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80cb88                  _Boot_App_Erase_Handler
+                  0x80cb60        0x14c build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80cb60                  _Boot_App_Erase_Handler
 
 .text.SPI1RX_InterruptHandler
-                  0x80ccd4        0x140
+                  0x80ccac        0x140
  .text.SPI1RX_InterruptHandler
-                  0x80ccd4        0x140 build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80ccd4                  _SPI1RX_InterruptHandler
+                  0x80ccac        0x140 build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80ccac                  _SPI1RX_InterruptHandler
 
 .text.Boot_APP_CRC_Handler
-                  0x80ce14        0x13c
+                  0x80cdec        0x13c
  .text.Boot_APP_CRC_Handler
-                  0x80ce14        0x13c build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80ce14                  _Boot_APP_CRC_Handler
+                  0x80cdec        0x13c build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80cdec                  _Boot_APP_CRC_Handler
 
 .text.MCP2515_FrameEnqueue
-                  0x80cf50        0x128
+                  0x80cf28        0x128
  .text.MCP2515_FrameEnqueue
-                  0x80cf50        0x128 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80cf28        0x128 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.App_Firmware_Write_Flash
-                  0x80d078        0x120
+                  0x80d050        0x120
  .text.App_Firmware_Write_Flash
-                  0x80d078        0x120 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80d078                  _App_Firmware_Write_Flash
+                  0x80d050        0x120 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80d050                  _App_Firmware_Write_Flash
 
 .text.CAN_Tuner_Send_Zero_Angle
-                  0x80d198        0x120
+                  0x80d170        0x120
  .text.CAN_Tuner_Send_Zero_Angle
-                  0x80d198        0x120 build/default/debug/_ext/1375476428/tuning.o
-                  0x80d198                  _CAN_Tuner_Send_Zero_Angle
+                  0x80d170        0x120 build/default/debug/_ext/1375476428/tuning.o
+                  0x80d170                  _CAN_Tuner_Send_Zero_Angle
 
 .text.Boot_App_Chunk_Handler
-                  0x80d2b8         0xf8
+                  0x80d290         0xf8
  .text.Boot_App_Chunk_Handler
-                  0x80d2b8         0xf8 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80d2b8                  _Boot_App_Chunk_Handler
+                  0x80d290         0xf8 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80d290                  _Boot_App_Chunk_Handler
 
 .text.MCP2515_Init
-                  0x80d3b0         0xf4
+                  0x80d388         0xf4
  .text.MCP2515_Init
-                  0x80d3b0         0xf4 build/default/debug/_ext/362756510/driver_mcp2515.o
-                  0x80d3b0                  _MCP2515_Init
+                  0x80d388         0xf4 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80d388                  _MCP2515_Init
 
 .text.Boot_PIC_ID_Handler
-                  0x80d4a4         0xf4
+                  0x80d47c         0xf4
  .text.Boot_PIC_ID_Handler
-                  0x80d4a4         0xf4 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80d4a4                  _Boot_PIC_ID_Handler
+                  0x80d47c         0xf4 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80d47c                  _Boot_PIC_ID_Handler
 
 .text.State_Engine_Tasks
-                  0x80d598         0xdc
+                  0x80d570         0xe0
  .text.State_Engine_Tasks
-                  0x80d598         0xdc build/default/debug/_ext/1200941409/state_engine.o
-                  0x80d598                  _State_Engine_Tasks
+                  0x80d570         0xe0 build/default/debug/_ext/1200941409/state_engine.o
+                  0x80d570                  _State_Engine_Tasks
 
 .text.Run_Boot_Handler
-                  0x80d674         0xc8
+                  0x80d650         0xc8
  .text.Run_Boot_Handler
-                  0x80d674         0xc8 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80d674                  _Run_Boot_Handler
+                  0x80d650         0xc8 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80d650                  _Run_Boot_Handler
 
 .text.Get_Software_ID
-                  0x80d73c         0xc8
+                  0x80d718         0xc8
  .text.Get_Software_ID
-                  0x80d73c         0xc8 build/default/debug/_ext/1375476428/metadata.o
-                  0x80d73c                  _Get_Software_ID
+                  0x80d718         0xc8 build/default/debug/_ext/1375476428/metadata.o
+                  0x80d718                  _Get_Software_ID
 
 .text.Boot_Status_Handler
-                  0x80d804         0xa4
+                  0x80d7e0         0xa4
  .text.Boot_Status_Handler
-                  0x80d804         0xa4 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80d804                  _Boot_Status_Handler
+                  0x80d7e0         0xa4 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80d7e0                  _Boot_Status_Handler
 
 .text.page_is_valid
-                  0x80d8a8         0x94
+                  0x80d884         0x94
  .text.page_is_valid
-                  0x80d8a8         0x94 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80d884         0x94 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.SPI_FIFO_Fill
-                  0x80d93c         0x90
+                  0x80d918         0x90
  .text.SPI_FIFO_Fill
-                  0x80d93c         0x90 build/default/debug/_ext/1868329136/plib_spi1_host.o
-
-.text.Tuner_Init
-                  0x80d9cc         0x8c
- .text.Tuner_Init
-                  0x80d9cc         0x8c build/default/debug/_ext/1375476428/tuning.o
-                  0x80d9cc                  _Tuner_Init
+                  0x80d918         0x90 build/default/debug/_ext/1868329136/plib_spi1_host.o
 
 .text.Get_Model_Number
-                  0x80da58         0x8c
+                  0x80d9a8         0x8c
  .text.Get_Model_Number
-                  0x80da58         0x8c build/default/debug/_ext/1375476428/metadata.o
-                  0x80da58                  _Get_Model_Number
+                  0x80d9a8         0x8c build/default/debug/_ext/1375476428/metadata.o
+                  0x80d9a8                  _Get_Model_Number
 
 .text.MCP2515_StartWriteTransaction
-                  0x80dae4         0x80
+                  0x80da34         0x80
  .text.MCP2515_StartWriteTransaction
-                  0x80dae4         0x80 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80da34         0x80 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_StartReadTransaction
-                  0x80db64         0x7c
+                  0x80dab4         0x7c
  .text.MCP2515_StartReadTransaction
-                  0x80db64         0x7c build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80dab4         0x7c build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.GPIO_Initialize
-                  0x80dbe0         0x78
+                  0x80db30         0x78
  .text.GPIO_Initialize
-                  0x80dbe0         0x78 build/default/debug/_ext/1865254177/plib_gpio.o
-                  0x80dbe0                  _GPIO_Initialize
+                  0x80db30         0x78 build/default/debug/_ext/1865254177/plib_gpio.o
+                  0x80db30                  _GPIO_Initialize
 
 .text.CANbus_read
-                  0x80dc58         0x78
+                  0x80dba8         0x78
  .text.CANbus_read
-                  0x80dc58         0x78 build/default/debug/_ext/362756510/driver_CANbus.o
-                  0x80dc58                  _CANbus_read
+                  0x80dba8         0x78 build/default/debug/_ext/362756510/driver_CANbus.o
+                  0x80dba8                  _CANbus_read
 
 .text.CAN_Tuner_Handler
-                  0x80dcd0         0x74
+                  0x80dc20         0x74
  .text.CAN_Tuner_Handler
-                  0x80dcd0         0x74 build/default/debug/_ext/1375476428/tuning.o
-                  0x80dcd0                  _CAN_Tuner_Handler
+                  0x80dc20         0x74 build/default/debug/_ext/1375476428/tuning.o
+                  0x80dc20                  _CAN_Tuner_Handler
 
 .text.SPI1TX_InterruptHandler
-                  0x80dd44         0x70
+                  0x80dc94         0x70
  .text.SPI1TX_InterruptHandler
-                  0x80dd44         0x70 build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80dd44                  _SPI1TX_InterruptHandler
-
-.text.Boot_App_Jump
-                  0x80ddb4         0x70
- .text.Boot_App_Jump
-                  0x80ddb4         0x70 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80ddb4                  _Boot_App_Jump
+                  0x80dc94         0x70 build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80dc94                  _SPI1TX_InterruptHandler
 
 .text.calculate_crc
-                  0x80de24         0x70
+                  0x80dd04         0x70
  .text.calculate_crc
-                  0x80de24         0x70 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80dd04         0x70 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.FLASH_EEPROM_Read_Page
-                  0x80de94         0x70
+                  0x80dd74         0x70
  .text.FLASH_EEPROM_Read_Page
-                  0x80de94         0x70 build/default/debug/_ext/362756510/flash_eeprom.o
-                  0x80de94                  _FLASH_EEPROM_Read_Page
+                  0x80dd74         0x70 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80dd74                  _FLASH_EEPROM_Read_Page
+
+.text.Boot_App_Jump
+                  0x80dde4         0x70
+ .text.Boot_App_Jump
+                  0x80dde4         0x70 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80dde4                  _Boot_App_Jump
 
 .text.Get_Part_Number
-                  0x80df04         0x68
+                  0x80de54         0x68
  .text.Get_Part_Number
-                  0x80df04         0x68 build/default/debug/_ext/1375476428/metadata.o
-                  0x80df04                  _Get_Part_Number
+                  0x80de54         0x68 build/default/debug/_ext/1375476428/metadata.o
+                  0x80de54                  _Get_Part_Number
 
 .text.SPI1E_InterruptHandler
-                  0x80df6c         0x64
+                  0x80debc         0x64
  .text.SPI1E_InterruptHandler
-                  0x80df6c         0x64 build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80df6c                  _SPI1E_InterruptHandler
+                  0x80debc         0x64 build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80debc                  _SPI1E_InterruptHandler
 
 .text.C0_send_TU_data_CAN
-                  0x80dfd0         0x64
+                  0x80df20         0x64
  .text.C0_send_TU_data_CAN
-                  0x80dfd0         0x64 build/default/debug/_ext/1375476428/diagnostics.o
-                  0x80dfd0                  _C0_send_TU_data_CAN
+                  0x80df20         0x64 build/default/debug/_ext/1375476428/diagnostics.o
+                  0x80df20                  _C0_send_TU_data_CAN
+
+.text.Tuner_Init
+                  0x80df84         0x60
+ .text.Tuner_Init
+                  0x80df84         0x60 build/default/debug/_ext/1375476428/tuning.o
+                  0x80df84                  _Tuner_Init
 
 .text.CAN_Tuner_Send_PIC_ID_1
-                  0x80e034         0x60
+                  0x80dfe4         0x60
  .text.CAN_Tuner_Send_PIC_ID_1
-                  0x80e034         0x60 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e034                  _CAN_Tuner_Send_PIC_ID_1
+                  0x80dfe4         0x60 build/default/debug/_ext/1375476428/tuning.o
+                  0x80dfe4                  _CAN_Tuner_Send_PIC_ID_1
 
 .text.CAN_Tuner_Send_PIC_ID_2
-                  0x80e094         0x60
+                  0x80e044         0x60
  .text.CAN_Tuner_Send_PIC_ID_2
-                  0x80e094         0x60 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e094                  _CAN_Tuner_Send_PIC_ID_2
+                  0x80e044         0x60 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e044                  _CAN_Tuner_Send_PIC_ID_2
 
 .text.Get_PIC_ID
-                  0x80e0f4         0x5c
+                  0x80e0a4         0x5c
  .text.Get_PIC_ID
-                  0x80e0f4         0x5c build/default/debug/_ext/1375476428/metadata.o
-                  0x80e0f4                  _Get_PIC_ID
+                  0x80e0a4         0x5c build/default/debug/_ext/1375476428/metadata.o
+                  0x80e0a4                  _Get_PIC_ID
 
 .text.Get_Firmware_ID
-                  0x80e150         0x5c
+                  0x80e100         0x5c
  .text.Get_Firmware_ID
-                  0x80e150         0x5c build/default/debug/_ext/1375476428/metadata.o
-                  0x80e150                  _Get_Firmware_ID
+                  0x80e100         0x5c build/default/debug/_ext/1375476428/metadata.o
+                  0x80e100                  _Get_Firmware_ID
 
 .text.INTC_Initialize
-                  0x80e1ac         0x54
+                  0x80e15c         0x54
  .text.INTC_Initialize
-                  0x80e1ac         0x54 build/default/debug/_ext/1865312166/plib_intc.o
-                  0x80e1ac                  _INTC_Initialize
+                  0x80e15c         0x54 build/default/debug/_ext/1865312166/plib_intc.o
+                  0x80e15c                  _INTC_Initialize
 
 .text.Boot_Stay_In_Boot_Handler
-                  0x80e200         0x54
+                  0x80e1b0         0x54
  .text.Boot_Stay_In_Boot_Handler
-                  0x80e200         0x54 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80e200                  _Boot_Stay_In_Boot_Handler
+                  0x80e1b0         0x54 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80e1b0                  _Boot_Stay_In_Boot_Handler
 
 .text.UART_Tuner_Send_PIC_ID
-                  0x80e254         0x54
+                  0x80e204         0x54
  .text.UART_Tuner_Send_PIC_ID
-                  0x80e254         0x54 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e254                  _UART_Tuner_Send_PIC_ID
+                  0x80e204         0x54 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e204                  _UART_Tuner_Send_PIC_ID
 
 .text.UART_Tuner_Command
-                  0x80e2a8         0x50
+                  0x80e258         0x50
  .text.UART_Tuner_Command
-                  0x80e2a8         0x50 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e2a8                  _UART_Tuner_Command
+                  0x80e258         0x50 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e258                  _UART_Tuner_Command
 
 .text.NVM_QuadWordWrite
-                  0x80e2f8         0x4c
+                  0x80e2a8         0x4c
  .text.NVM_QuadWordWrite
-                  0x80e2f8         0x4c build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80e2f8                  _NVM_QuadWordWrite
+                  0x80e2a8         0x4c build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80e2a8                  _NVM_QuadWordWrite
 
 .text.SPI1_Initialize
-                  0x80e344         0x4c
+                  0x80e2f4         0x4c
  .text.SPI1_Initialize
-                  0x80e344         0x4c build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80e344                  _SPI1_Initialize
+                  0x80e2f4         0x4c build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80e2f4                  _SPI1_Initialize
 
 .text.T1_InterruptHandler
-                  0x80e390         0x4c
+                  0x80e340         0x4c
  .text.T1_InterruptHandler
-                  0x80e390         0x4c build/default/debug/_ext/60181895/plib_tmr1.o
-                  0x80e390                  _T1_InterruptHandler
+                  0x80e340         0x4c build/default/debug/_ext/60181895/plib_tmr1.o
+                  0x80e340                  _T1_InterruptHandler
 
 .text.Boot_APP_CRC32_Software
-                  0x80e3dc         0x4c
+                  0x80e38c         0x4c
  .text.Boot_APP_CRC32_Software
-                  0x80e3dc         0x4c build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80e3dc                  _Boot_APP_CRC32_Software
+                  0x80e38c         0x4c build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80e38c                  _Boot_APP_CRC32_Software
 
 .text.MCP2515_ReadRegister
-                  0x80e428         0x48
+                  0x80e3d8         0x48
  .text.MCP2515_ReadRegister
-                  0x80e428         0x48 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e3d8         0x48 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.write_quadword
-                  0x80e470         0x48
+                  0x80e420         0x48
  .text.write_quadword
-                  0x80e470         0x48 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80e420         0x48 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.FLASH_EEPROM_Init
-                  0x80e4b8         0x48
+                  0x80e468         0x48
  .text.FLASH_EEPROM_Init
-                  0x80e4b8         0x48 build/default/debug/_ext/362756510/flash_eeprom.o
-                  0x80e4b8                  _FLASH_EEPROM_Init
+                  0x80e468         0x48 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80e468                  _FLASH_EEPROM_Init
 
 .text.Build_Metadata
-                  0x80e500         0x44
+                  0x80e4b0         0x44
  .text.Build_Metadata
-                  0x80e500         0x44 build/default/debug/_ext/1375476428/metadata.o
-                  0x80e500                  _Build_Metadata
+                  0x80e4b0         0x44 build/default/debug/_ext/1375476428/metadata.o
+                  0x80e4b0                  _Build_Metadata
 
 .text.MCP2515_BitModify
                   0x808004         0x3c
@@ -5721,291 +5740,297 @@ __ivt_0           0x808040        0x480
                   0x808004         0x3c build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.find_latest_page
-                  0x80e544         0x3c
+                  0x80e4f4         0x3c
  .text.find_latest_page
-                  0x80e544         0x3c build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80e4f4         0x3c build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.MCP2515_Reset
-                  0x80e580         0x38
+                  0x80e530         0x38
  .text.MCP2515_Reset
-                  0x80e580         0x38 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e530         0x38 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_WriteRegister
-                  0x80e5b8         0x38
+                  0x80e568         0x38
  .text.MCP2515_WriteRegister
-                  0x80e5b8         0x38 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e568         0x38 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.Boot_App_Chunk_Ack
-                  0x80e5f0         0x38
+                  0x80e5a0         0x38
  .text.Boot_App_Chunk_Ack
-                  0x80e5f0         0x38 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80e5f0                  _Boot_App_Chunk_Ack
+                  0x80e5a0         0x38 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80e5a0                  _Boot_App_Chunk_Ack
 
 .text.CAN_Tuner_Write_Flash
-                  0x80e628         0x38
+                  0x80e5d8         0x38
  .text.CAN_Tuner_Write_Flash
-                  0x80e628         0x38 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e628                  _CAN_Tuner_Write_Flash
+                  0x80e5d8         0x38 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e5d8                  _CAN_Tuner_Write_Flash
 
 .text.CAN_Send_Status
-                  0x80e660         0x34
+                  0x80e610         0x34
  .text.CAN_Send_Status
-                  0x80e660         0x34 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e660                  _CAN_Send_Status
+                  0x80e610         0x34 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e610                  _CAN_Send_Status
 
 .text.NVM_RowWrite
-                  0x80e694         0x30
+                  0x80e644         0x30
  .text.NVM_RowWrite
-                  0x80e694         0x30 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80e694                  _NVM_RowWrite
+                  0x80e644         0x30 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80e644                  _NVM_RowWrite
 
 .text.TMR1_Initialize
-                  0x80e6c4         0x30
+                  0x80e674         0x30
  .text.TMR1_Initialize
-                  0x80e6c4         0x30 build/default/debug/_ext/60181895/plib_tmr1.o
-                  0x80e6c4                  _TMR1_Initialize
+                  0x80e674         0x30 build/default/debug/_ext/60181895/plib_tmr1.o
+                  0x80e674                  _TMR1_Initialize
 
 .text.send_byte_uart
-                  0x80e6f4         0x30
+                  0x80e6a4         0x30
  .text.send_byte_uart
-                  0x80e6f4         0x30 build/default/debug/_ext/362756510/driver_UART.o
-                  0x80e6f4                  _send_byte_uart
+                  0x80e6a4         0x30 build/default/debug/_ext/362756510/driver_UART.o
+                  0x80e6a4                  _send_byte_uart
 
 .text.MCP2515_Delay
-                  0x80e724         0x30
+                  0x80e6d4         0x30
  .text.MCP2515_Delay
-                  0x80e724         0x30 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e6d4         0x30 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.Boot_Is_App_Present
-                  0x80e754         0x2c
+                  0x80e704         0x2c
  .text.Boot_Is_App_Present
-                  0x80e754         0x2c build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80e754                  _Boot_Is_App_Present
+                  0x80e704         0x2c build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80e704                  _Boot_Is_App_Present
 
 .text.SPI1_IsBusy
-                  0x80e780         0x28
+                  0x80e730         0x28
  .text.SPI1_IsBusy
-                  0x80e780         0x28 build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80e780                  _SPI1_IsBusy
+                  0x80e730         0x28 build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80e730                  _SPI1_IsBusy
 
 .text.UART1_Initialize
-                  0x80e7a8         0x28
+                  0x80e758         0x28
  .text.UART1_Initialize
-                  0x80e7a8         0x28 build/default/debug/_ext/1865657120/plib_uart1.o
-                  0x80e7a8                  _UART1_Initialize
+                  0x80e758         0x28 build/default/debug/_ext/1865657120/plib_uart1.o
+                  0x80e758                  _UART1_Initialize
 
 .text.SYS_Initialize
-                  0x80e7d0         0x28
+                  0x80e780         0x28
  .text.SYS_Initialize
-                  0x80e7d0         0x28 build/default/debug/_ext/1171490990/initialization.o
-                  0x80e7d0                  _SYS_Initialize
+                  0x80e780         0x28 build/default/debug/_ext/1171490990/initialization.o
+                  0x80e780                  _SYS_Initialize
 
 .text.MCP2515_AsyncBitModify
-                  0x80e7f8         0x28
+                  0x80e7a8         0x28
  .text.MCP2515_AsyncBitModify
-                  0x80e7f8         0x28 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e7a8         0x28 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.CANbus_write
-                  0x80e820         0x24
+                  0x80e7d0         0x24
  .text.CANbus_write
-                  0x80e820         0x24 build/default/debug/_ext/362756510/driver_CANbus.o
-                  0x80e820                  _CANbus_write
+                  0x80e7d0         0x24 build/default/debug/_ext/362756510/driver_CANbus.o
+                  0x80e7d0                  _CANbus_write
 
 .text.MCP2515_DelayMs
-                  0x80e844         0x24
+                  0x80e7f4         0x24
  .text.MCP2515_DelayMs
-                  0x80e844         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e7f4         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_AsyncRegisterCallback
-                  0x80e868         0x24
+                  0x80e818         0x24
  .text.MCP2515_AsyncRegisterCallback
-                  0x80e868         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e818         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_AsyncReadRegister
-                  0x80e88c         0x24
+                  0x80e83c         0x24
  .text.MCP2515_AsyncReadRegister
-                  0x80e88c         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e83c         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_SendMessage
-                  0x80e8b0         0x24
+                  0x80e860         0x24
  .text.MCP2515_SendMessage
-                  0x80e8b0         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
-                  0x80e8b0                  _MCP2515_SendMessage
+                  0x80e860         0x24 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e860                  _MCP2515_SendMessage
 
 .text.flash_wait_complete
-                  0x80e8d4         0x24
+                  0x80e884         0x24
  .text.flash_wait_complete
-                  0x80e8d4         0x24 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80e884         0x24 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.MCP2515_AsyncResetState
-                  0x80e8f8         0x20
+                  0x80e8a8         0x20
  .text.MCP2515_AsyncResetState
-                  0x80e8f8         0x20 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e8a8         0x20 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.UART_Tuner_Send_Zero_Angle
-                  0x80e918         0x20
+                  0x80e8c8         0x20
  .text.UART_Tuner_Send_Zero_Angle
-                  0x80e918         0x20 build/default/debug/_ext/1375476428/tuning.o
-                  0x80e918                  _UART_Tuner_Send_Zero_Angle
+                  0x80e8c8         0x20 build/default/debug/_ext/1375476428/tuning.o
+                  0x80e8c8                  _UART_Tuner_Send_Zero_Angle
 
 .text.NVM_InterruptHandler
-                  0x80e938         0x1c
+                  0x80e8e8         0x1c
  .text.NVM_InterruptHandler
-                  0x80e938         0x1c build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80e938                  _NVM_InterruptHandler
+                  0x80e8e8         0x1c build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80e8e8                  _NVM_InterruptHandler
 
 .text.UART1_WriteByte
-                  0x80e954         0x1c
+                  0x80e904         0x1c
  .text.UART1_WriteByte
-                  0x80e954         0x1c build/default/debug/_ext/1865657120/plib_uart1.o
-                  0x80e954                  _UART1_WriteByte
+                  0x80e904         0x1c build/default/debug/_ext/1865657120/plib_uart1.o
+                  0x80e904                  _UART1_WriteByte
 
 .text.MCP2515_AsyncRtsTx0
-                  0x80e970         0x1c
+                  0x80e920         0x1c
  .text.MCP2515_AsyncRtsTx0
-                  0x80e970         0x1c build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e920         0x1c build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_ReceiveMessage
-                  0x80e98c         0x1c
+                  0x80e93c         0x1c
  .text.MCP2515_ReceiveMessage
-                  0x80e98c         0x1c build/default/debug/_ext/362756510/driver_mcp2515.o
-                  0x80e98c                  _MCP2515_ReceiveMessage
+                  0x80e93c         0x1c build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e93c                  _MCP2515_ReceiveMessage
+
+.text.Load_EEPROM_Data
+                  0x80e958         0x1c
+ .text.Load_EEPROM_Data
+                  0x80e958         0x1c build/default/debug/_ext/1375476428/device_startup.o
+                  0x80e958                  _Load_EEPROM_Data
 
 .text.NVM_PageErase
-                  0x80e9a8         0x18
+                  0x80e974         0x18
  .text.NVM_PageErase
-                  0x80e9a8         0x18 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80e9a8                  _NVM_PageErase
+                  0x80e974         0x18 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80e974                  _NVM_PageErase
 
 .text.MCP2515_FifoWriteByte
-                  0x80e9c0         0x18
+                  0x80e98c         0x18
  .text.MCP2515_FifoWriteByte
-                  0x80e9c0         0x18 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e98c         0x18 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_FifoReadByte
-                  0x80e9d8         0x18
+                  0x80e9a4         0x18
  .text.MCP2515_FifoReadByte
-                  0x80e9d8         0x18 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80e9a4         0x18 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.Next_Chunk_Index
-                  0x80e9f0         0x18
+                  0x80e9bc         0x18
  .text.Next_Chunk_Index
-                  0x80e9f0         0x18 build/default/debug/_ext/1375476428/boot_handler.o
-                  0x80e9f0                  _Next_Chunk_Index
+                  0x80e9bc         0x18 build/default/debug/_ext/1375476428/boot_handler.o
+                  0x80e9bc                  _Next_Chunk_Index
 
-.text.main        0x80ea08         0x18
- .text.main       0x80ea08         0x18 build/default/debug/_ext/1360937237/main.o
-                  0x80ea08                  _main
+.text.main        0x80e9d4         0x18
+ .text.main       0x80e9d4         0x18 build/default/debug/_ext/1360937237/main.o
+                  0x80e9d4                  _main
 
 .text.NVM_StartOperationAtAddress
-                  0x80ea20         0x14
+                  0x80e9ec         0x14
  .text.NVM_StartOperationAtAddress
-                  0x80ea20         0x14 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80e9ec         0x14 build/default/debug/_ext/60176403/plib_nvm.o
 
-.text.NVM_Read    0x80ea34         0x14
+.text.NVM_Read    0x80ea00         0x14
  .text.NVM_Read
-                  0x80ea34         0x14 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80ea34                  _NVM_Read
+                  0x80ea00         0x14 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80ea00                  _NVM_Read
 
 .text.UART1_ReceiverIsReady
-                  0x80ea48         0x14
+                  0x80ea14         0x14
  .text.UART1_ReceiverIsReady
-                  0x80ea48         0x14 build/default/debug/_ext/1865657120/plib_uart1.o
-                  0x80ea48                  _UART1_ReceiverIsReady
+                  0x80ea14         0x14 build/default/debug/_ext/1865657120/plib_uart1.o
+                  0x80ea14                  _UART1_ReceiverIsReady
 
 .text.UART1_TransmitterIsReady
-                  0x80ea5c         0x14
+                  0x80ea28         0x14
  .text.UART1_TransmitterIsReady
-                  0x80ea5c         0x14 build/default/debug/_ext/1865657120/plib_uart1.o
-                  0x80ea5c                  _UART1_TransmitterIsReady
+                  0x80ea28         0x14 build/default/debug/_ext/1865657120/plib_uart1.o
+                  0x80ea28                  _UART1_TransmitterIsReady
 
 .text.MCP2515_SPI_Callback
-                  0x80ea70         0x14
+                  0x80ea3c         0x14
  .text.MCP2515_SPI_Callback
-                  0x80ea70         0x14 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80ea3c         0x14 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.NVM_Initialize
-                  0x80ea84         0x10
+                  0x80ea50         0x10
  .text.NVM_Initialize
-                  0x80ea84         0x10 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80ea84                  _NVM_Initialize
+                  0x80ea50         0x10 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80ea50                  _NVM_Initialize
 
 .text.NVM_ErrorGet
-                  0x80ea94         0x10
+                  0x80ea60         0x10
  .text.NVM_ErrorGet
-                  0x80ea94         0x10 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80ea94                  _NVM_ErrorGet
+                  0x80ea60         0x10 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80ea60                  _NVM_ErrorGet
 
 .text.NVM_IsBusy
-                  0x80eaa4         0x10
+                  0x80ea70         0x10
  .text.NVM_IsBusy
-                  0x80eaa4         0x10 build/default/debug/_ext/60176403/plib_nvm.o
-                  0x80eaa4                  _NVM_IsBusy
+                  0x80ea70         0x10 build/default/debug/_ext/60176403/plib_nvm.o
+                  0x80ea70                  _NVM_IsBusy
 
 .text.SPI1_CallbackRegister
-                  0x80eab4         0x10
+                  0x80ea80         0x10
  .text.SPI1_CallbackRegister
-                  0x80eab4         0x10 build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80eab4                  _SPI1_CallbackRegister
+                  0x80ea80         0x10 build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80ea80                  _SPI1_CallbackRegister
+
+C:\Users\HP\AppData\Local\Temp\cc1sXZfD.s.scn1
+                  0x80ea90         0x10
+ C:\Users\HP\AppData\Local\Temp\cc1sXZfD.s.scn1
+                  0x80ea90         0x10 build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.send_diag_data
-                  0x80eac4         0x10
+                  0x80eaa0         0x10
  .text.send_diag_data
-                  0x80eac4         0x10 build/default/debug/_ext/1375476428/diagnostics.o
-                  0x80eac4                  _send_diag_data
-
-C:\Users\HP\AppData\Local\Temp\cct7PZZB.s.scn1
-                  0x80ead4         0x10
- C:\Users\HP\AppData\Local\Temp\cct7PZZB.s.scn1
-                  0x80ead4         0x10 build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80eaa0         0x10 build/default/debug/_ext/1375476428/diagnostics.o
+                  0x80eaa0                  _send_diag_data
 
 .text.SPI1_Write
-                  0x80eae4          0xc
+                  0x80eab0          0xc
  .text.SPI1_Write
-                  0x80eae4          0xc build/default/debug/_ext/1868329136/plib_spi1_host.o
-                  0x80eae4                  _SPI1_Write
+                  0x80eab0          0xc build/default/debug/_ext/1868329136/plib_spi1_host.o
+                  0x80eab0                  _SPI1_Write
 
 .text.TRAPS_halt_on_error
-                  0x80eaf0          0xc
+                  0x80eabc          0xc
  .text.TRAPS_halt_on_error
-                  0x80eaf0          0xc build/default/debug/_ext/1171490990/traps.o
-                  0x80eaf0                  _TRAPS_halt_on_error
+                  0x80eabc          0xc build/default/debug/_ext/1171490990/traps.o
+                  0x80eabc                  _TRAPS_halt_on_error
 
 .text.send_data_uart
-                  0x80eafc          0xc
+                  0x80eac8          0xc
  .text.send_data_uart
-                  0x80eafc          0xc build/default/debug/_ext/362756510/driver_UART.o
-                  0x80eafc                  _send_data_uart
+                  0x80eac8          0xc build/default/debug/_ext/362756510/driver_UART.o
+                  0x80eac8                  _send_data_uart
 
 .text.erase_page
-                  0x80eb08          0xc
+                  0x80ead4          0xc
  .text.erase_page
-                  0x80eb08          0xc build/default/debug/_ext/362756510/flash_eeprom.o
+                  0x80ead4          0xc build/default/debug/_ext/362756510/flash_eeprom.o
 
 .text.TMR1_Start
-                  0x80eb14          0x8
+                  0x80eae0          0x8
  .text.TMR1_Start
-                  0x80eb14          0x8 build/default/debug/_ext/60181895/plib_tmr1.o
-                  0x80eb14                  _TMR1_Start
+                  0x80eae0          0x8 build/default/debug/_ext/60181895/plib_tmr1.o
+                  0x80eae0                  _TMR1_Start
 
 .text.TMR1_InterruptEnable
-                  0x80eb1c          0x8
+                  0x80eae8          0x8
  .text.TMR1_InterruptEnable
-                  0x80eb1c          0x8 build/default/debug/_ext/60181895/plib_tmr1.o
-                  0x80eb1c                  _TMR1_InterruptEnable
+                  0x80eae8          0x8 build/default/debug/_ext/60181895/plib_tmr1.o
+                  0x80eae8                  _TMR1_InterruptEnable
 
 .text.UART1_ReadByte
-                  0x80eb24          0x8
+                  0x80eaf0          0x8
  .text.UART1_ReadByte
-                  0x80eb24          0x8 build/default/debug/_ext/1865657120/plib_uart1.o
-                  0x80eb24                  _UART1_ReadByte
+                  0x80eaf0          0x8 build/default/debug/_ext/1865657120/plib_uart1.o
+                  0x80eaf0                  _UART1_ReadByte
 
 .text.MCP2515_Select
-                  0x80eb2c          0x8
+                  0x80eaf8          0x8
  .text.MCP2515_Select
-                  0x80eb2c          0x8 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80eaf8          0x8 build/default/debug/_ext/362756510/driver_mcp2515.o
 
 .text.MCP2515_Deselect
-                  0x80eb34          0x8
+                  0x80eb00          0x8
  .text.MCP2515_Deselect
-                  0x80eb34          0x8 build/default/debug/_ext/362756510/driver_mcp2515.o
+                  0x80eb00          0x8 build/default/debug/_ext/362756510/driver_mcp2515.o

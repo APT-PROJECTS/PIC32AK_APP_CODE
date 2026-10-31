@@ -1,8 +1,6 @@
 #ifndef _METADATA_H    
 #define _METADATA_H 
 
-#include "driver/flash_eeprom.h"
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -108,8 +106,6 @@ extern uint32_t udid[4];
 extern uint32_t devid;
 
 extern char metadata[METADATA_LENGTH + 1U];  
-
-extern uint8_t eepromBuffer[EEPROM_DATA_SIZE];
 
 
 //--------------------------------------------------

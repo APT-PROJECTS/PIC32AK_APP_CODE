@@ -1,4 +1,5 @@
 #include "definitions.h"
+#include "driver.h"
 #include "middleware.h"
 
 uint32_t udid[4];
@@ -41,8 +42,6 @@ char mcuId[MCU_ID_LENGTH + 1U];
 char firmwareId[FIRMWARE_ID_LENGTH + 1U];
 
 char metadata[METADATA_LENGTH + 1U];
-
-uint8_t eepromBuffer[EEPROM_DATA_SIZE];
 
 void Get_PIC_ID(void) {
     udid[0] = *UDID0_ADDR;
@@ -194,12 +193,6 @@ void Metadata_Init(void) {
      * Step 2: Read EEPROM into the EEPROM buffer
      * and copy the stored metadata into RAM.
      */
-    __builtin_memset(eepromBuffer, 0,
-            sizeof (eepromBuffer));
-
-    FLASH_EEPROM_Read_Page(eepromBuffer,
-            sizeof (eepromBuffer));
-
     __builtin_memcpy(metadata,
             eepromBuffer,
             METADATA_LENGTH);
@@ -294,9 +287,6 @@ void Metadata_Init(void) {
      */
     if (firmwareChanged) {
         Build_Metadata();
-
-        __builtin_memset(eepromBuffer, 0,
-                sizeof (eepromBuffer));
 
         __builtin_memcpy(eepromBuffer,
                 metadata,

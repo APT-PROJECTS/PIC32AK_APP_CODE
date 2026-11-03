@@ -198,7 +198,7 @@ void Boot_Software_ID_Handler(void) {
             __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
                     tunerWriteMatrix, sizeof (tunerWriteMatrix));
 
-            if (FLASH_EEPROM_Write_Page(eepromBuffer,
+            if (Flash_EEPROM_Write_Page(eepromBuffer,
                     EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
 
@@ -341,7 +341,7 @@ void Boot_App_Size_Handler(void)
             txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
             txBuf[2] = BOOT_CAN_CMD_2_WRITE;
 
-            if (FLASH_EEPROM_Write_Page(eepromBuffer,
+            if (Flash_EEPROM_Write_Page(eepromBuffer,
                     EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
             {
                 txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
@@ -456,7 +456,7 @@ void Boot_Jump_Handler(void)
             __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
                     tunerWriteMatrix, sizeof(tunerWriteMatrix));
 
-            if (FLASH_EEPROM_Write_Page(eepromBuffer,
+            if (Flash_EEPROM_Write_Page(eepromBuffer,
                     EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
             {
                 asm("reset");
@@ -811,11 +811,11 @@ bool Boot_Stay_In_Boot_Requested(void)
     return bootStayRequested;
 }
 
-void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer)
+void Run_Boot_Handler(uint32_t id, uint8_t *rxBuffer)
 {
     __builtin_memcpy(canRxBuffer, rxBuffer, sizeof (canRxBuffer));
 
-    switch (ID)
+    switch (id)
     {
         case BOOT_CAN_ID_HOST:
         {

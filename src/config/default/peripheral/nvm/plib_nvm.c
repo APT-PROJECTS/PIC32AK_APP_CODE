@@ -51,8 +51,8 @@
 #include "interrupts.h"
 #include "plib_nvm.h"
 
-#define  FLASH_ERASE_PAGE_SIZE_IN_INSTRUCTIONS  1024U
-#define  FLASH_ERASE_PAGE_MASK  (~((FLASH_ERASE_PAGE_SIZE_IN_INSTRUCTIONS * 4U) - 1U))
+#define  FLASH_Erase_Page_SIZE_IN_INSTRUCTIONS  1024U
+#define  FLASH_Erase_Page_MASK  (~((FLASH_Erase_Page_SIZE_IN_INSTRUCTIONS * 4U) - 1U))
 #define  FLASH_ADDRESS_MASK  4U
 
 /* ************************************************************************** */
@@ -183,7 +183,7 @@ bool NVM_RowWrite( uint32_t *data, uint32_t address )
 
 bool NVM_PageErase( uint32_t address )
 {
-    address = (FLASH_ERASE_PAGE_MASK & address);
+    address = (FLASH_Erase_Page_MASK & address);
     NVM_StartOperationAtAddress(address,  NVM_PAGE_ERASE_OPERATION);
     return true;
 }

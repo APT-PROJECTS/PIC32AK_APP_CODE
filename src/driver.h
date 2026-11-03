@@ -11,9 +11,9 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
-#include "driver/driver_CANbus.h"
+#include "driver/driver_can.h"
 #include "driver/driver_mcp2515.h"
-#include "driver/driver_UART.h"
+#include "driver/driver_uart.h"
 #include "driver/flash_eeprom.h"
 
 // DOM-IGNORE-BEGIN

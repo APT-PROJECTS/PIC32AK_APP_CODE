@@ -295,7 +295,7 @@ void Metadata_Init(void) {
                 metadata,
                 METADATA_LENGTH);
 
-        FLASH_EEPROM_Write_Page(eepromBuffer,
+        Flash_EEPROM_Write_Page(eepromBuffer,
                 EEPROM_DATA_SIZE);
     }
 }

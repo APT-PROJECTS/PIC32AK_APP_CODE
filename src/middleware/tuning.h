@@ -1,25 +1,56 @@
 #ifndef _TUNING_H    /* Guard against multiple inclusion */
 #define _TUNING_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "definitions.h"
 #include "driver.h"
 
 //--------------------------------------------------
-// CAN TUNER
+// CAN ID
 //--------------------------------------------------
-#define CAN_ID_TUNER_SOFTWARE           0xE0  
-#define CAN_ID_TUNER_MCU                0xE1
+#define TUNER_CAN_ID_SOFTWARE                   0xE0  
+#define TUNER_CAN_ID_MCU                        0xE1
+
+//--------------------------------------------------
+// CAN CMD 0
+//--------------------------------------------------
+#define TUNER_CAN_CMD_0_STATUS                  0x01
+
+#define TUNER_CAN_CMD_0_PIC_ID                  0x02
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_1            0x01
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_2            0x02
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_3            0x03
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_4            0x04
+#define TUNER_CAN_CMD_1_PIC_DEVICE_ID           0x05
     
-#define CAN_CMD_TUNER_READ              0x00
-#define CAN_CMD_TUNER_WRITE_MATRIX      0x01
-#define CAN_CMD_TUNER_WRITE_FLASH       0x02
-#define CAN_CMD_TUNER_STATUS            0x03
-#define CAN_CMD_TUNER_PIC_ID_1          0x04
-#define CAN_CMD_TUNER_PIC_ID_2          0x05
+#define TUNER_CAN_CMD_0_METADATA                0x03
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_1        0x01
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_2        0x02
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_3        0x03
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_4        0x04
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_5        0x05
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_6        0x06
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_7        0x07
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_8        0x08
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_9        0x09
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_10       0x0A
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_11       0x0B
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_12       0x0C
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_13       0x0D
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_14       0x0E
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_15       0x0F
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_16       0x10
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_17       0x11
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_18       0x12
+
+#define TUNER_CAN_CMD_0_TUNING                  0x04
+
+#define TUNER_CAN_CMD_3_BIT_0_1_READ            0b00
+#define TUNER_CAN_CMD_3_BIT_0_1_WRITE           0b01
+#define TUNER_CAN_CMD_3_BIT_0_1_WRITE_FLASH     0b10  
+#define TUNER_CAN_CMD_3_BIT_0_1_ZERO_ANGLE      0b11
+    
+#define TUNER_CAN_CMD_3_BIT_2_SUCCESS           0b0
+#define TUNER_CAN_CMD_3_BIT_2_FAIL              0b1   
     
 //--------------------------------------------------
 // MATRIX SIZE
@@ -27,20 +58,20 @@ extern "C" {
 #define ROWS    16
 #define COLS    4
     
-//==================================================
-// ROW 0
-//==================================================
-#define R_PROJECT_ID                 tunerReadMatrix[0][0]
-#define R_FIRMWARE_ID                tunerReadMatrix[0][1]
-#define R_BOOT_FLAG                  tunerReadMatrix[0][2]
-#define R_BOOT_VERSION               tunerReadMatrix[0][3]
-#define R_APP_SIZE                   tunerReadMatrix[0][4]
-
-#define W_PROJECT_ID                 tunerWriteMatrix[0][0]
-#define W_FIRMWARE_ID                tunerWriteMatrix[0][1]
-#define W_BOOT_FLAG                  tunerWriteMatrix[0][2]
-#define W_BOOT_VERSION               tunerWriteMatrix[0][3]
-#define W_APP_SIZE                   tunerWriteMatrix[0][4]
+////==================================================
+//// ROW 0
+////==================================================
+//#define R_PROJECT_ID                 tunerReadMatrix[0][0]
+//#define R_FIRMWARE_ID                tunerReadMatrix[0][1]
+//#define R_BOOT_FLAG                  tunerReadMatrix[0][2]
+//#define R_BOOT_VERSION               tunerReadMatrix[0][3]
+//#define R_APP_SIZE                   tunerReadMatrix[0][4]
+//
+//#define W_PROJECT_ID                 tunerWriteMatrix[0][0]
+//#define W_FIRMWARE_ID                tunerWriteMatrix[0][1]
+//#define W_BOOT_FLAG                  tunerWriteMatrix[0][2]
+//#define W_BOOT_VERSION               tunerWriteMatrix[0][3]
+//#define W_APP_SIZE                   tunerWriteMatrix[0][4]
     
 //==================================================
 // ROW 1
@@ -247,18 +278,12 @@ void UART_Tuner_Command(uint8_t *);
 void UART_Tuner_Send_Zero_Angle(float, float, float, int); 
 
 /*=================CAN TUNING====================*/
-void CAN_Tuner_Send_PIC_ID_1(void);
-void CAN_Tuner_Send_PIC_ID_2(void);
-void CAN_Tuner_Read(uint8_t row, uint8_t col);
-void CAN_Tuner_Write_Matrix(uint8_t row, uint8_t col, uint8_t *data);
-void CAN_Tuner_Write_Flash(void);
+void CAN_Tuner_Read_PIC_ID(void);
+void CAN_Tuner_Read_Metadata(void);
+void CAN_Tuner_Read_Write(void);
 void CAN_Send_Status(void);
 void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1, 
     int CONFIG_SENSOR_DIRECTION_estimate);
-void CAN_Tuner_Handler(uint8_t *CANRXBuffer);
-
-#ifdef __cplusplus
-}
-#endif
+void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer);
 
 #endif /* _TUNING_H */

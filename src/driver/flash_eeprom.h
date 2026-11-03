@@ -22,13 +22,15 @@ typedef enum
     FLASH_EEPROM_NO_VALID_PAGE
 } FLASH_EEPROM_STATUS;
 
+extern uint8_t eepromBuffer[EEPROM_DATA_SIZE];
 
-FLASH_EEPROM_STATUS FLASH_EEPROM_Init(void);
-FLASH_EEPROM_STATUS FLASH_EEPROM_Write_Page(const uint8_t *data, uint32_t length);
-FLASH_EEPROM_STATUS FLASH_EEPROM_Read_Page(uint8_t *data, uint32_t length);
-FLASH_EEPROM_STATUS FLASH_EEPROM_WriteWord(uint32_t address, uint32_t data,
+
+FLASH_EEPROM_STATUS Flash_EEPROM_Init(void);
+FLASH_EEPROM_STATUS Flash_EEPROM_Write_Page(const uint8_t *data, uint32_t length);
+FLASH_EEPROM_STATUS Flash_EEPROM_Read_Page(uint8_t *data, uint32_t length);
+FLASH_EEPROM_STATUS Flash_EEPROM_Write_Word(uint32_t address, uint32_t data,
                                             uint8_t *buffer);
-FLASH_EEPROM_STATUS FLASH_EEPROM_ReadWord(uint32_t address, uint32_t *data);
-FLASH_EEPROM_STATUS FLASH_EEPROM_EraseAll(void);
+FLASH_EEPROM_STATUS Flash_EEPROM_Read_Word(uint32_t address, uint32_t *data);
+FLASH_EEPROM_STATUS Flash_EEPROM_Erase_All(void);
 
 #endif

@@ -106,7 +106,7 @@ uint32_t Boot_APP_CRC32_Software(const volatile uint8_t *data, uint32_t length);
 void Boot_APP_CRC_Handler(void);
 void Boot_Stay_In_Boot_Handler(void);
 bool Boot_Stay_In_Boot_Requested(void);
-void Run_Boot_Handler(uint32_t ID, uint8_t *rxBuffer);
+void Run_Boot_Handler(uint32_t id, uint8_t *rxBuffer);
 
 
 #ifdef __cplusplus

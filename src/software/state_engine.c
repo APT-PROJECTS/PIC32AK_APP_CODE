@@ -19,7 +19,7 @@ void State_Engine_Tasks(void) {
     switch (currentState) {
         case STATE_INIT:
         {
-            FLASH_EEPROM_Init();
+            Flash_EEPROM_Init();
             Load_EEPROM_Data();
             Metadata_Init();
             Tuner_Init();

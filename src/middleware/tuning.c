@@ -20,8 +20,17 @@
   do {                                                                         \
     float temp = (value);                                                      \
     __builtin_memcpy(&data[4], &temp, sizeof(temp));                           \
-    CANbus_write(CAN_ID_TUNER_MCU, data, sizeof(data));                        \
+    CANbus_write(TUNER_CAN_ID_MCU, data, sizeof(data));                        \
   } while (0)
+
+#define TUNER_CAN_CMD_3(operation, status) \
+        ((uint8_t)((operation) | ((status) << 2)))
+
+#define TUNER_CAN_CMD_3_GET_OPERATION(value) \
+        ((uint8_t)((value) & 0x03U))
+
+#define TUNER_CAN_CMD_3_GET_STATUS(value) \
+        ((uint8_t)(((value) >> 2U) & 0x01U))
 
 static unsigned char udid_string[18] = {0x20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x2F};
 
@@ -38,10 +47,12 @@ float tunerWriteMatrix[ROWS][COLS];
 
 static int mcuID = 0;
 
+static uint8_t canRxBuffer[8] = {0U};
+
 void Tuner_Init(void) {
     received_rows_mask = 0;
     all_rows_received = false;
-    
+
     __builtin_memset(tunerReadMatrix, 0, sizeof (tunerReadMatrix));
     __builtin_memset(tunerWriteMatrix, 0, sizeof (tunerWriteMatrix));
 
@@ -286,13 +297,6 @@ void UART_Tuner_Read(uint8_t adr_HB) {
     send_tuning_data[19] = adr_HB;
 
     switch (adr_HB) {
-        case 0x00:
-            COPY_FLOAT_TO_TX(2, R_PROJECT_ID);
-            COPY_FLOAT_TO_TX(6, R_FIRMWARE_ID);
-            COPY_FLOAT_TO_TX(10, R_BOOT_FLAG);
-            COPY_FLOAT_TO_TX(14, R_APP_SIZE);
-            break;
-
         case 0x01:
             COPY_FLOAT_TO_TX(2, R_FF01_01);
             COPY_FLOAT_TO_TX(6, R_FF01_02);
@@ -510,7 +514,7 @@ void UART_Tuner_Write(void) {
     //--------------------------------------------------
     // Write complete matrix to EEPROM so this row survives reset.
     //--------------------------------------------------
-    if (FLASH_EEPROM_Write_Page(eepromBuffer, EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
+    if (Flash_EEPROM_Write_Page(eepromBuffer, EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
         GREEN_LED_Set();
 
         //--------------------------------------------------
@@ -560,262 +564,68 @@ void UART_Tuner_Command(uint8_t *command_adr) {
  * ======================CAN BASED TUNING==============================
  ======================================================================*/
 
-void CAN_Tuner_Send_PIC_ID_1(void) {
-    uint8_t txBuf[8];
+void CAN_Tuner_Read_PIC_ID(void) {
+    uint8_t txBuf[8] = {0U};
+    uint8_t operation;
+    uint32_t picid;
 
-    // udid[0]
-    for (int i = 0; i < 4; i++)
-        txBuf[i] = (udid[0] >> (24 - i * 8)) & 0xFF;
+    if (canRxBuffer[0] != TUNER_CAN_CMD_0_PIC_ID) {
+        return;
+    }
 
-    // udid[1]
-    for (int i = 0; i < 4; i++)
-        txBuf[i + 4] = (udid[1] >> (24 - i * 8)) & 0xFF;
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
 
-    CANbus_write(CAN_ID_TUNER_MCU, txBuf, sizeof (txBuf));
-}
+    switch (operation) {
+            /*------------------------- READ --------------------------*/
+        case TUNER_CAN_CMD_3_BIT_0_1_READ:
 
-void CAN_Tuner_Send_PIC_ID_2(void) {
-    uint8_t txBuf[8];
+            txBuf[0] = TUNER_CAN_CMD_0_PIC_ID;
+            txBuf[1] = canRxBuffer[1];
+            txBuf[2] = 0x00;
 
-    // udid[2]
-    for (int i = 0; i < 4; i++)
-        txBuf[i] = (udid[2] >> (24 - i * 8)) & 0xFF;
-
-    // udid[3]
-    for (int i = 0; i < 4; i++)
-        txBuf[i + 4] = (udid[3] >> (24 - i * 8)) & 0xFF;
-
-    CANbus_write(CAN_ID_TUNER_MCU, txBuf, sizeof (txBuf));
-}
-
-void CAN_Tuner_Read(uint8_t row, uint8_t col) {
-    uint8_t data[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
-    data[0] = 0x00;
-    data[1] = 0xFF;
-
-    data[2] = row;
-    data[3] = col;
-
-    switch (row) {
-        case 0x00:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_PROJECT_ID);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FIRMWARE_ID);
-                    break;
-                default: break;
+            /* Check if PIC ID is available */
+            if ((udid[0] == 0U) &&
+                    (udid[1] == 0U) &&
+                    (udid[2] == 0U) &&
+                    (udid[3] == 0U)) {
+                txBuf[3] = TUNER_CAN_CMD_3(operation,
+                        TUNER_CAN_CMD_3_BIT_2_FAIL);
+            } else {
+                txBuf[3] = TUNER_CAN_CMD_3(operation,
+                        TUNER_CAN_CMD_3_BIT_2_SUCCESS);
             }
-            break;
 
-        case 0x01:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF01_01);
+            switch (canRxBuffer[1]) {
+                case TUNER_CAN_CMD_1_PIC_MAC_ID_1:
+                    picid = udid[0];
                     break;
-                case 0x02: SEND_CAN_FLOAT(R_FF01_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF01_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF01_04);
-                    break;
-                default: break;
-            }
-            break;
 
-        case 0x02:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF02_01);
+                case TUNER_CAN_CMD_1_PIC_MAC_ID_2:
+                    picid = udid[1];
                     break;
-                case 0x02: SEND_CAN_FLOAT(R_FF02_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF02_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF02_04);
-                    break;
-                default: break;
-            }
-            break;
 
-        case 0x03:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF03_01);
+                case TUNER_CAN_CMD_1_PIC_MAC_ID_3:
+                    picid = udid[2];
                     break;
-                case 0x02: SEND_CAN_FLOAT(R_FF03_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF03_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF03_04);
-                    break;
-                default: break;
-            }
-            break;
 
-        case 0x04:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF04_01);
+                case TUNER_CAN_CMD_1_PIC_MAC_ID_4:
+                    picid = udid[3];
                     break;
-                case 0x02: SEND_CAN_FLOAT(R_FF04_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF04_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF04_04);
-                    break;
-                default: break;
-            }
-            break;
 
-        case 0x05:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF05_01);
+                case TUNER_CAN_CMD_1_PIC_DEVICE_ID:
+                    picid = devid;
                     break;
-                case 0x02: SEND_CAN_FLOAT(R_FF05_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF05_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF05_04);
-                    break;
-                default: break;
-            }
-            break;
 
-        case 0x06:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF06_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF06_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF06_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF06_04);
-                    break;
-                default: break;
+                default:
+                    return;
             }
-            break;
 
-        case 0x07:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF07_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF07_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF07_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF07_04);
-                    break;
-                default: break;
-            }
-            break;
+            txBuf[4] = (uint8_t) (picid >> 24);
+            txBuf[5] = (uint8_t) (picid >> 16);
+            txBuf[6] = (uint8_t) (picid >> 8);
+            txBuf[7] = (uint8_t) (picid);
 
-        case 0x08:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF08_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF08_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF08_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF08_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x09:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF09_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF09_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF09_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF09_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0A:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0A_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0A_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0A_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0A_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0B:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0B_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0B_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0B_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0B_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0C:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0C_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0C_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0C_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0C_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0D:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0D_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0D_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0D_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0D_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0E:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0E_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0E_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0E_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0E_04);
-                    break;
-                default: break;
-            }
-            break;
-
-        case 0x0F:
-            switch (col) {
-                case 0x01: SEND_CAN_FLOAT(R_FF0F_01);
-                    break;
-                case 0x02: SEND_CAN_FLOAT(R_FF0F_02);
-                    break;
-                case 0x03: SEND_CAN_FLOAT(R_FF0F_03);
-                    break;
-                case 0x04: SEND_CAN_FLOAT(R_FF0F_04);
-                    break;
-                default: break;
-            }
+            CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
             break;
 
         default:
@@ -823,280 +633,605 @@ void CAN_Tuner_Read(uint8_t row, uint8_t col) {
     }
 }
 
-void CAN_Tuner_Write_Matrix(uint8_t row, uint8_t col, uint8_t *data) {
+void CAN_Tuner_Read_Metadata(void) {
+    uint8_t txBuf[8] = {0U};
+    uint8_t operation;
+    uint8_t chunkNumber;
+    uint8_t status;
+    uint16_t metadataOffset;
+    bool metadataEmpty = true;
+    uint16_t i;
+
+    if (canRxBuffer[0] != TUNER_CAN_CMD_0_METADATA) {
+        return;
+    }
+
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
+
+    switch (operation) {
+        case TUNER_CAN_CMD_3_BIT_0_1_READ:
+
+            chunkNumber = canRxBuffer[1];
+
+            /* Validate chunk number */
+            if ((chunkNumber < 1U) ||
+                    (chunkNumber > ((METADATA_LENGTH - 1U) /
+                    CAN_FRAME_DATA_SIZE))) {
+                return;
+            }
+
+            /* Check whether all transmitted metadata bytes are zero */
+            for (i = 0U; i < (METADATA_LENGTH - 1U); i++) {
+                if ((uint8_t) metadata[i] != 0x00U) {
+                    metadataEmpty = false;
+                    break;
+                }
+            }
+
+            /* Set response status */
+            status = metadataEmpty ?
+                    TUNER_CAN_CMD_3_BIT_2_FAIL :
+                    TUNER_CAN_CMD_3_BIT_2_SUCCESS;
+
+            /* Calculate requested metadata offset */
+            metadataOffset = ((uint16_t) (chunkNumber - 1U) * 4U);
+
+            /* Prepare CAN response */
+            txBuf[0] = TUNER_CAN_CMD_0_METADATA;
+            txBuf[1] = chunkNumber;
+            txBuf[2] = 0x00U;
+
+            txBuf[3] = TUNER_CAN_CMD_3(operation, status);
+
+            /* Copy 4 bytes of metadata */
+            if (!metadataEmpty) {
+                memcpy(&txBuf[4],
+                        &metadata[metadataOffset],
+                        4U);
+            }
+
+            /* Transmit CAN response */
+            CANbus_write(TUNER_CAN_ID_MCU,
+                    txBuf,
+                    sizeof (txBuf));
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+void CAN_Tuner_Read_Write(void) {
+    uint8_t data[8] = {0U};
+    uint8_t operation;
+    uint8_t row;
+    uint8_t col;
     float temp;
 
-    __builtin_memcpy(&temp, &data[4], sizeof (temp));
+    if (canRxBuffer[0] != TUNER_CAN_CMD_0_TUNING) {
+        return;
+    }
 
-    switch (row) {
-        case 0x01:
-            switch (col) {
-                case 0x01: W_FF01_01 = temp;
+    row = canRxBuffer[1];
+    col = canRxBuffer[2];
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
+
+    data[0] = TUNER_CAN_CMD_0_TUNING;
+    data[1] = row;
+    data[2] = col;
+
+    switch (operation) {
+        case TUNER_CAN_CMD_3_BIT_0_1_READ:
+            
+            data[3] = TUNER_CAN_CMD_3(operation,
+                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+
+            switch (row) {
+                case 0x01:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF01_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF01_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF01_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF01_04);
+                            break;
+                        default: break;
+                    }
                     break;
-                case 0x02: W_FF01_02 = temp;
+
+                case 0x02:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF02_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF02_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF02_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF02_04);
+                            break;
+                        default: break;
+                    }
                     break;
-                case 0x03: W_FF01_03 = temp;
+
+                case 0x03:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF03_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF03_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF03_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF03_04);
+                            break;
+                        default: break;
+                    }
                     break;
-                case 0x04: W_FF01_04 = temp;
+
+                case 0x04:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF04_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF04_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF04_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF04_04);
+                            break;
+                        default: break;
+                    }
                     break;
-                default: return;
+
+                case 0x05:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF05_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF05_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF05_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF05_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x06:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF06_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF06_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF06_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF06_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x07:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF07_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF07_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF07_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF07_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x08:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF08_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF08_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF08_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF08_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x09:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF09_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF09_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF09_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF09_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0A:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0A_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0A_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0A_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0A_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0B:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0B_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0B_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0B_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0B_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0C:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0C_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0C_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0C_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0C_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0D:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0D_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0D_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0D_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0D_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0E:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0E_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0E_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0E_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0E_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                case 0x0F:
+                    switch (col) {
+                        case 0x01: SEND_CAN_FLOAT(R_FF0F_01);
+                            break;
+                        case 0x02: SEND_CAN_FLOAT(R_FF0F_02);
+                            break;
+                        case 0x03: SEND_CAN_FLOAT(R_FF0F_03);
+                            break;
+                        case 0x04: SEND_CAN_FLOAT(R_FF0F_04);
+                            break;
+                        default: break;
+                    }
+                    break;
+
+                default:
+                    break;
             }
             break;
 
-        case 0x02:
-            switch (col) {
-                case 0x01: W_FF02_01 = temp;
+        case TUNER_CAN_CMD_3_BIT_0_1_WRITE:
+            
+            __builtin_memcpy(&temp, &canRxBuffer[4], sizeof (temp));
+
+            data[3] = TUNER_CAN_CMD_3(operation,
+                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+
+            __builtin_memset(&data[4], 0, CAN_FRAME_DATA_SIZE);
+
+            switch (row) {
+                case 0x01:
+                    switch (col) {
+                        case 0x01: W_FF01_01 = temp;
+                            break;
+                        case 0x02: W_FF01_02 = temp;
+                            break;
+                        case 0x03: W_FF01_03 = temp;
+                            break;
+                        case 0x04: W_FF01_04 = temp;
+                            break;
+                        default: return;
+                    }
                     break;
-                case 0x02: W_FF02_02 = temp;
+
+                case 0x02:
+                    switch (col) {
+                        case 0x01: W_FF02_01 = temp;
+                            break;
+                        case 0x02: W_FF02_02 = temp;
+                            break;
+                        case 0x03: W_FF02_03 = temp;
+                            break;
+                        case 0x04: W_FF02_04 = temp;
+                            break;
+                        default: return;
+                    }
                     break;
-                case 0x03: W_FF02_03 = temp;
+
+                case 0x03:
+                    switch (col) {
+                        case 0x01: W_FF03_01 = temp;
+                            break;
+                        case 0x02: W_FF03_02 = temp;
+                            break;
+                        case 0x03: W_FF03_03 = temp;
+                            break;
+                        case 0x04: W_FF03_04 = temp;
+                            break;
+                        default: return;
+                    }
                     break;
-                case 0x04: W_FF02_04 = temp;
+
+                case 0x04:
+                    switch (col) {
+                        case 0x01: W_FF04_01 = temp;
+                            break;
+                        case 0x02: W_FF04_02 = temp;
+                            break;
+                        case 0x03: W_FF04_03 = temp;
+                            break;
+                        case 0x04: W_FF04_04 = temp;
+                            break;
+                        default: return;
+                    }
                     break;
-                default: return;
+
+                case 0x05:
+                    switch (col) {
+                        case 0x01: W_FF05_01 = temp;
+                            break;
+                        case 0x02: W_FF05_02 = temp;
+                            break;
+                        case 0x03: W_FF05_03 = temp;
+                            break;
+                        case 0x04: W_FF05_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x06:
+                    switch (col) {
+                        case 0x01: W_FF06_01 = temp;
+                            break;
+                        case 0x02: W_FF06_02 = temp;
+                            break;
+                        case 0x03: W_FF06_03 = temp;
+                            break;
+                        case 0x04: W_FF06_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x07:
+                    switch (col) {
+                        case 0x01: W_FF07_01 = temp;
+                            break;
+                        case 0x02: W_FF07_02 = temp;
+                            break;
+                        case 0x03: W_FF07_03 = temp;
+                            break;
+                        case 0x04: W_FF07_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x08:
+                    switch (col) {
+                        case 0x01: W_FF08_01 = temp;
+                            break;
+                        case 0x02: W_FF08_02 = temp;
+                            break;
+                        case 0x03: W_FF08_03 = temp;
+                            break;
+                        case 0x04: W_FF08_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x09:
+                    switch (col) {
+                        case 0x01: W_FF09_01 = temp;
+                            break;
+                        case 0x02: W_FF09_02 = temp;
+                            break;
+                        case 0x03: W_FF09_03 = temp;
+                            break;
+                        case 0x04: W_FF09_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x0A:
+                    switch (col) {
+                        case 0x01: W_FF0A_01 = temp;
+                            break;
+                        case 0x02: W_FF0A_02 = temp;
+                            break;
+                        case 0x03: W_FF0A_03 = temp;
+                            break;
+                        case 0x04: W_FF0A_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x0B:
+                    switch (col) {
+                        case 0x01: W_FF0B_01 = temp;
+                            break;
+                        case 0x02: W_FF0B_02 = temp;
+                            break;
+                        case 0x03: W_FF0B_03 = temp;
+                            break;
+                        case 0x04: W_FF0B_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                case 0x0C:
+                    switch (col) {
+                        case 0x01: W_FF0C_01 = temp;
+                            break;
+                        case 0x02: W_FF0C_02 = temp;
+                            break;
+                        case 0x03: W_FF0C_03 = temp;
+                            break;
+                        case 0x04: W_FF0C_04 = temp;
+                            break;
+                        default: return;
+                    }
+                    break;
+
+                default:
+                    return;
             }
+
+            CANbus_write(TUNER_CAN_ID_MCU, data, 8);
             break;
 
-        case 0x03:
-            switch (col) {
-                case 0x01: W_FF03_01 = temp;
-                    break;
-                case 0x02: W_FF03_02 = temp;
-                    break;
-                case 0x03: W_FF03_03 = temp;
-                    break;
-                case 0x04: W_FF03_04 = temp;
-                    break;
-                default: return;
+        case TUNER_CAN_CMD_3_BIT_0_1_WRITE_FLASH:
+            
+            __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 
+                    0xFF, EEPROM_TUNER_SIZE);
+            
+            __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], 
+                    tunerWriteMatrix, sizeof (tunerWriteMatrix));
+            
+            if (Flash_EEPROM_Write_Page(eepromBuffer,
+                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK){
+                data[3] = TUNER_CAN_CMD_3(operation,
+                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
             }
-            break;
-
-        case 0x04:
-            switch (col) {
-                case 0x01: W_FF04_01 = temp;
-                    break;
-                case 0x02: W_FF04_02 = temp;
-                    break;
-                case 0x03: W_FF04_03 = temp;
-                    break;
-                case 0x04: W_FF04_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x05:
-            switch (col) {
-                case 0x01: W_FF05_01 = temp;
-                    break;
-                case 0x02: W_FF05_02 = temp;
-                    break;
-                case 0x03: W_FF05_03 = temp;
-                    break;
-                case 0x04: W_FF05_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x06:
-            switch (col) {
-                case 0x01: W_FF06_01 = temp;
-                    break;
-                case 0x02: W_FF06_02 = temp;
-                    break;
-                case 0x03: W_FF06_03 = temp;
-                    break;
-                case 0x04: W_FF06_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x07:
-            switch (col) {
-                case 0x01: W_FF07_01 = temp;
-                    break;
-                case 0x02: W_FF07_02 = temp;
-                    break;
-                case 0x03: W_FF07_03 = temp;
-                    break;
-                case 0x04: W_FF07_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x08:
-            switch (col) {
-                case 0x01: W_FF08_01 = temp;
-                    break;
-                case 0x02: W_FF08_02 = temp;
-                    break;
-                case 0x03: W_FF08_03 = temp;
-                    break;
-                case 0x04: W_FF08_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x09:
-            switch (col) {
-                case 0x01: W_FF09_01 = temp;
-                    break;
-                case 0x02: W_FF09_02 = temp;
-                    break;
-                case 0x03: W_FF09_03 = temp;
-                    break;
-                case 0x04: W_FF09_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x0A:
-            switch (col) {
-                case 0x01: W_FF0A_01 = temp;
-                    break;
-                case 0x02: W_FF0A_02 = temp;
-                    break;
-                case 0x03: W_FF0A_03 = temp;
-                    break;
-                case 0x04: W_FF0A_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x0B:
-            switch (col) {
-                case 0x01: W_FF0B_01 = temp;
-                    break;
-                case 0x02: W_FF0B_02 = temp;
-                    break;
-                case 0x03: W_FF0B_03 = temp;
-                    break;
-                case 0x04: W_FF0B_04 = temp;
-                    break;
-                default: return;
-            }
-            break;
-
-        case 0x0C:
-            switch (col) {
-                case 0x01: W_FF0C_01 = temp;
-                    break;
-                case 0x02: W_FF0C_02 = temp;
-                    break;
-                case 0x03: W_FF0C_03 = temp;
-                    break;
-                case 0x04: W_FF0C_04 = temp;
-                    break;
-                default: return;
+            else{
+                data[3] = TUNER_CAN_CMD_3(operation,
+                    TUNER_CAN_CMD_3_BIT_2_FAIL);
             }
             break;
 
         default:
-            return;
+            break;
     }
-
-    CANbus_write(CAN_ID_TUNER_MCU, data, 8);
-}
-
-void CAN_Tuner_Write_Flash(void) {
-    //--------------------------------------------------
-    // Prepare EEPROM write buffer with the complete matrix.
-    //--------------------------------------------------
-    memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF, EEPROM_TUNER_SIZE);
-    memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], tunerWriteMatrix,
-            sizeof (tunerWriteMatrix));
-    FLASH_EEPROM_Write_Page(eepromBuffer, EEPROM_DATA_SIZE);
 }
 
 void CAN_Send_Status(void) {
     static int ctr = 0;
-    static uint8_t data[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    static uint8_t txBuf[8] = {0U};
 
-    data[0] = CAN_CMD_TUNER_STATUS;
+    txBuf[0] = TUNER_CAN_CMD_0_STATUS;
     ctr++;
 
     if (ctr >= 5000) {
         ctr = 0;
-        CANbus_write(CAN_ID_TUNER_MCU, data, 8);
+        CANbus_write(TUNER_CAN_ID_MCU, txBuf, 8);
     }
 }
 
 void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1,
         int CONFIG_SENSOR_DIRECTION_estimate) {
-    static uint8_t data[8];
-    static float temp;
+    uint8_t txBuf[8] = {0U};
+    float temp;
 
-    R_FF03_03 = theta; // update the zero angle
-    R_FF03_04 = CONFIG_SENSOR_DIRECTION_estimate; // update correct direction of sensor
+    R_FF03_03 = theta;
+    R_FF03_04 = CONFIG_SENSOR_DIRECTION_estimate;
 
-    data[0] = 0x00;
-    data[1] = 0xFF;
-    data[2] = 0x03;
+    txBuf[0] = TUNER_CAN_CMD_0_TUNING;
+    txBuf[1] = 0x03;
+    txBuf[3] = TUNER_CAN_CMD_3(TUNER_CAN_CMD_3_BIT_0_1_ZERO_ANGLE,
+                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
 
-    data[3] = 0x01;
+    txBuf[2] = 0x01;
     temp = R_FF03_01;
-    memcpy(&data[4], &temp, sizeof (temp));
-    CANbus_write(CAN_ID_TUNER_MCU, data, sizeof (data));
+    __builtin_memcpy(&txBuf[4], &temp, sizeof (temp));
+    CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
 
-    data[3] = 0x02;
+    txBuf[2] = 0x02;
     temp = R_FF03_02;
-    memcpy(&data[4], &temp, sizeof (temp));
-    CANbus_write(CAN_ID_TUNER_MCU, data, sizeof (data));
+    __builtin_memcpy(&txBuf[4], &temp, sizeof (temp));
+    CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
 
-    data[3] = 0x03;
+    txBuf[2] = 0x03;
     temp = R_FF03_03;
-    memcpy(&data[4], &temp, sizeof (temp));
-    CANbus_write(CAN_ID_TUNER_MCU, data, sizeof (data));
+    __builtin_memcpy(&txBuf[4], &temp, sizeof (temp));
+    CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
 
-    data[3] = 0x04;
+    txBuf[2] = 0x04;
     temp = R_FF03_04;
-    memcpy(&data[4], &temp, sizeof (temp));
-    CANbus_write(CAN_ID_TUNER_MCU, data, sizeof (data));
+    __builtin_memcpy(&txBuf[4], &temp, sizeof (temp));
+    CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
 }
 
-void CAN_Tuner_Handler(uint8_t *CANRXBuffer) {
-    uint8_t row = CANRXBuffer[2];
-    uint8_t col = CANRXBuffer[3];
+void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer) {
+    __builtin_memcpy(canRxBuffer, rxBuffer, sizeof (canRxBuffer));
 
-    switch (CANRXBuffer[0]) {
-        case CAN_CMD_TUNER_PIC_ID_1:
+    switch (id) {
+        case TUNER_CAN_ID_SOFTWARE:
         {
-            CAN_Tuner_Send_PIC_ID_1();
-            break;
-        }
+            switch (rxBuffer[0]) {
+                case TUNER_CAN_CMD_0_PIC_ID:
+                {
+                    CAN_Tuner_Read_PIC_ID();
+                    break;
+                }
 
-        case CAN_CMD_TUNER_PIC_ID_2:
-        {
-            CAN_Tuner_Send_PIC_ID_2();
-            break;
-        }
+                case TUNER_CAN_CMD_0_METADATA:
+                {
+                    CAN_Tuner_Read_Metadata();
+                    break;
+                }
 
-        case CAN_CMD_TUNER_READ:
-        {
-            CAN_Tuner_Read(row, col);
-            break;
-        }
+                case TUNER_CAN_CMD_0_TUNING:
+                {
+                    CAN_Tuner_Read_Write();
+                    break;
+                }
 
-        case CAN_CMD_TUNER_WRITE_MATRIX:
-        {
-            CAN_Tuner_Write_Matrix(row, col, CANRXBuffer);
-            break;
-        }
-
-        case CAN_CMD_TUNER_WRITE_FLASH:
-        {
-            CAN_Tuner_Write_Flash();
+                default:
+                    // Unknown tuner command
+                    break;
+            }
             break;
         }
 
         default:
-            // Unknown tuner command
             break;
     }
 }

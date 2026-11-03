@@ -58,21 +58,6 @@
 #define ROWS    16
 #define COLS    4
     
-////==================================================
-//// ROW 0
-////==================================================
-//#define R_PROJECT_ID                 tunerReadMatrix[0][0]
-//#define R_FIRMWARE_ID                tunerReadMatrix[0][1]
-//#define R_BOOT_FLAG                  tunerReadMatrix[0][2]
-//#define R_BOOT_VERSION               tunerReadMatrix[0][3]
-//#define R_APP_SIZE                   tunerReadMatrix[0][4]
-//
-//#define W_PROJECT_ID                 tunerWriteMatrix[0][0]
-//#define W_FIRMWARE_ID                tunerWriteMatrix[0][1]
-//#define W_BOOT_FLAG                  tunerWriteMatrix[0][2]
-//#define W_BOOT_VERSION               tunerWriteMatrix[0][3]
-//#define W_APP_SIZE                   tunerWriteMatrix[0][4]
-    
 //==================================================
 // ROW 1
 //==================================================
@@ -259,19 +244,16 @@
 #define EEPROM_TUNER_OFFSET         (EEPROM_METADATA_OFFSET + EEPROM_METADATA_SIZE)
 #define EEPROM_TUNER_SIZE           (EEPROM_DATA_SIZE - EEPROM_TUNER_OFFSET)
 
-//--------------------------------------------------
-// EXTERNAL MATRIX
-//--------------------------------------------------
-extern float tunerReadMatrix[ROWS][COLS];
-extern float tunerWriteMatrix[ROWS][COLS];
-
-
+//==================================================
+// API
+//================================================== 
 void Tuner_Init(void);
 void Get_Config(void);
 void Update_Config(void);
 
 /*=================UART TUNING==================*/
-void UART_Tuner_Send_PIC_ID(void);
+void UART_Tuner_Read_PIC_ID(void);
+void UART_Tuner_Read_Metadata(void);
 void UART_Tuner_Write(void); 
 void UART_Tuner_Read(uint8_t); 
 void UART_Tuner_Command(uint8_t *); 

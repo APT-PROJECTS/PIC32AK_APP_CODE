@@ -32,7 +32,9 @@
 #define TUNER_CAN_CMD_3_GET_STATUS(value) \
         ((uint8_t)(((value) >> 2U) & 0x01U))
 
-static unsigned char udid_string[18] = {0x20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x2F};
+/* UART frame: command + four 32-bit UDIDs + 32-bit device ID + terminator. */
+static unsigned char udid_string[sizeof(udid) + sizeof(devid) + 2U];
+static uint8_t metadata_string[METADATA_LENGTH + 2U];
 
 static uint16_t received_rows_mask = 0;
 static bool all_rows_received = false;
@@ -267,7 +269,7 @@ void Update_Config(void) {
  * ======================UART BASED TUNING==============================
  ======================================================================*/
 
-void UART_Tuner_Send_PIC_ID(void) {
+void UART_Tuner_Read_PIC_ID(void) {
     udid_string[0] = 0x20;
 
     for (uint8_t i = 0; i < 4; i++) {
@@ -277,15 +279,28 @@ void UART_Tuner_Send_PIC_ID(void) {
         udid_string[(i * 4) + 4] = udid[i] & 0xFF;
     }
 
-    udid_string[17] = 0x2F;
+    udid_string[17] = (devid >> 24) & 0xFF;
+    udid_string[18] = (devid >> 16) & 0xFF;
+    udid_string[19] = (devid >> 8) & 0xFF;
+    udid_string[20] = devid & 0xFF;
+    udid_string[21] = 0x2F;
 
-    send_data_uart(udid_string, 18);
+    send_data_uart(udid_string, sizeof (udid_string));
+}
+
+/* UART response: 0x30 + metadata bytes + 0x3F. */
+void UART_Tuner_Read_Metadata(void) {
+    metadata_string[0] = 0x30U;
+    memcpy(&metadata_string[1], metadata, METADATA_LENGTH);
+    metadata_string[METADATA_LENGTH + 1U] = 0x3FU;
+
+    send_data_uart(metadata_string, sizeof (metadata_string));
 }
 
 void UART_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1,
         int CONFIG_SENSOR_DIRECTION_estimate) {
-    R_FF03_03 = theta; // update the zero angle
-    R_FF03_04 = CONFIG_SENSOR_DIRECTION_estimate; // update correct direction of sensor
+    R_FF03_03 = theta;
+    R_FF03_04 = CONFIG_SENSOR_DIRECTION_estimate;
     UART_Tuner_Read(0x03);
 }
 

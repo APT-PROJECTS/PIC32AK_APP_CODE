@@ -269,7 +269,7 @@ void Update_Config(void) {
  * ======================UART BASED TUNING==============================
  ======================================================================*/
 
-void UART_Tuner_Read_PIC_ID(void) {
+void UART_Tuner_Send_PIC_ID(void) {
     udid_string[0] = 0x20;
 
     for (uint8_t i = 0; i < 4; i++) {
@@ -289,7 +289,7 @@ void UART_Tuner_Read_PIC_ID(void) {
 }
 
 /* UART response: 0x30 + metadata bytes + 0x3F. */
-void UART_Tuner_Read_Metadata(void) {
+void UART_Tuner_Send_Metadata(void) {
     metadata_string[0] = 0x30U;
     memcpy(&metadata_string[1], metadata, METADATA_LENGTH);
     metadata_string[METADATA_LENGTH + 1U] = 0x3FU;
@@ -579,7 +579,7 @@ void UART_Tuner_Command(uint8_t *command_adr) {
  * ======================CAN BASED TUNING==============================
  ======================================================================*/
 
-void CAN_Tuner_Read_PIC_ID(void) {
+void CAN_Tuner_Send_PIC_ID(void) {
     uint8_t txBuf[8] = {0U};
     uint8_t operation;
     uint32_t picid;
@@ -648,7 +648,7 @@ void CAN_Tuner_Read_PIC_ID(void) {
     }
 }
 
-void CAN_Tuner_Read_Metadata(void) {
+void CAN_Tuner_Send_Metadata(void) {
     uint8_t txBuf[8] = {0U};
     uint8_t operation;
     uint8_t chunkNumber;
@@ -689,7 +689,8 @@ void CAN_Tuner_Read_Metadata(void) {
                     TUNER_CAN_CMD_3_BIT_2_SUCCESS;
 
             /* Calculate requested metadata offset */
-            metadataOffset = ((uint16_t) (chunkNumber - 1U) * 4U);
+            metadataOffset = ((uint16_t) (chunkNumber - 1U) * 
+                                CAN_FRAME_DATA_SIZE);
 
             /* Prepare CAN response */
             txBuf[0] = TUNER_CAN_CMD_0_METADATA;
@@ -702,7 +703,7 @@ void CAN_Tuner_Read_Metadata(void) {
             if (!metadataEmpty) {
                 memcpy(&txBuf[4],
                         &metadata[metadataOffset],
-                        4U);
+                        CAN_FRAME_DATA_SIZE);
             }
 
             /* Transmit CAN response */
@@ -1223,13 +1224,13 @@ void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer) {
             switch (rxBuffer[0]) {
                 case TUNER_CAN_CMD_0_PIC_ID:
                 {
-                    CAN_Tuner_Read_PIC_ID();
+                    CAN_Tuner_Send_PIC_ID();
                     break;
                 }
 
                 case TUNER_CAN_CMD_0_METADATA:
                 {
-                    CAN_Tuner_Read_Metadata();
+                    CAN_Tuner_Send_Metadata();
                     break;
                 }
 

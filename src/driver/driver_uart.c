@@ -72,14 +72,14 @@ void recieve_command_uart(void) {
                         command_byte_num = 0; //await next command
                     } else if (uart_command[0] == 0x20) {
                         if (uart_command[2] == 0x2F) {
-                            UART_Tuner_Read_PIC_ID();
+                            UART_Tuner_Send_PIC_ID();
                             Nop();
                             Nop();
                         }
                         command_byte_num = 0; //await next command
                     } else if (uart_command[0] == 0x30) {
                         if (uart_command[2] == 0x3F) {
-                            UART_Tuner_Read_Metadata();
+                            UART_Tuner_Send_Metadata();
                             Nop();
                             Nop();
                         }

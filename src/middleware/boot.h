@@ -24,74 +24,84 @@ extern "C" {
 /* =====================================================
  * FLASH MEMORY MAP         // 128KB
  * =====================================================*/
-#define BOOTLOADER_START_ADDRESS        (0x800000UL)
-#define BOOTLOADER_END_ADDRESS          (0x807FFFUL)
+#define BOOTLOADER_START_ADDRESS          (0x800000UL)
+#define BOOTLOADER_END_ADDRESS            (0x807FFFUL)
     
-#define APPLICATION_START_ADDRESS       (0x808000UL)
-#define APPLICATION_END_ADDRESS         (0x81EFFFUL)
+#define APPLICATION_START_ADDRESS         (0x808000UL)
+#define APPLICATION_END_ADDRESS           (0x81EFFFUL)
 
-#define EEPROM_START_ADDRESS            (0x81F000UL)
-#define EEPROM_END_ADDRESS              (0x81FFFFUL)
+#define EEPROM_START_ADDRESS              (0x81F000UL)
+#define EEPROM_END_ADDRESS                (0x81FFFFUL)
 
-#define APPLICATION_IVT_ADDRESS         (APPLICATION_START_ADDRESS + 0x40U)
-    
+#define APPLICATION_IVT_ADDRESS           (APPLICATION_START_ADDRESS + 0x40U)
+
 /* =====================================================
  * CAN_ID
  * ===================================================== */
-typedef enum {
-  BOOT_CAN_ID_HOST = 0xB0U,
-  BOOT_CAN_ID_CLIENT = 0xB1U
-} CAN_ID_t;
+#define BOOT_CAN_ID_HOST                  0xB0U
+#define BOOT_CAN_ID_CLIENT                0xB1U
 
 /* =====================================================
  * CAN_CMD
  * ===================================================== */
-typedef enum {
-  BOOT_CAN_CMD_2_READ = 0x01,
-  BOOT_CAN_CMD_2_WRITE = 0x02,
-  BOOT_CAN_CMD_2_COMPARE = 0x03,
+#define BOOT_CAN_CMD_3_BIT_0_1_READ       0b00
+#define BOOT_CAN_CMD_3_BIT_0_1_WRITE      0b01
+#define BOOT_CAN_CMD_3_BIT_0_1_COMPARE    0b10
 
-  BOOT_CAN_CMD_3_SUCCESS = 0x01,
-  BOOT_CAN_CMD_3_FAIL = 0x02,
+#define BOOT_CAN_CMD_3_BIT_2_SUCCESS      0b0
+#define BOOT_CAN_CMD_3_BIT_2_FAIL         0b1
 
-  BOOT_CAN_CMD_0_PIC_ID = 0x01U,
-  BOOT_CAN_CMD_1_PIC_MAC_ID_1 = 0x01U,
-  BOOT_CAN_CMD_1_PIC_MAC_ID_2 = 0x02U,
-  BOOT_CAN_CMD_1_PIC_MAC_ID_3 = 0x03U,
-  BOOT_CAN_CMD_1_PIC_MAC_ID_4 = 0x04U,
-  BOOT_CAN_CMD_1_PIC_DEVICE_ID = 0x05U,
+#define BOOT_CAN_CMD_0_PIC_ID             0x01U
+#define BOOT_CAN_CMD_1_PIC_MAC_ID_1       0x01U
+#define BOOT_CAN_CMD_1_PIC_MAC_ID_2       0x02U
+#define BOOT_CAN_CMD_1_PIC_MAC_ID_3       0x03U
+#define BOOT_CAN_CMD_1_PIC_MAC_ID_4       0x04U
+#define BOOT_CAN_CMD_1_PIC_DEVICE_ID      0x05U
 
-  BOOT_CAN_CMD_0_SOFTWARE_ID = 0x02U,
-  BOOT_CAN_CMD_1_PROJECT_ID = 0x01U,
-  BOOT_CAN_CMD_1_FIRMWARE_ID = 0x02U,
-  BOOT_CAN_CMD_1_BOOT_VERSION = 0x03,
+#define BOOT_CAN_CMD_0_METADATA           0x02U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_1   0x01U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_2   0x02U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_3   0x03U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_4   0x04U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_5   0x05U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_6   0x06U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_7   0x07U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_8   0x08U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_9   0x09U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_10  0x0AU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_11  0x0BU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_12  0x0CU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_13  0x0DU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_14  0x0EU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_15  0x0FU
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_16  0x10U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_17  0x11U
+#define BOOT_CAN_CMD_1_METADATA_CHUNK_18  0x12U
 
-  BOOT_CAN_CMD_0_STATUS = 0x03U,
-  BOOT_CAN_CMD_1_STATUS_BOOT = 0x01U,
-  BOOT_CAN_CMD_1_STATUS_APP = 0x02U,
-  BOOT_CAN_CMD_1_STATUS_UNKNOWN = 0x03U,
+#define BOOT_CAN_CMD_0_STATUS             0x03U
+#define BOOT_CAN_CMD_1_STATUS_BOOT        0x01U
+#define BOOT_CAN_CMD_1_STATUS_APP         0x02U
+#define BOOT_CAN_CMD_1_STATUS_UNKNOWN     0x03U
 
-  BOOT_CAN_CMD_0_APP_SIZE = 0x04U,
+#define BOOT_CAN_CMD_0_APP_SIZE           0x04U
 
-  BOOT_CAN_CMD_0_JUMP = 0x05U,
-  BOOT_CAN_CMD_1_BOOT_JUMP = 0x01U,
-  BOOT_CAN_CMD_1_APP_JUMP = 0x02U,
+#define BOOT_CAN_CMD_0_JUMP               0x05U
+#define BOOT_CAN_CMD_1_BOOT_JUMP          0x01U
+#define BOOT_CAN_CMD_1_APP_JUMP           0x02U
 
-  BOOT_CAN_CMD_0_APP_ERASE = 0x06U,
+#define BOOT_CAN_CMD_0_APP_ERASE          0x06U
 
-  BOOT_CAN_CMD_0_APP_CHUNK = 0x07U,
+#define BOOT_CAN_CMD_0_APP_CHUNK          0x07U
 
-  BOOT_CAN_CMD_0_APP_CRC = 0x08U,
-
-  BOOT_CAN_CMD_0_STAY_IN_BOOT = 0x09U,
-} CAN_CMD_t;
+#define BOOT_CAN_CMD_0_APP_CRC            0x08U
+#define BOOT_CAN_CMD_0_STAY_IN_BOOT       0x09U
 
 
 /* =====================================================
  * API
  * ===================================================== */
 void Boot_PIC_ID_Handler(void);
-void Boot_Software_ID_Handler(void);
+void Boot_Metadata_Handler(void);
 void Boot_Status_Handler(void);
 void Boot_App_Size_Handler(void);
 bool Boot_Is_App_Present(void);

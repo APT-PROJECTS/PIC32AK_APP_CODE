@@ -5,7 +5,15 @@
 #define FLASH_CHUNK_SIZE    1024U
 #define FLASH_ROW_SIZE      (NVM_FLASH_ROWSIZE * sizeof(uint32_t))
 #define BOOT_FLASH_PAGE_SIZE (NVM_FLASH_PAGESIZE * sizeof(uint32_t))
-#define CAN_DATA_SIZE       4U
+
+#define TUNER_CAN_CMD_3(operation, status) \
+        ((uint8_t)((operation) | ((status) << 2)))
+
+#define TUNER_CAN_CMD_3_GET_OPERATION(value) \
+        ((uint8_t)((value) & 0x03U))
+
+#define TUNER_CAN_CMD_3_GET_STATUS(value) \
+        ((uint8_t)(((value) >> 2U) & 0x01U))
 
 static uint8_t flashBuffer[FLASH_CHUNK_SIZE];
 static uint32_t flashBufferIndex = 0;
@@ -25,22 +33,25 @@ typedef void (*APP_ENTRY_FUNC)(void);
 
 void Boot_PIC_ID_Handler(void)
 {
-    uint8_t txBuf[8];
+    uint8_t txBuf[8] = {0U};
+    uint8_t operation;
     uint32_t picid;
 
     if (canRxBuffer[0] != BOOT_CAN_CMD_0_PIC_ID)
     {
         return;
     }
+    
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
 
-    switch (canRxBuffer[2])
+    switch (operation)
     {
         /*------------------------- READ --------------------------*/
-        case BOOT_CAN_CMD_2_READ:
+        case BOOT_CAN_CMD_3_BIT_0_1_READ:
 
             txBuf[0] = BOOT_CAN_CMD_0_PIC_ID;
             txBuf[1] = canRxBuffer[1];
-            txBuf[2] = BOOT_CAN_CMD_2_READ;
+            txBuf[2] = 0x00;
 
             /* Check if PIC ID is available */
             if ((udid[0] == 0U) &&
@@ -48,11 +59,13 @@ void Boot_PIC_ID_Handler(void)
                 (udid[2] == 0U) &&
                 (udid[3] == 0U))
             {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+                txBuf[3] = TUNER_CAN_CMD_3(operation, 
+                            BOOT_CAN_CMD_3_BIT_2_FAIL);
             }
             else
             {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
+                txBuf[3] = TUNER_CAN_CMD_3(operation, 
+                            BOOT_CAN_CMD_3_BIT_2_SUCCESS);
             }
 
             switch (canRxBuffer[1])
@@ -94,130 +107,106 @@ void Boot_PIC_ID_Handler(void)
     }
 }
 
-void Boot_Software_ID_Handler(void) {
-    uint8_t txBuf[8];
-    float softwareId;
-    bool commitFirmwareUpdate;
+/* Read one four-byte metadata chunk, using the same protocol as tuner CAN. */
+void Boot_Metadata_Handler(void)
+{
+    /* Persists across CAN frames without adding a file-scope variable. */
+    static uint32_t metadataReceivedChunks = 0U;
+    uint8_t txBuf[8] = {0U};
+    uint8_t operation;
+    uint8_t chunkNumber;
+    uint8_t chunkCount;
+    uint16_t metadataOffset;
+    uint16_t i;
+    uint32_t allChunksMask;
+    bool metadataEmpty = true;
 
-    if (canRxBuffer[0] != BOOT_CAN_CMD_0_SOFTWARE_ID) {
+    if (canRxBuffer[0] != BOOT_CAN_CMD_0_METADATA)
+    {
         return;
     }
 
-    switch (canRxBuffer[2]) {
-            /*------------------------- READ --------------------------*/
-        case BOOT_CAN_CMD_2_READ:
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
+    chunkNumber = canRxBuffer[1];
+    /* Reserve the final metadata byte for internal use. */
+    chunkCount = (METADATA_LENGTH - 1U) / CAN_FRAME_DATA_SIZE;
+    
+    if ((chunkNumber == 0U) ||
+        (chunkNumber > chunkCount))
+    {
+        return;
+    }
 
-            txBuf[0] = BOOT_CAN_CMD_0_SOFTWARE_ID;
-            txBuf[1] = canRxBuffer[1];
-            txBuf[2] = BOOT_CAN_CMD_2_READ;
+    metadataOffset = (uint16_t)(chunkNumber - 1U) * CAN_FRAME_DATA_SIZE;
+    txBuf[0] = BOOT_CAN_CMD_0_METADATA;
+    txBuf[1] = chunkNumber;
+    txBuf[2] = 0x00U;
 
-            switch (canRxBuffer[1])
+    switch (operation)
+    {
+        case BOOT_CAN_CMD_3_BIT_0_1_READ:
+            for (i = 0U; i < (METADATA_LENGTH - 1U); i++)
             {
-                case BOOT_CAN_CMD_1_PROJECT_ID:
-                    softwareId = R_PROJECT_ID;
+                if ((uint8_t)metadata[i] != 0x00U)
+                {
+                    metadataEmpty = false;
                     break;
-
-                case BOOT_CAN_CMD_1_FIRMWARE_ID:
-                    softwareId = R_FIRMWARE_ID;
-                    break;
-                    
-                case BOOT_CAN_CMD_1_BOOT_VERSION:
-                    softwareId = R_BOOT_VERSION;
-                    break;
-
-                default:
-                    return;
+                }
             }
 
-            /* Validate Software ID */
-            if (softwareId < 0.0f)
-            {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
-            }
-            else
-            {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-            }
+            txBuf[3] = TUNER_CAN_CMD_3(operation,
+                    metadataEmpty ? BOOT_CAN_CMD_3_BIT_2_FAIL :
+                                    BOOT_CAN_CMD_3_BIT_2_SUCCESS);
 
-            __builtin_memcpy(&txBuf[4], &softwareId, sizeof(float));
-
-            CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
+            if (!metadataEmpty)
+            {
+                for (i = 0U; (i < CAN_FRAME_DATA_SIZE) &&
+                        ((metadataOffset + i) < (METADATA_LENGTH - 1U)); i++)
+                {
+                    txBuf[4U + i] = (uint8_t)metadata[metadataOffset + i];
+                }
+            }
             break;
 
-            /*------------------------- WRITE -------------------------*/
-        case BOOT_CAN_CMD_2_WRITE:
-
-            /*
-             * The firmware-ID WRITE replaces the former CANID_REQ_END frame.
-             * It is accepted only after all application data has been written
-             * successfully.  A partial buffer is flushed here as a safeguard.
-             */
-            commitFirmwareUpdate =
-                ((canRxBuffer[1] == BOOT_CAN_CMD_1_FIRMWARE_ID) &&
-                 firmwareUpdateActive);
-
-            if (commitFirmwareUpdate)
+        case BOOT_CAN_CMD_3_BIT_0_1_WRITE:
+            for (i = 0U; (i < CAN_FRAME_DATA_SIZE) &&
+                    ((metadataOffset + i) < (METADATA_LENGTH - 1U)); i++)
             {
-                if (!firmwareUpdateFailed && (flashBufferIndex > 0U) &&
-                    !App_Firmware_Write_Flash())
-                {
-                    firmwareUpdateFailed = true;
-                }
-
-                if (firmwareUpdateFailed || !firmwareCrcVerified)
-                {
-                    txBuf[0] = BOOT_CAN_CMD_0_SOFTWARE_ID;
-                    txBuf[1] = canRxBuffer[1];
-                    txBuf[2] = BOOT_CAN_CMD_2_WRITE;
-                    txBuf[3] = BOOT_CAN_CMD_3_FAIL;
-                    CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
-                    return;
-                }
+                metadata[metadataOffset + i] = (char)canRxBuffer[4U + i];
             }
 
-            txBuf[0] = BOOT_CAN_CMD_0_SOFTWARE_ID;
-            txBuf[1] = canRxBuffer[1];
-            txBuf[2] = BOOT_CAN_CMD_2_WRITE;
-            txBuf[3] = 0x00;
+            metadataReceivedChunks |= (1UL << (chunkNumber - 1U));
+            allChunksMask = (1UL << chunkCount) - 1UL;
 
-            switch (canRxBuffer[1]) {
-                case BOOT_CAN_CMD_1_PROJECT_ID:
-                    __builtin_memcpy(&W_PROJECT_ID, &canRxBuffer[4], sizeof (float));
-                    break;
+            txBuf[3] = TUNER_CAN_CMD_3(operation, BOOT_CAN_CMD_3_BIT_2_SUCCESS);
 
-                case BOOT_CAN_CMD_1_FIRMWARE_ID:
-                    __builtin_memcpy(&W_FIRMWARE_ID, &canRxBuffer[4], sizeof (float));
-                    break;
+            if (metadataReceivedChunks == allChunksMask)
+            {
+                metadata[METADATA_LENGTH] = '\0';
 
-                default:
-                    return;
-            }
+                __builtin_memset(&eepromBuffer[EEPROM_METADATA_OFFSET], 0xFF,
+                        EEPROM_METADATA_SIZE);
+                __builtin_memcpy(&eepromBuffer[EEPROM_METADATA_OFFSET], metadata,
+                        METADATA_LENGTH);
 
-            __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
-                    EEPROM_TUNER_SIZE);
-            __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
-                    tunerWriteMatrix, sizeof (tunerWriteMatrix));
-
-            if (Flash_EEPROM_Write_Page(eepromBuffer,
-                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK) {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-
-                /* Commit the application only after its firmware ID is saved. */
-                if (commitFirmwareUpdate)
+                if (Flash_EEPROM_Write_Page(eepromBuffer,
+                        EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
                 {
-                    firmwareImageReady = true;
-                    firmwareUpdateActive = false;
+                    metadataReceivedChunks = 0U;
                 }
-            } else {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+                else
+                {
+                    txBuf[3] = TUNER_CAN_CMD_3(operation,
+                            BOOT_CAN_CMD_3_BIT_2_FAIL);
+                }
             }
-
-            CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof (txBuf));
             break;
 
         default:
-            break;
+            return;
     }
+
+    CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
 }
 
 void Boot_Status_Handler(void)
@@ -682,14 +671,14 @@ void Boot_App_Chunk_Handler(void)
     }
 
     if ((chunkIndex != expectedChunkIndex) ||
-        ((flashBufferIndex + CAN_DATA_SIZE) > FLASH_CHUNK_SIZE))
+        ((flashBufferIndex + CAN_FRAME_DATA_SIZE) > FLASH_CHUNK_SIZE))
     {
         Boot_App_Chunk_Ack(chunkIndex, BOOT_CAN_CMD_3_FAIL);
         return;
     }
 
-    memcpy(&flashBuffer[flashBufferIndex], &canRxBuffer[4], CAN_DATA_SIZE);
-    flashBufferIndex += CAN_DATA_SIZE;
+    memcpy(&flashBuffer[flashBufferIndex], &canRxBuffer[4], CAN_FRAME_DATA_SIZE);
+    flashBufferIndex += CAN_FRAME_DATA_SIZE;
 
     /* One OTA chunk is 256 four-byte frames (1024 bytes). */
     if (flashBufferIndex < FLASH_CHUNK_SIZE)
@@ -826,9 +815,9 @@ void Run_Boot_Handler(uint32_t id, uint8_t *rxBuffer)
                     break;
                 }
 
-                case BOOT_CAN_CMD_0_SOFTWARE_ID:
+                case BOOT_CAN_CMD_0_METADATA:
                 {
-                    Boot_Software_ID_Handler();
+                    Boot_Metadata_Handler();
                     break;
                 }
                     

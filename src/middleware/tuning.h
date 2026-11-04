@@ -241,8 +241,10 @@
 //==================================================
 // EEPROM FIELD OFFSET
 //================================================== 
-#define EEPROM_TUNER_OFFSET         (EEPROM_METADATA_OFFSET + EEPROM_METADATA_SIZE)
-#define EEPROM_TUNER_SIZE           (EEPROM_DATA_SIZE - EEPROM_TUNER_OFFSET)
+#define EEPROM_TUNER_OFFSET         (EEPROM_METADATA_OFFSET +   \
+                                        EEPROM_METADATA_SIZE)
+#define EEPROM_TUNER_SIZE           (EEPROM_DATA_SIZE -         \
+                                        EEPROM_TUNER_OFFSET)
 
 //==================================================
 // API
@@ -252,16 +254,16 @@ void Get_Config(void);
 void Update_Config(void);
 
 /*=================UART TUNING==================*/
-void UART_Tuner_Read_PIC_ID(void);
-void UART_Tuner_Read_Metadata(void);
+void UART_Tuner_Send_PIC_ID(void);
+void UART_Tuner_Send_Metadata(void);
 void UART_Tuner_Write(void); 
 void UART_Tuner_Read(uint8_t); 
 void UART_Tuner_Command(uint8_t *); 
 void UART_Tuner_Send_Zero_Angle(float, float, float, int); 
 
 /*=================CAN TUNING====================*/
-void CAN_Tuner_Read_PIC_ID(void);
-void CAN_Tuner_Read_Metadata(void);
+void CAN_Tuner_Send_PIC_ID(void);
+void CAN_Tuner_Send_Metadata(void);
 void CAN_Tuner_Read_Write(void);
 void CAN_Send_Status(void);
 void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1, 

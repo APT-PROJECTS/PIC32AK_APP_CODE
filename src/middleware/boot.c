@@ -386,7 +386,7 @@ void Boot_Jump_Handler(void)
 
 void Boot_App_Erase_Handler(void)
 {
-    uint8_t txBuf[8] = {0};
+    uint8_t txBuf[8] = {0U};
     uint32_t address;
 
     flashWriteAddress = APPLICATION_START_ADDRESS;
@@ -406,6 +406,8 @@ void Boot_App_Erase_Handler(void)
     }
 
     txBuf[0] = BOOT_CAN_CMD_0_APP_ERASE;
+    txBuf[1] = canRxBuffer[1];
+    txBuf[2] = 0x00U;
 
     /* Erase complete application region */
     for (address = APPLICATION_START_ADDRESS;
@@ -418,7 +420,7 @@ void Boot_App_Erase_Handler(void)
 
         if (!NVM_PageErase(address))
         {
-            txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+            txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_FAIL << 2U);
             CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
             return;
         }
@@ -435,7 +437,7 @@ void Boot_App_Erase_Handler(void)
     {
         if (*(volatile const uint32_t *)address != 0xFFFFFFFFUL)
         {
-            txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+            txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_FAIL << 2U);
             CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
             return;
         }
@@ -444,7 +446,7 @@ void Boot_App_Erase_Handler(void)
     firmwareUpdateActive = true;
 
     /* Erase successful */
-    txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
+    txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_SUCCESS << 2U);
     CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
 }
 

@@ -211,7 +211,8 @@ void Boot_Metadata_Handler(void)
 
 void Boot_Status_Handler(void)
 {
-    uint8_t txBuf[8] = {0};
+    uint8_t txBuf[8] = {0U};
+    uint8_t operation;
     uint32_t addr;
 
     if (canRxBuffer[0] != BOOT_CAN_CMD_0_STATUS)
@@ -219,17 +220,21 @@ void Boot_Status_Handler(void)
         return;
     }
 
-    switch (canRxBuffer[2])
+    operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
+
+    switch (operation)
     {
         /*------------------------- READ --------------------------*/
-        case BOOT_CAN_CMD_2_READ:
+        case BOOT_CAN_CMD_3_BIT_0_1_READ:
 
             /* Get the address of this function */
             addr = (uint32_t)&Boot_Status_Handler;
 
             txBuf[0] = BOOT_CAN_CMD_0_STATUS;
-            txBuf[2] = BOOT_CAN_CMD_2_READ;
-            txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
+            txBuf[1] = canRxBuffer[1];
+            txBuf[2] = 0x00U;
+            txBuf[3] = TUNER_CAN_CMD_3(operation,
+                    BOOT_CAN_CMD_3_BIT_2_SUCCESS);
 
             if ((addr >= BOOTLOADER_START_ADDRESS) &&
                 (addr <= BOOTLOADER_END_ADDRESS))
@@ -250,7 +255,7 @@ void Boot_Status_Handler(void)
             break;
 
         default:
-            break;
+            return;
     }
 }
 

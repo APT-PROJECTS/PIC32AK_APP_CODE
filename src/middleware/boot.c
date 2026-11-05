@@ -110,15 +110,12 @@ void Boot_PIC_ID_Handler(void)
 /* Read one four-byte metadata chunk, using the same protocol as tuner CAN. */
 void Boot_Metadata_Handler(void)
 {
-    /* Persists across CAN frames without adding a file-scope variable. */
-    static uint32_t metadataReceivedChunks = 0U;
     uint8_t txBuf[8] = {0U};
     uint8_t operation;
     uint8_t chunkNumber;
     uint8_t chunkCount;
     uint16_t metadataOffset;
     uint16_t i;
-    uint32_t allChunksMask;
     bool metadataEmpty = true;
 
     if (canRxBuffer[0] != BOOT_CAN_CMD_0_METADATA)
@@ -164,40 +161,6 @@ void Boot_Metadata_Handler(void)
                         ((metadataOffset + i) < (METADATA_LENGTH - 1U)); i++)
                 {
                     txBuf[4U + i] = (uint8_t)metadata[metadataOffset + i];
-                }
-            }
-            break;
-
-        case BOOT_CAN_CMD_3_BIT_0_1_WRITE:
-            for (i = 0U; (i < CAN_FRAME_DATA_SIZE) &&
-                    ((metadataOffset + i) < (METADATA_LENGTH - 1U)); i++)
-            {
-                metadata[metadataOffset + i] = (char)canRxBuffer[4U + i];
-            }
-
-            metadataReceivedChunks |= (1UL << (chunkNumber - 1U));
-            allChunksMask = (1UL << chunkCount) - 1UL;
-
-            txBuf[3] = TUNER_CAN_CMD_3(operation, BOOT_CAN_CMD_3_BIT_2_SUCCESS);
-
-            if (metadataReceivedChunks == allChunksMask)
-            {
-                metadata[METADATA_LENGTH] = '\0';
-
-                __builtin_memset(&eepromBuffer[EEPROM_METADATA_OFFSET], 0xFF,
-                        EEPROM_METADATA_SIZE);
-                __builtin_memcpy(&eepromBuffer[EEPROM_METADATA_OFFSET], metadata,
-                        METADATA_LENGTH);
-
-                if (Flash_EEPROM_Write_Page(eepromBuffer,
-                        EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
-                {
-                    metadataReceivedChunks = 0U;
-                }
-                else
-                {
-                    txBuf[3] = TUNER_CAN_CMD_3(operation,
-                            BOOT_CAN_CMD_3_BIT_2_FAIL);
                 }
             }
             break;
@@ -256,100 +219,6 @@ void Boot_Status_Handler(void)
 
         default:
             return;
-    }
-}
-
-void Boot_App_Size_Handler(void)
-{
-    uint8_t txBuf[8] = {0};
-    uint32_t firmwareSize;
-    uint32_t maxAppSize;
-
-    if (canRxBuffer[0] != BOOT_CAN_CMD_0_APP_SIZE)
-    {
-        return;
-    }
-
-    switch (canRxBuffer[2])
-    {
-        /*----------------------- COMPARE -------------------------*/
-        case BOOT_CAN_CMD_2_COMPARE:
-
-            /* Extract firmware size (bytes) from CAN bytes 4-7 */
-            firmwareSize = ((uint32_t)canRxBuffer[4] << 24) |
-                           ((uint32_t)canRxBuffer[5] << 16) |
-                           ((uint32_t)canRxBuffer[6] << 8)  |
-                           ((uint32_t)canRxBuffer[7]);
-
-            /* Maximum allowed firmware size = Application partition - 4 KB */
-            maxAppSize = (APPLICATION_END_ADDRESS - APPLICATION_START_ADDRESS + 1U) - (1U * 1024U);
-
-            txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
-            txBuf[2] = BOOT_CAN_CMD_2_COMPARE;
-            firmwareExpectedSize = 0U;
-
-            if ((firmwareSize > 0U) && (firmwareSize < maxAppSize))
-            {
-                /* CRC covers only this exact file size, never CAN padding. */
-                firmwareExpectedSize = firmwareSize;
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-            }
-            else
-            {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
-            }
-
-            CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
-            break;
-
-        /*------------------------- READ --------------------------*/
-        case BOOT_CAN_CMD_2_READ:
-
-            firmwareSize = (uint32_t)R_APP_SIZE;
-
-            txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
-            txBuf[2] = BOOT_CAN_CMD_2_READ;
-            txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-
-            txBuf[4] = (uint8_t)(firmwareSize >> 24);
-            txBuf[5] = (uint8_t)(firmwareSize >> 16);
-            txBuf[6] = (uint8_t)(firmwareSize >> 8);
-            txBuf[7] = (uint8_t)(firmwareSize);
-
-            CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
-            break;
-
-        /*------------------------- WRITE -------------------------*/
-        case BOOT_CAN_CMD_2_WRITE:
-
-            W_APP_SIZE = ((uint32_t)canRxBuffer[4] << 24) |
-                         ((uint32_t)canRxBuffer[5] << 16) |
-                         ((uint32_t)canRxBuffer[6] << 8)  |
-                         ((uint32_t)canRxBuffer[7]);
-
-            memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
-                    EEPROM_TUNER_SIZE);
-            memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET], tunerWriteMatrix,
-                    sizeof(tunerWriteMatrix));
-
-            txBuf[0] = BOOT_CAN_CMD_0_APP_SIZE;
-            txBuf[2] = BOOT_CAN_CMD_2_WRITE;
-
-            if (Flash_EEPROM_Write_Page(eepromBuffer,
-                    EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
-            {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-            }
-            else
-            {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
-            }
-
-            CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
-            break;
-
-        default:
-            break;
     }
 }
 
@@ -416,7 +285,7 @@ void Boot_App_Jump(void)
 
 void Boot_Jump_Handler(void)
 {
-    uint8_t txBuf[8] = {0};
+    uint8_t txBuf[8] = {0U};
     uint32_t addr;
 
     if (canRxBuffer[0] != BOOT_CAN_CMD_0_JUMP)
@@ -829,12 +698,6 @@ void Run_Boot_Handler(uint32_t id, uint8_t *rxBuffer)
                 case BOOT_CAN_CMD_0_STATUS:
                 {
                     Boot_Status_Handler();
-                    break;
-                }
-
-                case BOOT_CAN_CMD_0_APP_SIZE:
-                {
-                    Boot_App_Size_Handler();
                     break;
                 }
 

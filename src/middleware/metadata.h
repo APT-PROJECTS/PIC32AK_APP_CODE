@@ -112,12 +112,21 @@ extern "C" {
 extern uint32_t udid[4];
 extern uint32_t devid;
 
+extern char appSize[APP_SIZE + 1U];
+extern char stayInBootFlag[STAY_IN_BOOT_FLAG + 1U];
+
 extern char metadata[METADATA_LENGTH + 1U];  
 
 
 //--------------------------------------------------
 // API
 //--------------------------------------------------
+void Get_PIC_ID(void);
+void Get_Part_Number(void);
+void Get_Model_Number(void);
+void Get_Software_ID(void);
+void Get_Firmware_ID(void);
+void Build_Metadata(void);
 void Metadata_Init(void);
 
 

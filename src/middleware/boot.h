@@ -46,7 +46,6 @@ extern "C" {
  * ===================================================== */
 #define BOOT_CAN_CMD_3_BIT_0_1_READ       0b00
 #define BOOT_CAN_CMD_3_BIT_0_1_WRITE      0b01
-#define BOOT_CAN_CMD_3_BIT_0_1_COMPARE    0b10
 
 #define BOOT_CAN_CMD_3_BIT_2_SUCCESS      0b0
 #define BOOT_CAN_CMD_3_BIT_2_FAIL         0b1
@@ -103,7 +102,6 @@ extern "C" {
 void Boot_PIC_ID_Handler(void);
 void Boot_Metadata_Handler(void);
 void Boot_Status_Handler(void);
-void Boot_App_Size_Handler(void);
 bool Boot_Is_App_Present(void);
 void Boot_App_Jump(void);
 void Boot_Jump_Handler(void);

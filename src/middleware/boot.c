@@ -297,6 +297,7 @@ void Boot_Jump_Handler(void)
 
     txBuf[0] = BOOT_CAN_CMD_0_JUMP;
     txBuf[1] = canRxBuffer[1];
+    txBuf[2] = 0x00U;
 
     switch (canRxBuffer[1])
     {
@@ -306,23 +307,31 @@ void Boot_Jump_Handler(void)
             if ((addr >= BOOTLOADER_START_ADDRESS) &&
                 (addr <= BOOTLOADER_END_ADDRESS))
             {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
+                txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_SUCCESS << 2U);
                 CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
                 break;
             }
 
-            /* Set boot flag and reset */
-            W_BOOT_FLAG = 1.0f;
+            stayInBootFlag[0] = '1';
+            stayInBootFlag[STAY_IN_BOOT_FLAG] = '\0';
+            Get_Software_ID();
+            Get_Firmware_ID();
+            Build_Metadata();
 
-            __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 0xFF,
-                    EEPROM_TUNER_SIZE);
-            __builtin_memcpy(&eepromBuffer[EEPROM_TUNER_OFFSET],
-                    tunerWriteMatrix, sizeof(tunerWriteMatrix));
+            __builtin_memset(&eepromBuffer[EEPROM_METADATA_OFFSET], 0xFF,
+                    EEPROM_METADATA_SIZE);
+            __builtin_memcpy(&eepromBuffer[EEPROM_METADATA_OFFSET], metadata,
+                    METADATA_LENGTH);
 
             if (Flash_EEPROM_Write_Page(eepromBuffer,
                     EEPROM_DATA_SIZE) == FLASH_EEPROM_OK)
             {
                 asm("reset");
+            }
+            else
+            {
+                txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_FAIL << 2U);
+                CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
             }
             break;
 
@@ -331,11 +340,11 @@ void Boot_Jump_Handler(void)
             if ((addr >= APPLICATION_START_ADDRESS) &&
                 (addr <= APPLICATION_END_ADDRESS))
             {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
+                txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_SUCCESS << 2U);
                 CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
                 break;
             }
-            
+
             /* Safety fallback: never accept a received image without CRC. */
             if (firmwareUpdateActive && !firmwareUpdateFailed &&
                 (flashBufferIndex > 0U))
@@ -353,7 +362,7 @@ void Boot_Jump_Handler(void)
 
                 if (!firmwareImageReady)
                 {
-                    txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+                    txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_FAIL << 2U);
                     CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
                     break;
                 }
@@ -361,19 +370,17 @@ void Boot_Jump_Handler(void)
 
             if (!firmwareUpdateFailed && (Boot_Is_App_Present() == true))
             {
-                txBuf[3] = BOOT_CAN_CMD_3_SUCCESS;
-                CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
                 Boot_App_Jump();
             }
             else
             {
-                txBuf[3] = BOOT_CAN_CMD_3_FAIL;
+                txBuf[3] = (uint8_t)(BOOT_CAN_CMD_3_BIT_2_FAIL << 2U);
                 CANbus_write(BOOT_CAN_ID_CLIENT, txBuf, sizeof(txBuf));
             }
             break;
 
         default:
-            break;
+            return;
     }
 }
 

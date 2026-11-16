@@ -9,12 +9,13 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include "middleware/boot.h"
 #include "middleware/metadata.h"
 #include "middleware/diagnostics.h"
-#include "middleware/tuning.h"
+#include "middleware/tuner.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

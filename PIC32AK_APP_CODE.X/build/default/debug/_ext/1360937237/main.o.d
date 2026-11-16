@@ -17,7 +17,7 @@ build/default/debug/_ext/1360937237/main.o: ../src/main.c \
  ../src/driver/driver_uart.h ../src/driver/flash_eeprom.h \
  ../src/middleware.h ../src/middleware/boot.h \
  ../src/middleware/metadata.h ../src/middleware/diagnostics.h \
- ../src/middleware/tuning.h ../src/driver.h
+ ../src/middleware/tuner.h ../src/driver.h
 
 ../src/config/default/definitions.h:
 
@@ -65,6 +65,6 @@ build/default/debug/_ext/1360937237/main.o: ../src/main.c \
 
 ../src/middleware/diagnostics.h:
 
-../src/middleware/tuning.h:
+../src/middleware/tuner.h:
 
 ../src/driver.h:

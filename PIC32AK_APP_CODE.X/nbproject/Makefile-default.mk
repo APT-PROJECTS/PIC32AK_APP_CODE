@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/gpio/plib_gpio.c ../src/config/default/peripheral/intc/plib_intc.c ../src/config/default/peripheral/nvm/plib_nvm.c ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.c ../src/config/default/peripheral/tmr/plib_tmr1.c ../src/config/default/peripheral/uart/plib_uart1.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/traps.c ../src/driver/driver_mcp2515.c ../src/driver/flash_eeprom.c ../src/middleware/diagnostics.c ../src/middleware/tuning.c ../src/middleware/metadata.c ../src/software/state_engine.c ../src/software/mcu_config.c ../src/main.c ../src/middleware/boot.c ../src/driver/driver_uart.c ../src/driver/driver_can.c
+SOURCEFILES_QUOTED_IF_SPACED=../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/gpio/plib_gpio.c ../src/config/default/peripheral/intc/plib_intc.c ../src/config/default/peripheral/nvm/plib_nvm.c ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.c ../src/config/default/peripheral/tmr/plib_tmr1.c ../src/config/default/peripheral/uart/plib_uart1.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/traps.c ../src/driver/driver_mcp2515.c ../src/driver/flash_eeprom.c ../src/driver/driver_uart.c ../src/driver/driver_can.c ../src/middleware/diagnostics.c ../src/middleware/metadata.c ../src/middleware/boot.c ../src/software/state_engine.c ../src/software/mcu_config.c ../src/main.c ../src/middleware/tuner.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/1865254177/plib_gpio.o ${OBJECTDIR}/_ext/1865312166/plib_intc.o ${OBJECTDIR}/_ext/60176403/plib_nvm.o ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o ${OBJECTDIR}/_ext/60181895/plib_tmr1.o ${OBJECTDIR}/_ext/1865657120/plib_uart1.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/traps.o ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o ${OBJECTDIR}/_ext/1375476428/diagnostics.o ${OBJECTDIR}/_ext/1375476428/tuning.o ${OBJECTDIR}/_ext/1375476428/metadata.o ${OBJECTDIR}/_ext/1200941409/state_engine.o ${OBJECTDIR}/_ext/1200941409/mcu_config.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1375476428/boot.o ${OBJECTDIR}/_ext/362756510/driver_uart.o ${OBJECTDIR}/_ext/362756510/driver_can.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/60165520/plib_clk.o.d ${OBJECTDIR}/_ext/1865254177/plib_gpio.o.d ${OBJECTDIR}/_ext/1865312166/plib_intc.o.d ${OBJECTDIR}/_ext/60176403/plib_nvm.o.d ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o.d ${OBJECTDIR}/_ext/60181895/plib_tmr1.o.d ${OBJECTDIR}/_ext/1865657120/plib_uart1.o.d ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d ${OBJECTDIR}/_ext/1171490990/initialization.o.d ${OBJECTDIR}/_ext/1171490990/interrupts.o.d ${OBJECTDIR}/_ext/1171490990/traps.o.d ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o.d ${OBJECTDIR}/_ext/362756510/flash_eeprom.o.d ${OBJECTDIR}/_ext/1375476428/diagnostics.o.d ${OBJECTDIR}/_ext/1375476428/tuning.o.d ${OBJECTDIR}/_ext/1375476428/metadata.o.d ${OBJECTDIR}/_ext/1200941409/state_engine.o.d ${OBJECTDIR}/_ext/1200941409/mcu_config.o.d ${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1375476428/boot.o.d ${OBJECTDIR}/_ext/362756510/driver_uart.o.d ${OBJECTDIR}/_ext/362756510/driver_can.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/1865254177/plib_gpio.o ${OBJECTDIR}/_ext/1865312166/plib_intc.o ${OBJECTDIR}/_ext/60176403/plib_nvm.o ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o ${OBJECTDIR}/_ext/60181895/plib_tmr1.o ${OBJECTDIR}/_ext/1865657120/plib_uart1.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/traps.o ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o ${OBJECTDIR}/_ext/362756510/driver_uart.o ${OBJECTDIR}/_ext/362756510/driver_can.o ${OBJECTDIR}/_ext/1375476428/diagnostics.o ${OBJECTDIR}/_ext/1375476428/metadata.o ${OBJECTDIR}/_ext/1375476428/boot.o ${OBJECTDIR}/_ext/1200941409/state_engine.o ${OBJECTDIR}/_ext/1200941409/mcu_config.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1375476428/tuner.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/60165520/plib_clk.o.d ${OBJECTDIR}/_ext/1865254177/plib_gpio.o.d ${OBJECTDIR}/_ext/1865312166/plib_intc.o.d ${OBJECTDIR}/_ext/60176403/plib_nvm.o.d ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o.d ${OBJECTDIR}/_ext/60181895/plib_tmr1.o.d ${OBJECTDIR}/_ext/1865657120/plib_uart1.o.d ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d ${OBJECTDIR}/_ext/1171490990/initialization.o.d ${OBJECTDIR}/_ext/1171490990/interrupts.o.d ${OBJECTDIR}/_ext/1171490990/traps.o.d ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o.d ${OBJECTDIR}/_ext/362756510/flash_eeprom.o.d ${OBJECTDIR}/_ext/362756510/driver_uart.o.d ${OBJECTDIR}/_ext/362756510/driver_can.o.d ${OBJECTDIR}/_ext/1375476428/diagnostics.o.d ${OBJECTDIR}/_ext/1375476428/metadata.o.d ${OBJECTDIR}/_ext/1375476428/boot.o.d ${OBJECTDIR}/_ext/1200941409/state_engine.o.d ${OBJECTDIR}/_ext/1200941409/mcu_config.o.d ${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1375476428/tuner.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/1865254177/plib_gpio.o ${OBJECTDIR}/_ext/1865312166/plib_intc.o ${OBJECTDIR}/_ext/60176403/plib_nvm.o ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o ${OBJECTDIR}/_ext/60181895/plib_tmr1.o ${OBJECTDIR}/_ext/1865657120/plib_uart1.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/traps.o ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o ${OBJECTDIR}/_ext/1375476428/diagnostics.o ${OBJECTDIR}/_ext/1375476428/tuning.o ${OBJECTDIR}/_ext/1375476428/metadata.o ${OBJECTDIR}/_ext/1200941409/state_engine.o ${OBJECTDIR}/_ext/1200941409/mcu_config.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1375476428/boot.o ${OBJECTDIR}/_ext/362756510/driver_uart.o ${OBJECTDIR}/_ext/362756510/driver_can.o
+OBJECTFILES=${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/1865254177/plib_gpio.o ${OBJECTDIR}/_ext/1865312166/plib_intc.o ${OBJECTDIR}/_ext/60176403/plib_nvm.o ${OBJECTDIR}/_ext/1868329136/plib_spi1_host.o ${OBJECTDIR}/_ext/60181895/plib_tmr1.o ${OBJECTDIR}/_ext/1865657120/plib_uart1.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/traps.o ${OBJECTDIR}/_ext/362756510/driver_mcp2515.o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o ${OBJECTDIR}/_ext/362756510/driver_uart.o ${OBJECTDIR}/_ext/362756510/driver_can.o ${OBJECTDIR}/_ext/1375476428/diagnostics.o ${OBJECTDIR}/_ext/1375476428/metadata.o ${OBJECTDIR}/_ext/1375476428/boot.o ${OBJECTDIR}/_ext/1200941409/state_engine.o ${OBJECTDIR}/_ext/1200941409/mcu_config.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1375476428/tuner.o
 
 # Source Files
-SOURCEFILES=../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/gpio/plib_gpio.c ../src/config/default/peripheral/intc/plib_intc.c ../src/config/default/peripheral/nvm/plib_nvm.c ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.c ../src/config/default/peripheral/tmr/plib_tmr1.c ../src/config/default/peripheral/uart/plib_uart1.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/traps.c ../src/driver/driver_mcp2515.c ../src/driver/flash_eeprom.c ../src/middleware/diagnostics.c ../src/middleware/tuning.c ../src/middleware/metadata.c ../src/software/state_engine.c ../src/software/mcu_config.c ../src/main.c ../src/middleware/boot.c ../src/driver/driver_uart.c ../src/driver/driver_can.c
+SOURCEFILES=../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/gpio/plib_gpio.c ../src/config/default/peripheral/intc/plib_intc.c ../src/config/default/peripheral/nvm/plib_nvm.c ../src/config/default/peripheral/spi/spi_host/plib_spi1_host.c ../src/config/default/peripheral/tmr/plib_tmr1.c ../src/config/default/peripheral/uart/plib_uart1.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/traps.c ../src/driver/driver_mcp2515.c ../src/driver/flash_eeprom.c ../src/driver/driver_uart.c ../src/driver/driver_can.c ../src/middleware/diagnostics.c ../src/middleware/metadata.c ../src/middleware/boot.c ../src/software/state_engine.c ../src/software/mcu_config.c ../src/main.c ../src/middleware/tuner.c
 
 
 
@@ -189,23 +189,35 @@ ${OBJECTDIR}/_ext/362756510/flash_eeprom.o: ../src/driver/flash_eeprom.c  .gener
 	@${RM} ${OBJECTDIR}/_ext/362756510/flash_eeprom.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/flash_eeprom.c  -o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/flash_eeprom.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
+${OBJECTDIR}/_ext/362756510/driver_uart.o: ../src/driver/driver_uart.c  .generated_files/flags/default/e858a8c99c95560a88ec42320ceea1857b928e0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_uart.c  -o ${OBJECTDIR}/_ext/362756510/driver_uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_uart.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
+${OBJECTDIR}/_ext/362756510/driver_can.o: ../src/driver/driver_can.c  .generated_files/flags/default/4c8d5c4862531fd0aaa687134bdee5a3fead9bfa .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o.d 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_can.c  -o ${OBJECTDIR}/_ext/362756510/driver_can.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_can.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
 ${OBJECTDIR}/_ext/1375476428/diagnostics.o: ../src/middleware/diagnostics.c  .generated_files/flags/default/536097526d43d76e4ffe153458fe6a767852f1de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/diagnostics.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/diagnostics.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/diagnostics.c  -o ${OBJECTDIR}/_ext/1375476428/diagnostics.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/diagnostics.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
-${OBJECTDIR}/_ext/1375476428/tuning.o: ../src/middleware/tuning.c  .generated_files/flags/default/292377025fed1632f78243b38e51dbf5b3a17fdb .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/tuning.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/tuning.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/tuning.c  -o ${OBJECTDIR}/_ext/1375476428/tuning.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/tuning.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
 ${OBJECTDIR}/_ext/1375476428/metadata.o: ../src/middleware/metadata.c  .generated_files/flags/default/229bc83751877f116e237ed986e75ebb338a4d31 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/metadata.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/metadata.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/metadata.c  -o ${OBJECTDIR}/_ext/1375476428/metadata.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/metadata.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
+${OBJECTDIR}/_ext/1375476428/boot.o: ../src/middleware/boot.c  .generated_files/flags/default/f75d3edd1d47d7cae856598261fbb3102dba8ae7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/boot.c  -o ${OBJECTDIR}/_ext/1375476428/boot.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/boot.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
 ${OBJECTDIR}/_ext/1200941409/state_engine.o: ../src/software/state_engine.c  .generated_files/flags/default/c9da26097910b0409b91baea7908177a38890308 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1200941409" 
@@ -225,23 +237,11 @@ ${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/defau
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/main.c  -o ${OBJECTDIR}/_ext/1360937237/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
-${OBJECTDIR}/_ext/1375476428/boot.o: ../src/middleware/boot.c  .generated_files/flags/default/f75d3edd1d47d7cae856598261fbb3102dba8ae7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1375476428/tuner.o: ../src/middleware/tuner.c  .generated_files/flags/default/aeb84e90b36bddddf7860782390fcf2407388ad2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/boot.c  -o ${OBJECTDIR}/_ext/1375476428/boot.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/boot.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
-${OBJECTDIR}/_ext/362756510/driver_uart.o: ../src/driver/driver_uart.c  .generated_files/flags/default/e858a8c99c95560a88ec42320ceea1857b928e0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o.d 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_uart.c  -o ${OBJECTDIR}/_ext/362756510/driver_uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_uart.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
-${OBJECTDIR}/_ext/362756510/driver_can.o: ../src/driver/driver_can.c  .generated_files/flags/default/4c8d5c4862531fd0aaa687134bdee5a3fead9bfa .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o.d 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_can.c  -o ${OBJECTDIR}/_ext/362756510/driver_can.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_can.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	@${RM} ${OBJECTDIR}/_ext/1375476428/tuner.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/tuner.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/tuner.c  -o ${OBJECTDIR}/_ext/1375476428/tuner.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/tuner.o.d"      -g -D__DEBUG     -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
 else
 ${OBJECTDIR}/_ext/60165520/plib_clk.o: ../src/config/default/peripheral/clk/plib_clk.c  .generated_files/flags/default/95f04a750cac267016810ac0d2dc9604b25034bd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
@@ -322,23 +322,35 @@ ${OBJECTDIR}/_ext/362756510/flash_eeprom.o: ../src/driver/flash_eeprom.c  .gener
 	@${RM} ${OBJECTDIR}/_ext/362756510/flash_eeprom.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/flash_eeprom.c  -o ${OBJECTDIR}/_ext/362756510/flash_eeprom.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/flash_eeprom.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
+${OBJECTDIR}/_ext/362756510/driver_uart.o: ../src/driver/driver_uart.c  .generated_files/flags/default/4e62d04e9e3351d01d1c0c5361d535a97bbf2431 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_uart.c  -o ${OBJECTDIR}/_ext/362756510/driver_uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_uart.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
+${OBJECTDIR}/_ext/362756510/driver_can.o: ../src/driver/driver_can.c  .generated_files/flags/default/6fc95a9e8f06965d1cadccd9d798c0daf0a1b2b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o.d 
+	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_can.c  -o ${OBJECTDIR}/_ext/362756510/driver_can.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_can.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
 ${OBJECTDIR}/_ext/1375476428/diagnostics.o: ../src/middleware/diagnostics.c  .generated_files/flags/default/7d00d46453987427f51d3a6518adc01a9ded25de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/diagnostics.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/diagnostics.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/diagnostics.c  -o ${OBJECTDIR}/_ext/1375476428/diagnostics.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/diagnostics.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
-${OBJECTDIR}/_ext/1375476428/tuning.o: ../src/middleware/tuning.c  .generated_files/flags/default/98313d2da1eeee429e38968063887d41ea5c211a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/tuning.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/tuning.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/tuning.c  -o ${OBJECTDIR}/_ext/1375476428/tuning.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/tuning.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
 ${OBJECTDIR}/_ext/1375476428/metadata.o: ../src/middleware/metadata.c  .generated_files/flags/default/213aa8ea15e204c3f9a8d53efa2c473c78d177e7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/metadata.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1375476428/metadata.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/metadata.c  -o ${OBJECTDIR}/_ext/1375476428/metadata.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/metadata.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	
+${OBJECTDIR}/_ext/1375476428/boot.o: ../src/middleware/boot.c  .generated_files/flags/default/1db81035d03cdbeab7ef8a1279fe67f29d4ef77b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/boot.c  -o ${OBJECTDIR}/_ext/1375476428/boot.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/boot.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
 ${OBJECTDIR}/_ext/1200941409/state_engine.o: ../src/software/state_engine.c  .generated_files/flags/default/1182d889f6d6636a5502d2f47ba0e71791a29395 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1200941409" 
@@ -358,23 +370,11 @@ ${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/defau
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/main.c  -o ${OBJECTDIR}/_ext/1360937237/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
-${OBJECTDIR}/_ext/1375476428/boot.o: ../src/middleware/boot.c  .generated_files/flags/default/1db81035d03cdbeab7ef8a1279fe67f29d4ef77b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1375476428/tuner.o: ../src/middleware/tuner.c  .generated_files/flags/default/55564e17652cd31c88baa6dd900c3a014cd86fe4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1375476428" 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1375476428/boot.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/boot.c  -o ${OBJECTDIR}/_ext/1375476428/boot.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/boot.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
-${OBJECTDIR}/_ext/362756510/driver_uart.o: ../src/driver/driver_uart.c  .generated_files/flags/default/4e62d04e9e3351d01d1c0c5361d535a97bbf2431 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o.d 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_uart.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_uart.c  -o ${OBJECTDIR}/_ext/362756510/driver_uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_uart.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
-	
-${OBJECTDIR}/_ext/362756510/driver_can.o: ../src/driver/driver_can.c  .generated_files/flags/default/6fc95a9e8f06965d1cadccd9d798c0daf0a1b2b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}/_ext/362756510" 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o.d 
-	@${RM} ${OBJECTDIR}/_ext/362756510/driver_can.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/driver/driver_can.c  -o ${OBJECTDIR}/_ext/362756510/driver_can.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/362756510/driver_can.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
+	@${RM} ${OBJECTDIR}/_ext/1375476428/tuner.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1375476428/tuner.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../src/middleware/tuner.c  -o ${OBJECTDIR}/_ext/1375476428/tuner.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1375476428/tuner.o.d"        -g -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -ffunction-sections -fdata-sections -O1 -I"../src" -I"../src/config/default" -msmart-io=1 -msfr-warn=off   -mdfp="${DFP_DIR}/xc32"
 	
 endif
 

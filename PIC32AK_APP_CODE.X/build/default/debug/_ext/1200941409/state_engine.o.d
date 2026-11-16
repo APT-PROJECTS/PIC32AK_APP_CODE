@@ -17,8 +17,8 @@ build/default/debug/_ext/1200941409/state_engine.o: \
  ../src/driver/driver_uart.h ../src/driver/flash_eeprom.h \
  ../src/middleware.h ../src/middleware/boot.h \
  ../src/middleware/metadata.h ../src/middleware/diagnostics.h \
- ../src/middleware/tuning.h ../src/software.h \
- ../src/software/mcu_config.h ../src/software/state_engine.h
+ ../src/middleware/tuner.h ../src/software.h ../src/software/mcu_config.h \
+ ../src/software/state_engine.h
 
 ../src/config/default/definitions.h:
 
@@ -66,7 +66,7 @@ build/default/debug/_ext/1200941409/state_engine.o: \
 
 ../src/middleware/diagnostics.h:
 
-../src/middleware/tuning.h:
+../src/middleware/tuner.h:
 
 ../src/software.h:
 

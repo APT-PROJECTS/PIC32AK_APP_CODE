@@ -17,7 +17,7 @@ build/default/debug/_ext/362756510/driver_can.o: \
  ../src/driver/driver_uart.h ../src/driver/flash_eeprom.h \
  ../src/middleware.h ../src/middleware/boot.h \
  ../src/middleware/metadata.h ../src/middleware/diagnostics.h \
- ../src/middleware/tuning.h
+ ../src/middleware/tuner.h
 
 ../src/config/default/definitions.h:
 
@@ -65,4 +65,4 @@ build/default/debug/_ext/362756510/driver_can.o: \
 
 ../src/middleware/diagnostics.h:
 
-../src/middleware/tuning.h:
+../src/middleware/tuner.h:

@@ -60,7 +60,7 @@ extern "C" {
 #define APP_VERSION_L                   1U
 #define APP_VERSION_M                   2U
 #define APP_VERSION_R                   2U
-#define APP_SIZE                        6U
+#define APP_SIZE                        4U
 #define BOOT_VERSION_L                  1U
 #define BOOT_VERSION_M                  2U
 #define BOOT_VERSION_R                  2U

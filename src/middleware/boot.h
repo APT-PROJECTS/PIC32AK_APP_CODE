@@ -44,11 +44,12 @@ extern "C" {
 /* =====================================================
  * CAN_CMD
  * ===================================================== */
-#define BOOT_CAN_CMD_3_BIT_0_1_READ       0b00
-#define BOOT_CAN_CMD_3_BIT_0_1_WRITE      0b01
+#define BOOT_CAN_CMD_3_OPERATION_READ     0b00
+#define BOOT_CAN_CMD_3_OPERATION_WRITE    0b01
+#define BOOT_CAN_CMD_3_OPERATION_COMPARE  0b10
 
-#define BOOT_CAN_CMD_3_BIT_2_SUCCESS      0b0
-#define BOOT_CAN_CMD_3_BIT_2_FAIL         0b1
+#define BOOT_CAN_CMD_3_STATUS_SUCCESS     0b0
+#define BOOT_CAN_CMD_3_STATUS_FAIL        0b1
 
 #define BOOT_CAN_CMD_0_PIC_ID             0x01U
 #define BOOT_CAN_CMD_1_PIC_MAC_ID_1       0x01U
@@ -102,12 +103,13 @@ extern "C" {
 void Boot_PIC_ID_Handler(void);
 void Boot_Metadata_Handler(void);
 void Boot_Status_Handler(void);
+void Boot_App_Size_Handler(void);
 bool Boot_Is_App_Present(void);
 void Boot_App_Jump(void);
 void Boot_Jump_Handler(void);
 void Boot_App_Erase_Handler(void);
 bool App_Firmware_Write_Flash(void);
-void Boot_App_Chunk_Ack(uint8_t chunkIndex, uint8_t result);
+void Boot_App_Chunk_Ack(uint8_t chunkIndex, uint8_t operation, uint8_t status);
 uint8_t Next_Chunk_Index(uint8_t chunkIndex);
 void Boot_App_Chunk_Handler(void);
 uint32_t Boot_APP_CRC32_Software(const volatile uint8_t *data, uint32_t length);

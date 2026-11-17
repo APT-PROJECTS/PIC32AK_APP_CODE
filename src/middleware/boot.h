@@ -44,12 +44,14 @@ extern "C" {
 /* =====================================================
  * CAN_CMD
  * ===================================================== */
-#define BOOT_CAN_CMD_3_OPERATION_READ     0b00
-#define BOOT_CAN_CMD_3_OPERATION_WRITE    0b01
-#define BOOT_CAN_CMD_3_OPERATION_COMPARE  0b10
+#define BOOT_CAN_CMD_3_OPERATION_IDLE     0b000
+#define BOOT_CAN_CMD_3_OPERATION_READ     0b001
+#define BOOT_CAN_CMD_3_OPERATION_WRITE    0b010
+#define BOOT_CAN_CMD_3_OPERATION_COMPARE  0b011
 
-#define BOOT_CAN_CMD_3_STATUS_SUCCESS     0b0
-#define BOOT_CAN_CMD_3_STATUS_FAIL        0b1
+#define BOOT_CAN_CMD_3_STATUS_IDLE        0b00
+#define BOOT_CAN_CMD_3_STATUS_SUCCESS     0b01
+#define BOOT_CAN_CMD_3_STATUS_FAIL        0b10
 
 #define BOOT_CAN_CMD_0_PIC_ID             0x01U
 #define BOOT_CAN_CMD_1_PIC_MAC_ID_1       0x01U

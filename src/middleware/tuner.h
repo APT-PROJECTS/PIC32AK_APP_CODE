@@ -44,13 +44,15 @@
 
 #define TUNER_CAN_CMD_0_TUNING                  0x04
 
-#define TUNER_CAN_CMD_3_BIT_0_1_READ            0b00
-#define TUNER_CAN_CMD_3_BIT_0_1_WRITE           0b01
-#define TUNER_CAN_CMD_3_BIT_0_1_WRITE_FLASH     0b10  
-#define TUNER_CAN_CMD_3_BIT_0_1_ZERO_ANGLE      0b11
+#define TUNER_CAN_CMD_3_OPERATION_IDLE          0b000
+#define TUNER_CAN_CMD_3_OPERATION_READ          0b001
+#define TUNER_CAN_CMD_3_OPERATION_WRITE         0b010
+#define TUNER_CAN_CMD_3_OPERATION_WRITE_FLASH   0b011 
+#define TUNER_CAN_CMD_3_OPERATION_ZERO_ANGLE    0b100
     
-#define TUNER_CAN_CMD_3_BIT_2_SUCCESS           0b0
-#define TUNER_CAN_CMD_3_BIT_2_FAIL              0b1   
+#define TUNER_CAN_CMD_3_STATUS_IDLE             0b00
+#define TUNER_CAN_CMD_3_STATUS_SUCCESS          0b01
+#define TUNER_CAN_CMD_3_STATUS_FAIL             0b10   
     
 //--------------------------------------------------
 // MATRIX SIZE

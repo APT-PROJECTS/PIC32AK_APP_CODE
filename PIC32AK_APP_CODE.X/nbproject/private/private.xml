@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/metadata.c</file>
-            <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/tuning.c</file>
+            <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/tuner.c</file>
             <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/boot.h</file>
             <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/metadata.h</file>
-            <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/tuning.h</file>
             <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/boot.c</file>
+            <file>file:/D:/APT-PROJECTS/BOOT_APP/PIC32AK_BOOT_APP/PIC32AK_APP_CODE/src/middleware/tuner.h</file>
         </group>
     </open-files>
 </project-private>

@@ -23,14 +23,17 @@
     CANbus_write(TUNER_CAN_ID_MCU, data, sizeof(data));                        \
   } while (0)
 
-#define TUNER_CAN_CMD_3(operation, status) \
-        ((uint8_t)((operation) | ((status) << 2)))
+#define TUNER_CAN_CMD_3_SET_OPERATION(operation) \
+        ((uint8_t)(((operation) & 0x07U) << 5U))
+
+#define TUNER_CAN_CMD_3_SET_STATUS(status) \
+        ((uint8_t)(((status) & 0x03U) << 3U))
 
 #define TUNER_CAN_CMD_3_GET_OPERATION(value) \
-        ((uint8_t)((value) & 0x03U))
+        ((uint8_t)(((value) >> 5U) & 0x07U))
 
 #define TUNER_CAN_CMD_3_GET_STATUS(value) \
-        ((uint8_t)(((value) >> 2U) & 0x01U))
+        ((uint8_t)(((value) >> 3U) & 0x03U))
 
 /* UART frame: command + four 32-bit UDIDs + 32-bit device ID + terminator. */
 static unsigned char udid_string[sizeof(udid) + sizeof(devid) + 2U];
@@ -592,7 +595,7 @@ void CAN_Tuner_Send_PIC_ID(void) {
 
     switch (operation) {
             /*------------------------- READ --------------------------*/
-        case TUNER_CAN_CMD_3_BIT_0_1_READ:
+        case TUNER_CAN_CMD_3_OPERATION_READ:
 
             txBuf[0] = TUNER_CAN_CMD_0_PIC_ID;
             txBuf[1] = canRxBuffer[1];
@@ -603,11 +606,13 @@ void CAN_Tuner_Send_PIC_ID(void) {
                     (udid[1] == 0U) &&
                     (udid[2] == 0U) &&
                     (udid[3] == 0U)) {
-                txBuf[3] = TUNER_CAN_CMD_3(operation,
-                        TUNER_CAN_CMD_3_BIT_2_FAIL);
+                txBuf[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+                txBuf[3] = TUNER_CAN_CMD_3_SET_STATUS
+                        (TUNER_CAN_CMD_3_STATUS_FAIL);
             } else {
-                txBuf[3] = TUNER_CAN_CMD_3(operation,
-                        TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+                txBuf[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+                txBuf[3] = TUNER_CAN_CMD_3_SET_STATUS
+                        (TUNER_CAN_CMD_3_STATUS_SUCCESS);
             }
 
             switch (canRxBuffer[1]) {
@@ -664,7 +669,7 @@ void CAN_Tuner_Send_Metadata(void) {
     operation = TUNER_CAN_CMD_3_GET_OPERATION(canRxBuffer[3]);
 
     switch (operation) {
-        case TUNER_CAN_CMD_3_BIT_0_1_READ:
+        case TUNER_CAN_CMD_3_OPERATION_READ:
 
             chunkNumber = canRxBuffer[1];
 
@@ -685,8 +690,8 @@ void CAN_Tuner_Send_Metadata(void) {
 
             /* Set response status */
             status = metadataEmpty ?
-                    TUNER_CAN_CMD_3_BIT_2_FAIL :
-                    TUNER_CAN_CMD_3_BIT_2_SUCCESS;
+                    TUNER_CAN_CMD_3_STATUS_FAIL :
+                    TUNER_CAN_CMD_3_STATUS_SUCCESS;
 
             /* Calculate requested metadata offset */
             metadataOffset = ((uint16_t) (chunkNumber - 1U) * 
@@ -696,9 +701,9 @@ void CAN_Tuner_Send_Metadata(void) {
             txBuf[0] = TUNER_CAN_CMD_0_METADATA;
             txBuf[1] = chunkNumber;
             txBuf[2] = 0x00U;
-
-            txBuf[3] = TUNER_CAN_CMD_3(operation, status);
-
+            txBuf[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+            txBuf[3] = TUNER_CAN_CMD_3_SET_STATUS(status);
+            
             /* Copy 4 bytes of metadata */
             if (!metadataEmpty) {
                 memcpy(&txBuf[4],
@@ -738,10 +743,11 @@ void CAN_Tuner_Read_Write(void) {
     data[2] = col;
 
     switch (operation) {
-        case TUNER_CAN_CMD_3_BIT_0_1_READ:
+        case TUNER_CAN_CMD_3_OPERATION_READ:
             
-            data[3] = TUNER_CAN_CMD_3(operation,
-                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+            data[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+            data[3] = TUNER_CAN_CMD_3_SET_STATUS
+                    (TUNER_CAN_CMD_3_STATUS_SUCCESS);
 
             switch (row) {
                 case 0x01:
@@ -959,12 +965,13 @@ void CAN_Tuner_Read_Write(void) {
             }
             break;
 
-        case TUNER_CAN_CMD_3_BIT_0_1_WRITE:
+        case TUNER_CAN_CMD_3_OPERATION_WRITE:
             
             __builtin_memcpy(&temp, &canRxBuffer[4], sizeof (temp));
 
-            data[3] = TUNER_CAN_CMD_3(operation,
-                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+            data[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+            data[3] = TUNER_CAN_CMD_3_SET_STATUS
+                    (TUNER_CAN_CMD_3_STATUS_SUCCESS);
 
             __builtin_memset(&data[4], 0, CAN_FRAME_DATA_SIZE);
 
@@ -1144,7 +1151,7 @@ void CAN_Tuner_Read_Write(void) {
             CANbus_write(TUNER_CAN_ID_MCU, data, 8);
             break;
 
-        case TUNER_CAN_CMD_3_BIT_0_1_WRITE_FLASH:
+        case TUNER_CAN_CMD_3_OPERATION_WRITE_FLASH:
             
             __builtin_memset(&eepromBuffer[EEPROM_TUNER_OFFSET], 
                     0xFF, EEPROM_TUNER_SIZE);
@@ -1154,12 +1161,14 @@ void CAN_Tuner_Read_Write(void) {
             
             if (Flash_EEPROM_Write_Page(eepromBuffer,
                     EEPROM_DATA_SIZE) == FLASH_EEPROM_OK){
-                data[3] = TUNER_CAN_CMD_3(operation,
-                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+                data[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+                data[3] = TUNER_CAN_CMD_3_SET_STATUS
+                        (TUNER_CAN_CMD_3_STATUS_SUCCESS);
             }
             else{
-                data[3] = TUNER_CAN_CMD_3(operation,
-                    TUNER_CAN_CMD_3_BIT_2_FAIL);
+                data[3] = TUNER_CAN_CMD_3_SET_OPERATION(operation);
+                data[3] = TUNER_CAN_CMD_3_SET_STATUS
+                        (TUNER_CAN_CMD_3_STATUS_FAIL);
             }
             break;
 
@@ -1191,8 +1200,9 @@ void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1,
 
     txBuf[0] = TUNER_CAN_CMD_0_TUNING;
     txBuf[1] = 0x03;
-    txBuf[3] = TUNER_CAN_CMD_3(TUNER_CAN_CMD_3_BIT_0_1_ZERO_ANGLE,
-                    TUNER_CAN_CMD_3_BIT_2_SUCCESS);
+    txBuf[3] = TUNER_CAN_CMD_3_SET_OPERATION
+            (TUNER_CAN_CMD_3_OPERATION_ZERO_ANGLE);
+    txBuf[3] = TUNER_CAN_CMD_3_SET_STATUS(TUNER_CAN_CMD_3_STATUS_SUCCESS);            
 
     txBuf[2] = 0x01;
     temp = R_FF03_01;

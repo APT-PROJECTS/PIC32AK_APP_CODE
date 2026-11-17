@@ -7,16 +7,16 @@
 #define BOOT_FLASH_PAGE_SIZE (NVM_FLASH_PAGESIZE * sizeof(uint32_t))
 
 #define BOOT_CAN_CMD_3_SET_OPERATION(operation) \
-        ((uint8_t)((operation) & 0x03U))
+        ((uint8_t)(((operation) & 0x07U) << 5U))
 
 #define BOOT_CAN_CMD_3_SET_STATUS(status) \
-        ((uint8_t)(((status) & 0x01U) << 2U))
+        ((uint8_t)(((status) & 0x03U) << 3U))
 
 #define BOOT_CAN_CMD_3_GET_OPERATION(value) \
-        ((uint8_t)((value) & 0x03U))
+        ((uint8_t)(((value) >> 5U) & 0x07U))
 
 #define BOOT_CAN_CMD_3_GET_STATUS(value) \
-        ((uint8_t)(((value) >> 2U) & 0x01U))
+        ((uint8_t)(((value) >> 3U) & 0x03U))
 
 static uint8_t flashBuffer[FLASH_CHUNK_SIZE];
 static uint32_t flashBufferIndex = 0;

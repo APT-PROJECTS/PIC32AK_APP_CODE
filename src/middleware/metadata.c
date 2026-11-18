@@ -244,20 +244,19 @@ void Metadata_Init(void) {
     appSize[APP_SIZE] = '\0';
 
     __builtin_memcpy(bootVersionL,
-            &metadata[BOOT_VERSION_OFFSET],
+            &metadata[BOOT_VERSION_L_OFFSET],
             BOOT_VERSION_L);
 
     bootVersionL[BOOT_VERSION_L] = '\0';
 
     __builtin_memcpy(bootVersionM,
-            &metadata[BOOT_VERSION_OFFSET + BOOT_VERSION_L],
+            &metadata[BOOT_VERSION_M_OFFSET],
             BOOT_VERSION_M);
 
     bootVersionM[BOOT_VERSION_M] = '\0';
 
     __builtin_memcpy(bootVersionR,
-            &metadata[BOOT_VERSION_OFFSET +
-            BOOT_VERSION_L + BOOT_VERSION_M],
+            &metadata[BOOT_VERSION_R_OFFSET],
             BOOT_VERSION_R);
 
     bootVersionR[BOOT_VERSION_R] = '\0';

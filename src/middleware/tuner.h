@@ -7,42 +7,44 @@
 //--------------------------------------------------
 // CAN ID
 //--------------------------------------------------
-#define TUNER_CAN_ID_SOFTWARE                   0xE0  
-#define TUNER_CAN_ID_MCU                        0xE1
+#define TUNER_CAN_ID_SOFTWARE                   0xE0U  
+#define TUNER_CAN_ID_MCU                        0xE1U
 
 //--------------------------------------------------
 // CAN CMD 0
 //--------------------------------------------------
-#define TUNER_CAN_CMD_0_STATUS                  0x01
+#define TUNER_CAN_CMD_0_STATUS                  0x01U
 
-#define TUNER_CAN_CMD_0_PIC_ID                  0x02
-#define TUNER_CAN_CMD_1_PIC_MAC_ID_1            0x01
-#define TUNER_CAN_CMD_1_PIC_MAC_ID_2            0x02
-#define TUNER_CAN_CMD_1_PIC_MAC_ID_3            0x03
-#define TUNER_CAN_CMD_1_PIC_MAC_ID_4            0x04
-#define TUNER_CAN_CMD_1_PIC_DEVICE_ID           0x05
+#define TUNER_CAN_CMD_0_PIC_ID                  0x02U
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_1            0x01U
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_2            0x02U
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_3            0x03U
+#define TUNER_CAN_CMD_1_PIC_MAC_ID_4            0x04U
+#define TUNER_CAN_CMD_1_PIC_DEVICE_ID           0x05U
     
-#define TUNER_CAN_CMD_0_METADATA                0x03
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_1        0x01
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_2        0x02
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_3        0x03
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_4        0x04
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_5        0x05
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_6        0x06
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_7        0x07
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_8        0x08
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_9        0x09
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_10       0x0A
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_11       0x0B
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_12       0x0C
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_13       0x0D
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_14       0x0E
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_15       0x0F
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_16       0x10
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_17       0x11
-#define TUNER_CAN_CMD_1_METADATA_CHUNK_18       0x12
+#define TUNER_CAN_CMD_0_METADATA                0x03U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_1        0x01U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_2        0x02U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_3        0x03U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_4        0x04U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_5        0x05U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_6        0x06U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_7        0x07U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_8        0x08U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_9        0x09U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_10       0x0AU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_11       0x0BU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_12       0x0CU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_13       0x0DU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_14       0x0EU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_15       0x0FU
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_16       0x10U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_17       0x11U
+#define TUNER_CAN_CMD_1_METADATA_CHUNK_18       0x12U
 
-#define TUNER_CAN_CMD_0_TUNING                  0x04
+#define TUNER_CAN_CMD_0_TUNING                  0x04U
+
+#define TUNER_CAN_CMD_0_SOFTWARE_RESET          0x05U
 
 #define TUNER_CAN_CMD_3_OPERATION_IDLE          0b000
 #define TUNER_CAN_CMD_3_OPERATION_READ          0b001
@@ -270,6 +272,7 @@ void CAN_Tuner_Read_Write(void);
 void CAN_Send_Status(void);
 void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1, 
     int CONFIG_SENSOR_DIRECTION_estimate);
+void CAN_Tuner_Software_Reset(void);
 void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer);
 
 #endif /* _TUNING_H */

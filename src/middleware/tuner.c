@@ -1225,6 +1225,10 @@ void CAN_Tuner_Send_Zero_Angle(float theta, float theta0, float theta1,
     CANbus_write(TUNER_CAN_ID_MCU, txBuf, sizeof (txBuf));
 }
 
+void CAN_Tuner_Software_Reset(void){
+    asm("reset");
+}
+
 void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer) {
     __builtin_memcpy(canRxBuffer, rxBuffer, sizeof (canRxBuffer));
 
@@ -1247,6 +1251,12 @@ void CAN_Tuner_Handler(uint32_t id, uint8_t *rxBuffer) {
                 case TUNER_CAN_CMD_0_TUNING:
                 {
                     CAN_Tuner_Read_Write();
+                    break;
+                }
+                
+                case TUNER_CAN_CMD_0_SOFTWARE_RESET:
+                {
+                    CAN_Tuner_Software_Reset();
                     break;
                 }
 

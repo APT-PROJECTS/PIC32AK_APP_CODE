@@ -15,12 +15,12 @@ char pcbType[PCB_TYPE + 1U] = "1";
 char partNumber[PART_NUMBER_LENGTH + 1U];
 
 /* Model Number */
+char connector[CONNECTOR + 1U] = "AA";
+char coms[COMS + 1U] = "YZ";
 char sensor[SENSOR + 1U] = "H";
 char ntcResistor[NTC_RESISTOR + 1U] = "100";
 char ntcVolt[NTC_VOLT + 1U] = "5";
 char ntcValueB[NTC_VALUE_B + 1U] = "35";
-char connector[CONNECTOR + 1U] = "AA";
-char coms[COMS + 1U] = "YZ";
 
 char modelNumber[MODEL_NUMBER_LENGTH + 1U];
 
@@ -82,24 +82,22 @@ void Get_Part_Number(void) {
 void Get_Model_Number(void) {
     __builtin_memset(modelNumber, 0, sizeof (modelNumber));
 
-    __builtin_memcpy(&modelNumber[0], sensor, SENSOR);
+    __builtin_memcpy(&modelNumber[0], connector, CONNECTOR);
 
-    __builtin_memcpy(&modelNumber[SENSOR],
+    __builtin_memcpy(&modelNumber[CONNECTOR], coms, COMS);
+
+    __builtin_memcpy(&modelNumber[CONNECTOR + COMS], sensor, SENSOR);
+
+    __builtin_memcpy(&modelNumber[CONNECTOR + COMS + SENSOR],
             ntcResistor, NTC_RESISTOR);
 
-    __builtin_memcpy(&modelNumber[SENSOR + NTC_RESISTOR],
+    __builtin_memcpy(&modelNumber[CONNECTOR + COMS + SENSOR +
+            NTC_RESISTOR],
             ntcVolt, NTC_VOLT);
 
-    __builtin_memcpy(&modelNumber[SENSOR + NTC_RESISTOR + NTC_VOLT],
+    __builtin_memcpy(&modelNumber[CONNECTOR + COMS + SENSOR +
+            NTC_RESISTOR + NTC_VOLT],
             ntcValueB, NTC_VALUE_B);
-
-    __builtin_memcpy(&modelNumber[SENSOR + NTC_RESISTOR + NTC_VOLT +
-            NTC_VALUE_B],
-            connector, CONNECTOR);
-
-    __builtin_memcpy(&modelNumber[SENSOR + NTC_RESISTOR + NTC_VOLT +
-            NTC_VALUE_B + CONNECTOR],
-            coms, COMS);
 
     modelNumber[MODEL_NUMBER_LENGTH] = '\0';
 }

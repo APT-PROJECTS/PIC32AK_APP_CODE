@@ -7,7 +7,9 @@
             <creation-uuid>95d1cefe-fb32-4ece-a82f-52f0519011c8</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-            <make-dep-projects/>
+            <make-dep-projects>
+                <make-dep-project>../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X</make-dep-project>
+            </make-dep-projects>
             <sourceRootList>
                 <sourceRootElem>../src</sourceRootElem>
             </sourceRootList>

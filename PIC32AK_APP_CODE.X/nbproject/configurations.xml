@@ -157,7 +157,7 @@
         <targetDevice>PIC32AK1216GC41064</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>pickitbasic</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>5.00</languageToolchainVersion>
         <platform>3</platform>
@@ -175,6 +175,21 @@
         <archiverTool>
         </archiverTool>
         <loading>
+          <makeArtifact PL="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
+                        CT="1"
+                        CN="default"
+                        AC="true"
+                        BL="true"
+                        WD="../../PIC32AK_SPI_CAN_BOOTLOADER/PIC32AK_SPI_CAN_BOOTLOADER.X"
+                        BC="${MAKE}  -f Makefile CONF=default"
+                        DBC="${MAKE}  -f Makefile CONF=default TYPE_IMAGE=DEBUG_RUN"
+                        CC="rm -rf &quot;build/default&quot; &quot;dist/default&quot;"
+                        OP="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
+                        DOP="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf"
+                        FL="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.hex"
+                        PD="dist/default/production/PIC32AK_SPI_CAN_BOOTLOADER.X.production.elf"
+                        DD="dist/default/debug/PIC32AK_SPI_CAN_BOOTLOADER.X.debug.elf">
+          </makeArtifact>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>

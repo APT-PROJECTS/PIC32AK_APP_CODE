@@ -173,33 +173,24 @@ void Build_Metadata(void) {
 }
 
 void Metadata_Init(void) {
-    bool mcuIdValid = true;
-    bool firmwareChanged = false;
+    bool mcuIdNeedsDefault;
+    bool metadataChanged = false;
     bool allZero = true;
     bool allFF = true;
-    bool allStars = true;
+    bool allPrintable = true;
     size_t i;
 
-    /*
-     * Step 1: Get PIC ID and Generate Part Number and Model Number.
-     */
     Get_PIC_ID();
     Get_Part_Number();
     Get_Model_Number();
 
-    /*
-     * Step 2: Read EEPROM into the EEPROM buffer
-     * and copy the stored metadata into RAM.
-     */
     __builtin_memcpy(metadata,
             &eepromBuffer[EEPROM_METADATA_OFFSET],
             METADATA_LENGTH);
 
     metadata[METADATA_LENGTH] = '\0';
 
-    /*
-     * Step 3: Validate the stored MCU ID.
-     */
+    /* An all-star MCU ID is a valid "not provisioned" placeholder. */
     for (i = 0U; i < MCU_ID_LENGTH; i++) {
         uint8_t value = (uint8_t) metadata[MCU_ID_OFFSET + i];
 
@@ -211,78 +202,54 @@ void Metadata_Init(void) {
             allFF = false;
         }
 
-        if (value != (uint8_t) '*') {
-            allStars = false;
+        if ((value < 0x20U) || (value > 0x7EU)) {
+            allPrintable = false;
         }
     }
 
-    if (allZero || allFF || allStars) {
-        mcuIdValid = false;
-    }
+    mcuIdNeedsDefault = allZero || allFF || !allPrintable;
 
-    if (mcuIdValid) {
-        /* Preserve the complete stored MCU ID. */
+    if (mcuIdNeedsDefault) {
+        __builtin_memset(mcuId, '*', MCU_ID_LENGTH);
+        mcuId[MCU_ID_LENGTH] = '\0';
+        metadataChanged = true;
+    } else {
         __builtin_memcpy(mcuId,
                 &metadata[MCU_ID_OFFSET],
                 MCU_ID_LENGTH);
-
-        mcuId[MCU_ID_LENGTH] = '\0';
-    } else {
-        __builtin_memset(mcuId, '*', MCU_ID_LENGTH);
         mcuId[MCU_ID_LENGTH] = '\0';
     }
 
-    /*
-     * Step 4: Restore Application Size and Bootloader Version.
-     */
     __builtin_memcpy(appSize,
             &metadata[APP_SIZE_OFFSET],
             APP_SIZE);
-
     appSize[APP_SIZE] = '\0';
 
     __builtin_memcpy(bootVersionL,
             &metadata[BOOT_VERSION_L_OFFSET],
             BOOT_VERSION_L);
-
     bootVersionL[BOOT_VERSION_L] = '\0';
 
     __builtin_memcpy(bootVersionM,
             &metadata[BOOT_VERSION_M_OFFSET],
             BOOT_VERSION_M);
-
     bootVersionM[BOOT_VERSION_M] = '\0';
 
     __builtin_memcpy(bootVersionR,
             &metadata[BOOT_VERSION_R_OFFSET],
             BOOT_VERSION_R);
-
     bootVersionR[BOOT_VERSION_R] = '\0';
 
-    /*
-     * Generate the current Software ID and Firmware ID.
-     */
     Get_Software_ID();
     Get_Firmware_ID();
 
-    /*
-     * Step 5: Compare the generated Firmware ID against
-     * the original Firmware ID stored in metadata.
-     *
-     * Do not call Build_Metadata() unless the Firmware ID
-     * has changed.
-     */
     if (__builtin_memcmp(firmwareId,
             &metadata[FIRMWARE_ID_OFFSET],
             FIRMWARE_ID_LENGTH) != 0) {
-        firmwareChanged = true;
+        metadataChanged = true;
     }
 
-    /*
-     * Step 6: Rebuild metadata and update EEPROM only when
-     * the Firmware ID differs and the MCU ID is valid.
-     */
-    if (firmwareChanged) {
+    if (metadataChanged) {
         Build_Metadata();
 
         __builtin_memset(&eepromBuffer[EEPROM_METADATA_OFFSET], 0xFF,
